@@ -120,3 +120,24 @@
   (setq end (rereplace-with-bounds beg end "'" "’"))
   (setq end (rereplace-with-bounds beg end "\\([0-9]\\),\\([0-9]\\)" "\\1:\\2"))
   )
+
+(defun convert-text-region(table beg end)
+  "convert a region of BWGRK text to greek text"
+  (let ((case-fold-search nil)
+        (begm (copy-marker beg nil))
+        (endm (copy-marker end t)))
+                                        ;    (save-excursion
+    (goto-char begm)
+    (while (< (point) endm)
+                                        ; convert next character
+      (let ((p table))
+        (while p
+          (if (looking-at (caar p))
+              (progn
+                (delete-char (- (match-end 0) (match-beginning 0)))
+                (insert (cdar p))
+                (left-char)
+                (setq p nil))
+            (setq p (cdr p)))))
+      (right-char))))
+
