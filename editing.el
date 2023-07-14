@@ -1,3 +1,25 @@
+(defun delete-max-n-spaces(n)
+  "delete at most n spaces"
+  (while (> n 0)
+    (when (looking-at " ") (delete-char 1))
+    (setq n (- n 1))))
+
+(defun delete-max-n-spaces-but-one(n)
+  "delete at most n spaces but keep at least one space undeleted"
+  (while (> n 0)
+    (when (looking-at "  ") (delete-char 1))
+    (setq n (- n 1))))
+
+(defun back-delete-max-n-spaces(n)
+  (while (> n 0)
+    (when (looking-back " ") (delete-char -1))
+    (setq n (- n 1))))
+
+(defun rereplace(regex str)
+  (goto-char (point-min))
+  (while (re-search-forward regex nil t)
+    (replace-match str)))
+
 (defun move-line-down()
   (interactive)
   (next-line)
@@ -78,3 +100,23 @@
       (set-buffer curr-buff)
       (insert str))))
 
+(defun polish-region(beg end)
+  (interactive "r")
+  (setq end (rereplace-with-bounds beg end " \"" " „"))
+  (setq end (rereplace-with-bounds beg end "\" " "” "))
+  (setq end (rereplace-with-bounds beg end "“" "„"))
+  (setq end (rereplace-with-bounds beg end "«" "„"))
+  (setq end (rereplace-with-bounds beg end "»" "”"))
+  (setq end (rereplace-with-bounds beg end "'" "’"))
+  )
+
+(defun english-region(beg end)
+  (interactive "r")
+  (setq end (rereplace-with-bounds beg end " \"" " “"))
+  (setq end (rereplace-with-bounds beg end "\" " "” "))
+  (setq end (rereplace-with-bounds beg end "„" "“"))
+  (setq end (rereplace-with-bounds beg end "«" "“"))
+  (setq end (rereplace-with-bounds beg end "»" "”"))
+  (setq end (rereplace-with-bounds beg end "'" "’"))
+  (setq end (rereplace-with-bounds beg end "\\([0-9]\\),\\([0-9]\\)" "\\1:\\2"))
+  )
