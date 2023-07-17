@@ -56,3 +56,4 @@
 (global-set-key (kbd "s-[") (lambda()(interactive)(insert "‘")))
 (global-set-key (kbd "s-{") (lambda()(interactive)(insert "“")))
 
+(global-set-key (kbd "<M-insert>") 'delete-selection-mode)

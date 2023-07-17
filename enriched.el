@@ -24,17 +24,23 @@
 
 (defun intelligent-set-face(face beg end)
   (interactive)
-  (if mark-active
-      (progn
-        (message "Setting face %s to region" face)
-        (facemenu-set-face face beg end))
+  (cond
+   (mark-active
+    (progn
+      (message "Setting face %s to region" face)
+      (facemenu-set-face face beg end)))
+   ((and (looking-at "[ \n]") (looking-back " "))
+    (facemenu-set-face (car face)))
+   (t
     (progn
       (message "Setting face %s to word" face)
       (save-excursion
+        (if (looking-at "[.,;· \n]")
+            (left-char 1))
         (forward-word 1)
         (let ((end (point)))
           (backward-word 1)
-          (facemenu-set-face face (point) end))))))
+          (facemenu-set-face face (point) end)))))))
 
 (defun set-face-aqu-region(b e)(interactive "r")(intelligent-set-face 'aqu b e))
 (defun set-face-blu-region(b e)(interactive "r")(intelligent-set-face 'blu b e))
@@ -116,9 +122,9 @@
   )
 
 (defun set-tabs-times-n(n)
-  "set the variable tab-stop-list every n"
+  "set the variable tab-stop-list at 1 and then at n, n*2, n*3…"
   (interactive "p")
-  (let ((new-tab-stop-list (list 0 n (* n 2) (* n 3) (* n 4) (* n 5) (* n 6))))
+  (let ((new-tab-stop-list (list 1 n (* n 2) (* n 3) (* n 4) (* n 5) (* n 6))))
     (setq-local tab-stop-list new-tab-stop-list)
     (message "tab-stop-list set to %s" new-tab-stop-list)))
 
@@ -211,20 +217,36 @@
   (interactive)
   (headers-region (point-at-bol)(point-at-eol)))
 
+(defun show-face()
+  (interactive)
+  (message "face: %s" (get-text-property (point) 'face)))
+
+(defun set-default-face-for-blanks-region(beg end)
+  "set the default face for spaces and newlines in region"
+  (interactive "r")
+  (let ((begm (copy-marker beg nil))
+        (endm (copy-marker end t)))
+    (save-excursion
+      (goto-char begm)
+      (while (< (point) endm)
+        (if (looking-at "[ \n]")
+            (facemenu-set-face 'default (point) (1+ (point))))
+        (right-char)))))
+
 (defun enriched-mode-customizations()
   (interactive)
   (setq-local outline-minor-mode-prefix "")
   (setq-local indent-line-function 'tab-to-tab-stop)
   (outline-minor-mode)
   (local-set-key (kbd "M-o a") (lambda(b e)(interactive "r")(intelligent-set-face 'aqu b e)))
-                                        ;b bold
+  (local-set-key (kbd "M-o b") (lambda(b e)(interactive "r")(set-face-bold-region b e)))
                                         ;c
-                                        ;d default
+  (local-set-key (kbd "M-o d") (lambda(b e)(interactive "r")(set-face-default-region b e)))
   (local-set-key (kbd "M-o e") (lambda(b e)(interactive "r")(intelligent-set-face 'ora b e)))
   (local-set-key (kbd "M-o f") (lambda(b e)(interactive "r")(intelligent-set-face 'fuc b e)))
   (local-set-key (kbd "M-o g") (lambda(b e)(interactive "r")(intelligent-set-face 'gre b e)))
                                         ;h
-                                        ;i italic
+  (local-set-key (kbd "M-o i") (lambda(b e)(interactive "r")(set-face-italic-region b e)))
                                         ;j
                                         ;k
   (local-set-key (kbd "M-o l") (lambda(b e)(interactive "r")(intelligent-set-face 'lim b e)))
@@ -243,9 +265,12 @@
                                         ;z
   (local-set-key [tab] 'org-cycle)
   (local-set-key [C-tab] 'join-next-word)
+  (local-set-key [?\M-\r] (lambda()(interactive)(insert "\n")))
   (local-set-key [C-f2] 'set-header-face-for-line)
   (local-set-key [f5] 'facemenu-set-invisible)
   (local-set-key [f6] 'facemenu-remove-special)
+  (local-set-key [f7] 'set-default-face-for-blanks-region)
+  (local-set-key [C-f7] 'show-face)
   (local-set-key [f8] 'tab-fill-region)
   (local-set-key [C-f8] 'set-tabs-times-n)
   (local-set-key [M-f8] 'edit-tab-stops)

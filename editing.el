@@ -126,18 +126,18 @@
   (let ((case-fold-search nil)
         (begm (copy-marker beg nil))
         (endm (copy-marker end t)))
-                                        ;    (save-excursion
-    (goto-char begm)
-    (while (< (point) endm)
+    (save-excursion
+      (goto-char begm)
+      (while (< (point) endm)
                                         ; convert next character
-      (let ((p table))
-        (while p
-          (if (looking-at (caar p))
-              (progn
-                (delete-char (- (match-end 0) (match-beginning 0)))
-                (insert (cdar p))
-                (left-char)
-                (setq p nil))
-            (setq p (cdr p)))))
-      (right-char))))
+        (let ((p table))
+          (while p
+            (if (looking-at (caar p))
+                (progn
+                  (delete-char (- (match-end 0) (match-beginning 0)))
+                  (insert (cdar p))
+                  (left-char)
+                  (setq p nil))
+              (setq p (cdr p)))))
+        (right-char)))))
 
