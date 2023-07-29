@@ -13,11 +13,6 @@
 (global-set-key (kbd "<C-s-down>") (lambda (arg)(interactive "P") (if arg (windmove-delete-down)(windmove-down))))
 (global-set-key (kbd "<C-s-return>") 'delete-other-windows)
 
-(global-set-key (kbd "<C-M-s-left>") 'shrink-window-horizontally)
-(global-set-key (kbd "<C-M-s-right>") 'enlarge-window-horizontally)
-(global-set-key (kbd "<C-M-s-up>") 'enlarge-window)
-(global-set-key (kbd "<C-M-s-down>") 'shrink-window)
-
 (global-set-key (kbd "<s-left>") 'intelligent-previous-buffer)
 (global-set-key (kbd "<s-right>") 'intelligent-next-buffer)
 (global-set-key (kbd "<s-up>") (lambda()(interactive)(dired ".")))
@@ -55,5 +50,10 @@
 (global-set-key (kbd "s-\\") (lambda()(interactive)(insert "‟")))
 (global-set-key (kbd "s-[") (lambda()(interactive)(insert "‘")))
 (global-set-key (kbd "s-{") (lambda()(interactive)(insert "“")))
+
+(global-set-key (kbd "s-;") (lambda(n)(interactive "p") (insert (make-string n ?·))))
+(global-set-key (kbd "s--") (lambda(n)(interactive "p") (insert (make-string n ?‒))))
+(global-set-key (kbd "s-+") (lambda(n)(interactive "p") (insert (make-string n ?–))))
+(global-set-key (kbd "s-=") (lambda(n)(interactive "p") (insert (make-string n ?—))))
 
 (global-set-key (kbd "<M-insert>") 'delete-selection-mode)

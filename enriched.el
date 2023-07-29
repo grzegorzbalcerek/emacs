@@ -22,6 +22,13 @@
 (defface header5 '((t (:weight bold))) "weight bold")
 (defface header6 '((t (:weight bold))) "weight bold")
 
+(defface notes1 '((t (:foreground "gray75" :height 1.3))) "foreground gray75 height 1.3")
+(defface notes2 '((t (:foreground "gray75" :height 1.2))) "foreground gray75 height 1.2")
+(defface notes3 '((t (:foreground "gray75" :height 1.1))) "foreground gray75 height 1.1")
+(defface notes4 '((t (:foreground "gray75"))) "foreground gray75")
+(defface notes5 '((t (:foreground "gray75"))) "foreground gray75")
+(defface notes6 '((t (:foreground "gray75"))) "foreground gray75")
+
 (defun intelligent-set-face(face beg end)
   (interactive)
   (cond
@@ -154,6 +161,12 @@
          (header4 "header4")
          (header5 "header5")
          (header6 "header6")
+         (notes1 "notes1")
+         (notes2 "notes2")
+         (notes3 "notes3")
+         (notes4 "notes4")
+         (notes5 "notes5")
+         (notes6 "notes6")
          (aqu "aqu")
          (blu "blu")
          (fuc "fuc")
@@ -202,26 +215,30 @@
         (unknown
          (nil format-annotate-value))))
 
-(defun headers-region(beg end)
-  "format all headers in the region by adding headerN faces"
-  (interactive "r")
+(defun title-face-region(beg end prefix)
+  "format all outlines in the region by adding prefixN faces"
   (goto-char beg)
   (while (re-search-forward "^\\([*]+\\) .*$" end t)
     (let* ((level (length (buffer-substring (match-beginning 1) (match-end 1))))
-           (face (format "header%d" level)))
+           (face (format "%s%d" prefix level)))
       (facemenu-set-face 'default (match-beginning 0) (match-end 0))
       (facemenu-set-face (intern face) (match-beginning 0) (match-end 0)))))
 
-(defun set-header-face-for-line()
+(defun header-face-for-line()
   "sets the right header for the current line"
   (interactive)
-  (headers-region (point-at-bol)(point-at-eol)))
+  (title-face-region (point-at-bol)(point-at-eol) "header"))
+
+(defun notes-face-for-line()
+  "sets the right notes for the current line"
+  (interactive)
+  (title-face-region (point-at-bol)(point-at-eol) "notes"))
 
 (defun show-face()
   (interactive)
   (message "face: %s" (get-text-property (point) 'face)))
 
-(defun set-default-face-for-blanks-region(beg end)
+(defun defaultify-blanks-region(beg end)
   "set the default face for spaces and newlines in region"
   (interactive "r")
   (let ((begm (copy-marker beg nil))
@@ -266,10 +283,11 @@
   (local-set-key [tab] 'org-cycle)
   (local-set-key [C-tab] 'join-next-word)
   (local-set-key [?\M-\r] (lambda()(interactive)(insert "\n")))
-  (local-set-key [C-f2] 'set-header-face-for-line)
+  (local-set-key [C-f2] 'header-face-for-line)
+  (local-set-key [C-S-f2] 'notes-face-for-line)
   (local-set-key [f5] 'facemenu-set-invisible)
   (local-set-key [f6] 'facemenu-remove-special)
-  (local-set-key [f7] 'set-default-face-for-blanks-region)
+  (local-set-key [f7] 'defaultify-blanks-region)
   (local-set-key [C-f7] 'show-face)
   (local-set-key [f8] 'tab-fill-region)
   (local-set-key [C-f8] 'set-tabs-times-n)
