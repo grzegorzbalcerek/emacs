@@ -250,6 +250,30 @@
             (facemenu-set-face 'default (point) (1+ (point))))
         (right-char)))))
 
+(defun insert-newline()
+  (reindent-then-newline-and-indent)
+  (beginning-of-line)
+  (delete-whitespace-rectangle (line-beginning-position) (line-end-position)))
+
+(defun solid-line-and-newline()
+  (interactive)
+  (insert-newline)
+  (insert "——————————————————————————————————————————————————————————————————————————————————————————")
+  (insert-newline))
+
+(defun dotted-line-and-newline()
+  (interactive)
+  (insert-newline)
+  (insert "··························································································")
+  (insert-newline))
+
+(defun prefixed-newline(prefix)
+  (interactive "P")
+  (cond
+   ((equal prefix '(4)) (solid-line-and-newline))
+   ((equal prefix 0) (dotted-line-and-newline))
+   (t (insert-newline))))
+
 (defun enriched-mode-customizations()
   (interactive)
   (setq-local outline-minor-mode-prefix "")
@@ -281,6 +305,9 @@
                                         ;y
                                         ;z
   (local-set-key [tab] 'org-cycle)
+  (local-set-key [return] 'prefixed-newline)
+  (local-set-key [C-return] 'solid-line-and-newline)
+  (local-set-key [M-return] 'dotted-line-and-newline)
   (local-set-key [C-tab] 'join-next-word)
   (local-set-key [?\M-\r] (lambda()(interactive)(insert "\n")))
   (local-set-key [C-f2] 'header-face-for-line)
