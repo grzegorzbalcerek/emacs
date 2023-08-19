@@ -15,19 +15,27 @@
 (defface vio '((t (:foreground "#8000ff"))) "foreground violet")
 
 
-(defface header1 '((t (:weight bold :height 1.3))) "weight bold height 1.3")
-(defface header2 '((t (:weight bold :height 1.2))) "weight bold height 1.2")
-(defface header3 '((t (:weight bold :height 1.1))) "weight bold height 1.1")
+(defface header1 '((t (:weight bold :height 1.15))) "weight bold height 1.15")
+(defface header2 '((t (:weight bold :height 1.10))) "weight bold height 1.10")
+(defface header3 '((t (:weight bold :height 1.05))) "weight bold height 1.05")
 (defface header4 '((t (:weight bold))) "weight bold")
 (defface header5 '((t (:weight bold))) "weight bold")
 (defface header6 '((t (:weight bold))) "weight bold")
 
-(defface notes1 '((t (:foreground "gray75" :height 1.3))) "foreground gray75 height 1.3")
-(defface notes2 '((t (:foreground "gray75" :height 1.2))) "foreground gray75 height 1.2")
-(defface notes3 '((t (:foreground "gray75" :height 1.1))) "foreground gray75 height 1.1")
+(defface notes1 '((t (:foreground "gray75" :height 1.15))) "foreground gray75 height 1.15")
+(defface notes2 '((t (:foreground "gray75" :height 1.10))) "foreground gray75 height 1.10")
+(defface notes3 '((t (:foreground "gray75" :height 1.05))) "foreground gray75 height 1.05")
 (defface notes4 '((t (:foreground "gray75"))) "foreground gray75")
 (defface notes5 '((t (:foreground "gray75"))) "foreground gray75")
 (defface notes6 '((t (:foreground "gray75"))) "foreground gray75")
+
+(defface todo1 '((t (:foreground "red" :height 1.15))) "foreground red height 1.15")
+(defface todo2 '((t (:foreground "red" :height 1.10))) "foreground red height 1.10")
+(defface todo3 '((t (:foreground "red" :height 1.05))) "foreground red height 1.05")
+(defface todo4 '((t (:foreground "red"))) "foreground red")
+(defface todo5 '((t (:foreground "red"))) "foreground red")
+(defface todo6 '((t (:foreground "red"))) "foreground red")
+
 
 (defun intelligent-set-face(face beg end)
   (interactive)
@@ -129,9 +137,9 @@
   )
 
 (defun set-tabs-times-n(n)
-  "set the variable tab-stop-list at 1 and then at n, n*2, n*3…"
+  "set the variable tab-stop-list at 2 and then at n, n*2, n*3…"
   (interactive "p")
-  (let ((new-tab-stop-list (list 1 n (* n 2) (* n 3) (* n 4) (* n 5) (* n 6))))
+  (let ((new-tab-stop-list (list 2 n (* n 2) (* n 3) (* n 4) (* n 5) (* n 6))))
     (setq-local tab-stop-list new-tab-stop-list)
     (message "tab-stop-list set to %s" new-tab-stop-list)))
 
@@ -225,14 +233,19 @@
       (facemenu-set-face (intern face) (match-beginning 0) (match-end 0)))))
 
 (defun header-face-for-line()
-  "sets the right header for the current line"
+  "sets the right header face for the current line"
   (interactive)
   (title-face-region (point-at-bol)(point-at-eol) "header"))
 
 (defun notes-face-for-line()
-  "sets the right notes for the current line"
+  "sets the right notes face for the current line"
   (interactive)
   (title-face-region (point-at-bol)(point-at-eol) "notes"))
+
+(defun todo-face-for-line()
+  "sets the right todo face for the current line"
+  (interactive)
+  (title-face-region (point-at-bol)(point-at-eol) "todo"))
 
 (defun show-face()
   (interactive)
@@ -255,27 +268,41 @@
   (beginning-of-line)
   (delete-whitespace-rectangle (line-beginning-position) (line-end-position)))
 
-(defun solid-line-and-newline()
+(defun newline-and-solid-line()
   (interactive)
   (insert-newline)
-  (insert "——————————————————————————————————————————————————————————————————————————————————————————")
-  (insert-newline))
+  (insert "——————————————————————————————————————————————————————————————————————————————————————————"))
 
-(defun dotted-line-and-newline()
+(defun newline-and-dotted-line()
   (interactive)
   (insert-newline)
-  (insert "··························································································")
-  (insert-newline))
+  (insert "··························································································"))
 
 (defun prefixed-newline(prefix)
   (interactive "P")
   (cond
-   ((equal prefix '(4)) (solid-line-and-newline))
-   ((equal prefix 0) (dotted-line-and-newline))
+   ((equal prefix '(4)) (newline-and-solid-line))
+   ((equal prefix 0) (newline-and-dotted-line))
    (t (insert-newline))))
+
+(defun title-org-cycle(prefix)
+  (interactive "P")
+  (let ((cycle
+         (save-excursion
+           (beginning-of-line)
+           (if (looking-at "[*]+ ") t nil))))
+    (if cycle 
+        (org-cycle prefix)
+      (tab-to-tab-stop))))
 
 (defun enriched-mode-customizations()
   (interactive)
+  (modify-syntax-entry ?· ".")
+  (modify-syntax-entry ?· ".")
+  (modify-syntax-entry ?\‚ "(’")
+  (modify-syntax-entry ?\’ ")‚")
+  (modify-syntax-entry ?\„ "(”")
+  (modify-syntax-entry ?\” ")„")
   (setq-local outline-minor-mode-prefix "")
   (setq-local indent-line-function 'tab-to-tab-stop)
   (outline-minor-mode)
@@ -304,14 +331,15 @@
                                         ;w
                                         ;y
                                         ;z
-  (local-set-key [tab] 'org-cycle)
+  (local-set-key [tab] 'title-org-cycle)
   (local-set-key [return] 'prefixed-newline)
-  (local-set-key [C-return] 'solid-line-and-newline)
-  (local-set-key [M-return] 'dotted-line-and-newline)
+  (local-set-key [C-return] 'newline-and-solid-line)
+  (local-set-key [M-return] 'newline-and-dotted-line)
   (local-set-key [C-tab] 'join-next-word)
   (local-set-key [?\M-\r] (lambda()(interactive)(insert "\n")))
+  (local-set-key [C-f1] 'notes-face-for-line)
   (local-set-key [C-f2] 'header-face-for-line)
-  (local-set-key [C-S-f2] 'notes-face-for-line)
+  (local-set-key [C-f3] 'todo-face-for-line)
   (local-set-key [f5] 'facemenu-set-invisible)
   (local-set-key [f6] 'facemenu-remove-special)
   (local-set-key [f7] 'defaultify-blanks-region)

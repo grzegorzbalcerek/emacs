@@ -13,12 +13,16 @@
  '(max-lisp-eval-depth 999999)
  '(max-specpdl-size 999999)
  '(mouse-drag-copy-region t)
+ '(org-babel-load-languages '((js . t) (awk . t) (python . t) (emacs-lisp . t)))
+ '(org-babel-python-command "python3")
  '(org-file-apps
    '((auto-mode . emacs)
      ("\\.mm\\'" . default)
      ("\\.x?html?\\'" . default)
-     ("\\.pdf\\'" . "/usr/bin/evince")))
+     ("\\.pdf\\'" . "evince %s")))
  '(org-latex-compiler "xelatex")
+ '(org-latex-packages-alist
+   '(("left=10mm,top=10mm,right=10mm,bottom=15mm" "geometry" nil)))
  '(org-time-stamp-rounding-minutes '(0 1))
  '(package-archives
    '(("gnu" . "https://elpa.gnu.org/packages/")
@@ -42,3 +46,21 @@
 (put 'narrow-to-region 'disabled nil)
 (set-scroll-bar-mode 'right)
 (global-tab-line-mode)
+
+(set-register ?. '(file . "~/repos/emacs/.emacs"))
+(set-register ?e '(file . "~/doc/emacs/"))
+(set-register ?p '(file . "~/pub/"))
+(set-register ?r '(file . "~/doc/rbs/"))
+(set-register ?E '(file . "~/repos/emacs/"))
+
+(load-file "~/repos/emacs/editing.el")
+(load-file "~/repos/emacs/text.el")
+(load-file "~/repos/emacs/greek.el")
+(load-file "~/repos/emacs/enriched.el")
+(load-file "~/repos/emacs/org.el")
+(load-file "~/repos/emacs/keys.el")
+
+(find-file "~/repos/emacs/org.org")
+
+(set-buffer "*scratch*")
+(insert "\n")
