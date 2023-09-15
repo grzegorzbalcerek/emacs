@@ -15,6 +15,7 @@
  '(mouse-drag-copy-region t)
  '(org-babel-load-languages '((js . t) (awk . t) (python . t) (emacs-lisp . t)))
  '(org-babel-python-command "python3")
+ '(org-confirm-babel-evaluate nil)
  '(org-file-apps
    '((auto-mode . emacs)
      ("\\.mm\\'" . default)
@@ -41,14 +42,17 @@
  ;; If there is more than one, they won't work right.
  )
 
+(setq w32-lwindow-modifier 'super)
+(w32-register-hot-key [s-])
 (prefer-coding-system 'utf-8-unix)
 (column-number-mode +1)
 (put 'narrow-to-region 'disabled nil)
 (set-scroll-bar-mode 'right)
 (global-tab-line-mode)
 
-(set-register ?. '(file . "~/repos/emacs/.emacs"))
+(set-register ?. '(file . "~/.emacs"))
 (set-register ?e '(file . "~/doc/emacs/"))
+(set-register ?m '(file . "~/Makefile"))
 (set-register ?p '(file . "~/pub/"))
 (set-register ?r '(file . "~/doc/rbs/"))
 (set-register ?E '(file . "~/repos/emacs/"))
