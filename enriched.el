@@ -110,9 +110,9 @@
     ;h
     ("i" . set-face-italic-region)
     ;j
+    ("k" . set-face-lim-region)
+    ("K" . set-face-limb-region)
     ;k
-    ("l" . set-face-lim-region)
-    ("L" . set-face-limb-region)
     ("m" . set-face-mar-region)
     ("M" . set-face-marb-region)
     ("n" . set-face-nav-region)
@@ -285,14 +285,16 @@
    ((equal prefix 0) (newline-and-dotted-line))
    (t (insert-newline))))
 
-(defun title-org-cycle(prefix)
+(defun tab-cycle(prefix)
   (interactive "P")
   (let ((cycle
          (save-excursion
            (beginning-of-line)
-           (if (looking-at "[*]+ ") t nil))))
-    (if cycle 
-        (org-cycle prefix)
+           (if (looking-at outline-regexp) t nil))))
+    (if cycle
+        (if (boundp 'outline-cycle)
+            (outline-cycle prefix)
+          (org-cycle))
       (tab-to-tab-stop))))
 
 (defun enriched-mode-customizations()
@@ -303,6 +305,7 @@
   (modify-syntax-entry ?\’ ")‚")
   (modify-syntax-entry ?\„ "(”")
   (modify-syntax-entry ?\” ")„")
+  (setq-local outline-regexp "[*]+\\|[—]+")
   (setq-local outline-minor-mode-prefix "")
   (setq-local indent-line-function 'tab-to-tab-stop)
   (outline-minor-mode)
@@ -331,7 +334,7 @@
                                         ;w
                                         ;y
                                         ;z
-  (local-set-key [tab] 'title-org-cycle)
+  (local-set-key [tab] 'tab-cycle)
   (local-set-key [return] 'prefixed-newline)
   (local-set-key [C-return] 'newline-and-solid-line)
   (local-set-key [M-return] 'newline-and-dotted-line)

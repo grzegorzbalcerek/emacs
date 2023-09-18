@@ -42,13 +42,16 @@
  ;; If there is more than one, they won't work right.
  )
 
+(setq w32-lwindow-modifier 'super)
+(if (boundp 'w32-register-hot-key)
+    (w32-register-hot-key [s-]))
 (prefer-coding-system 'utf-8-unix)
 (column-number-mode +1)
 (put 'narrow-to-region 'disabled nil)
 (set-scroll-bar-mode 'right)
 (global-tab-line-mode)
 
-(set-register ?. '(file . "~/repos/emacs/.emacs"))
+(set-register ?. '(file . "~/.emacs"))
 (set-register ?e '(file . "~/doc/emacs/"))
 (set-register ?m '(file . "~/Makefile"))
 (set-register ?p '(file . "~/pub/"))
@@ -62,7 +65,7 @@
 (load-file "~/repos/emacs/org.el")
 (load-file "~/repos/emacs/keys.el")
 
-(find-file "~/repos/emacs/org.org")
+(find-file "~/.org")
 
 (set-buffer "*scratch*")
 (insert "\n")
