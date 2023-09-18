@@ -15,6 +15,7 @@
  '(mouse-drag-copy-region t)
  '(org-babel-load-languages '((js . t) (awk . t) (python . t) (emacs-lisp . t)))
  '(org-babel-python-command "python3")
+ '(org-confirm-babel-evaluate nil)
  '(org-file-apps
    '((auto-mode . emacs)
      ("\\.mm\\'" . default)
@@ -49,6 +50,7 @@
 
 (set-register ?. '(file . "~/repos/emacs/.emacs"))
 (set-register ?e '(file . "~/doc/emacs/"))
+(set-register ?m '(file . "~/Makefile"))
 (set-register ?p '(file . "~/pub/"))
 (set-register ?r '(file . "~/doc/rbs/"))
 (set-register ?E '(file . "~/repos/emacs/"))
