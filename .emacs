@@ -43,7 +43,8 @@
  )
 
 (setq w32-lwindow-modifier 'super)
-(w32-register-hot-key [s-])
+(if (boundp 'w32-register-hot-key)
+    (w32-register-hot-key [s-]))
 (prefer-coding-system 'utf-8-unix)
 (column-number-mode +1)
 (put 'narrow-to-region 'disabled nil)
@@ -64,7 +65,7 @@
 (load-file "~/repos/emacs/org.el")
 (load-file "~/repos/emacs/keys.el")
 
-(find-file "~/repos/emacs/org.org")
+(find-file "~/.org")
 
 (set-buffer "*scratch*")
 (insert "\n")
