@@ -292,7 +292,7 @@
            (beginning-of-line)
            (if (looking-at outline-regexp) t nil))))
     (if cycle
-        (if (boundp 'outline-cycle)
+        (if (functionp 'outline-cycle)
             (outline-cycle prefix)
           (org-cycle))
       (tab-to-tab-stop))))
