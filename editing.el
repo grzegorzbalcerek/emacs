@@ -122,7 +122,7 @@
   )
 
 (defun convert-text-region(table beg end)
-  "convert a region of BWGRK text to greek text"
+  "convert a region of text to a different text"
   (let ((case-fold-search nil)
         (begm (copy-marker beg nil))
         (endm (copy-marker end t)))

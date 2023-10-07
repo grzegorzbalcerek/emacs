@@ -14,6 +14,7 @@
 (defface tea '((t (:foreground "#008080"))) "foreground teal")
 (defface vio '((t (:foreground "#8000ff"))) "foreground violet")
 
+(defface half '((t (:height 0.5))) "height 0.5")
 
 (defface header1 '((t (:weight bold :height 1.15))) "weight bold height 1.15")
 (defface header2 '((t (:weight bold :height 1.10))) "weight bold height 1.10")
@@ -86,6 +87,7 @@
 (defun set-face-teab-region(b e)(interactive "r")(intelligent-set-face 'tea b e)(intelligent-set-face 'bold b e))
 (defun set-face-viob-region(b e)(interactive "r")(intelligent-set-face 'vio b e)(intelligent-set-face 'bold b e))
 (defun set-face-bold-region(b e)(interactive "r")(intelligent-set-face 'bold b e))
+(defun set-face-half-region(b e)(interactive "r")(intelligent-set-face 'half b e))
 (defun set-face-italic-region(b e)(interactive "r")(intelligent-set-face 'italic b e))
 (defun set-face-default-region(b e)(interactive "r")(intelligent-set-face 'default b e))
 
@@ -107,12 +109,12 @@
     ("F" . set-face-fucb-region)
     ("g" . set-face-gre-region)
     ("G" . set-face-greb-region)
-    ;h
+    ("h" . set-face-half-region)
     ("i" . set-face-italic-region)
     ;j
     ("k" . set-face-lim-region)
     ("K" . set-face-limb-region)
-    ;k
+    ;l
     ("m" . set-face-mar-region)
     ("M" . set-face-marb-region)
     ("n" . set-face-nav-region)
@@ -163,6 +165,7 @@
 
 (setq enriched-translations
       '((face
+         (half "half")
          (header1 "header1")
          (header2 "header2")
          (header3 "header3")
@@ -305,7 +308,7 @@
   (modify-syntax-entry ?\’ ")‚")
   (modify-syntax-entry ?\„ "(”")
   (modify-syntax-entry ?\” ")„")
-  (setq-local outline-regexp "[*]+\\|[—]+")
+  (setq-local outline-regexp "[*]+\\|[—]+\\|[·]+")
   (setq-local outline-minor-mode-prefix "")
   (setq-local indent-line-function 'tab-to-tab-stop)
   (outline-minor-mode)
@@ -316,11 +319,12 @@
   (local-set-key (kbd "M-o e") (lambda(b e)(interactive "r")(intelligent-set-face 'ora b e)))
   (local-set-key (kbd "M-o f") (lambda(b e)(interactive "r")(intelligent-set-face 'fuc b e)))
   (local-set-key (kbd "M-o g") (lambda(b e)(interactive "r")(intelligent-set-face 'gre b e)))
-                                        ;h
+  (local-set-key (kbd "M-o G") (lambda(b e)(interactive "r")(intelligent-set-face 'greb b e)))
+  (local-set-key (kbd "M-o h") (lambda(b e)(interactive "r")(intelligent-set-face 'half b e)))
   (local-set-key (kbd "M-o i") (lambda(b e)(interactive "r")(set-face-italic-region b e)))
                                         ;j
-                                        ;k
-  (local-set-key (kbd "M-o l") (lambda(b e)(interactive "r")(intelligent-set-face 'lim b e)))
+  (local-set-key (kbd "M-o k") (lambda(b e)(interactive "r")(intelligent-set-face 'lim b e)))
+                                        ;l
   (local-set-key (kbd "M-o m") (lambda(b e)(interactive "r")(intelligent-set-face 'mar b e)))
   (local-set-key (kbd "M-o n") (lambda(b e)(interactive "r")(intelligent-set-face 'nav b e)))
                                         ;o
