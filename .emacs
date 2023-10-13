@@ -66,6 +66,7 @@
 (load-file "~/repos/emacs/keys.el")
 
 (find-file "~/.org")
+(find-file "~/doc/emacs/lacina.txt")
 
 (set-buffer "*scratch*")
 (insert "\n")

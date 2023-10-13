@@ -51,6 +51,7 @@
 (global-set-key (kbd "s-[") (lambda()(interactive)(insert "‘")))
 (global-set-key (kbd "s-{") (lambda()(interactive)(insert "“")))
 
+(global-set-key (kbd "C-$") (lambda()(interactive)(insert "§")))
 (global-set-key (kbd "s-:") (lambda()(interactive)(insert "…")))
 (global-set-key (kbd "s-;") (lambda(n)(interactive "p") (insert (make-string n ?·))))
 (global-set-key (kbd "s--") (lambda(n)(interactive "p") (insert (make-string n ?−))))
