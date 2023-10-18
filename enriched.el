@@ -121,7 +121,8 @@
     ("a" . set-face-aqu-region)
     ("A" . set-face-aqub-region)
     ("b" . set-face-bold-region)
-    ;c
+    ("c" . set-face-blu-region)
+    ("C" . set-face-blub-region)
     ("d" . set-face-default-region)
     ("e" . set-face-ora-region)
     ("E" . set-face-orab-region)
@@ -135,8 +136,7 @@
     ("k" . set-face-lim-region)
     ("K" . set-face-limb-region)
     ("l" . set-face-bold-italic-region)
-    ("m" . set-face-mar-region)
-    ("M" . set-face-marb-region)
+    ;m
     ("n" . set-face-nav-region)
     ("N" . set-face-navb-region)
     ("p" . set-face-pin-region)
@@ -149,11 +149,12 @@
     ("S" . set-face-skyb-region)
     ("t" . set-face-tea-region)
     ("T" . set-face-teab-region)
-    ("u" . set-face-blu-region)
-    ("U" . set-face-blub-region)
+    ;u
     ("v" . set-face-vio-region)
     ("V" . set-face-viob-region)
-    ;w
+    ("w" . set-face-mar-region)
+    ("W" . set-face-marb-region)
+    ;x
     ("y" . set-face-gra-region)
     ("Y" . set-face-grab-region)
     ;z
@@ -342,7 +343,8 @@
   (local-set-key (kbd "M-o a") (lambda(b e)(interactive "r")(set-face-aqu-region b e)))
   (local-set-key (kbd "M-o A") (lambda(b e)(interactive "r")(set-face-aqub-region b e)))
   (local-set-key (kbd "M-o b") (lambda(b e)(interactive "r")(set-face-bold-region b e)))
-                                        ;c
+  (local-set-key (kbd "M-o c") (lambda(b e)(interactive "r")(set-face-blu-region b e)))
+  (local-set-key (kbd "M-o C") (lambda(b e)(interactive "r")(set-face-blub-region b e)))
   (local-set-key (kbd "M-o d") (lambda(b e)(interactive "r")(set-face-default-region b e)))
   (local-set-key (kbd "M-o e") (lambda(b e)(interactive "r")(set-face-ora-region b e)))
   (local-set-key (kbd "M-o E") (lambda(b e)(interactive "r")(set-face-orab-region b e)))
@@ -356,11 +358,10 @@
   (local-set-key (kbd "M-o k") (lambda(b e)(interactive "r")(set-face-lim-region b e)))
   (local-set-key (kbd "M-o K") (lambda(b e)(interactive "r")(set-face-limb-region b e)))
   (local-set-key (kbd "M-o l") (lambda(b e)(interactive "r")(set-face-bold-italic-region b e)))
-  (local-set-key (kbd "M-o m") (lambda(b e)(interactive "r")(set-face-mar-region b e)))
-  (local-set-key (kbd "M-o M") (lambda(b e)(interactive "r")(set-face-marb-region b e)))
+                                        ;M-o m enriched-toggle-markup
   (local-set-key (kbd "M-o n") (lambda(b e)(interactive "r")(set-face-nav-region b e)))
   (local-set-key (kbd "M-o N") (lambda(b e)(interactive "r")(set-face-navb-region b e)))
-                                        ;o
+                                        ;M-o o facemenu-set-face
   (local-set-key (kbd "M-o p") (lambda(b e)(interactive "r")(set-face-pin-region b e)))
   (local-set-key (kbd "M-o P") (lambda(b e)(interactive "r")(set-face-pinb-region b e)))
   (local-set-key (kbd "M-o q") (lambda(b e)(interactive "r")(set-face-oli-region b e)))
@@ -371,11 +372,12 @@
   (local-set-key (kbd "M-o S") (lambda(b e)(interactive "r")(set-face-skyb-region b e)))
   (local-set-key (kbd "M-o t") (lambda(b e)(interactive "r")(set-face-tea-region b e)))
   (local-set-key (kbd "M-o T") (lambda(b e)(interactive "r")(set-face-teab-region b e)))
-  (local-set-key (kbd "M-o u") (lambda(b e)(interactive "r")(set-face-blu-region b e)))
-  (local-set-key (kbd "M-o U") (lambda(b e)(interactive "r")(set-face-blub-region b e)))
+                                        ;M-u facemenu-set-underline
   (local-set-key (kbd "M-o v") (lambda(b e)(interactive "r")(set-face-vio-region b e)))
   (local-set-key (kbd "M-o V") (lambda(b e)(interactive "r")(set-face-viob-region b e)))
-                                        ;w
+  (local-set-key (kbd "M-o w") (lambda(b e)(interactive "r")(set-face-mar-region b e)))
+  (local-set-key (kbd "M-o W") (lambda(b e)(interactive "r")(set-face-marb-region b e)))
+                                        ;x
   (local-set-key (kbd "M-o y") (lambda(b e)(interactive "r")(set-face-gra-region b e)))
   (local-set-key (kbd "M-o Y") (lambda(b e)(interactive "r")(set-face-grab-region b e)))
                                         ;z

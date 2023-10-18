@@ -1,5 +1,6 @@
 
 (global-set-key (kbd "C-s-|") 'toggle-truncate-lines)
+(global-set-key (kbd "M-o m") 'enriched-toggle-markup)
 
 (global-set-key (kbd "s-j") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-S-s-j") 'mc/mark-all-like-this)
