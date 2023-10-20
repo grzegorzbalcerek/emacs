@@ -43,7 +43,7 @@
  )
 
 (setq w32-lwindow-modifier 'super)
-(if (boundp 'w32-register-hot-key)
+(if (functionp 'w32-register-hot-key)
     (w32-register-hot-key [s-]))
 (prefer-coding-system 'utf-8-unix)
 (column-number-mode +1)
