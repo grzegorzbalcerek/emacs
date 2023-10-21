@@ -33,8 +33,9 @@
    '(tree-sitter-langs typescript-mode tree-sitter company multiple-cursors lsp-mode rust-mode))
  '(speedbar-show-unknown-files t)
  '(tab-stop-list '(2 25 50 75 100 125 150))
- '(truncate-lines t)
- '(typescript-mode-hook '(display-line-numbers-mode lsp)))
+ '(truncate-lines nil)
+ '(typescript-mode-hook '(display-line-numbers-mode lsp))
+ '(word-wrap t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
