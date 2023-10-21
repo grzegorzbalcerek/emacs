@@ -66,8 +66,8 @@
 (load-file "~/repos/emacs/org.el")
 (load-file "~/repos/emacs/keys.el")
 
-(find-file "~/.org")
-(find-file "~/doc/emacs/lacina.txt")
+(if (file-exists-p "~/.init.el")
+    (load-file "~/.init.el"))
 
 (set-buffer "*scratch*")
 (insert "\n")
