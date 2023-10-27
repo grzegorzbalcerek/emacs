@@ -246,6 +246,8 @@
   (interactive "r")
   (convert-text-region bwgrk-to-greek beg end))
 
+(global-set-key (kbd "C-c g B") 'greek-from-bwgrk-region)
+
 (setq greek-to-bwgrk
       '(
         ("Ὀ" . "VO")
@@ -493,6 +495,8 @@
   (interactive "r")
   (convert-text-region greek-to-bwgrk beg end))
 
+(global-set-key (kbd "C-c g b") 'greek-to-bwgrk-region)
+
 (setq greek-transliteration
       '(
         ("Ὀ" . "O")
@@ -675,6 +679,7 @@
         ("ᾔ" . "ēᵢ")
         ("ᾄ" . "aᵢ")
         ("ὤ" . "ō")
+        ("οὔ" . "ou")
         ("ὔ" . "y")
         ("ὄ" . "o")
         ("ἴ" . "i")
@@ -743,3 +748,4 @@
   (interactive "r")
   (convert-text-region greek-transliteration beg end))
 
+(global-set-key (kbd "C-c g t") 'greek-transliterate-region)
