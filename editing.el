@@ -132,10 +132,12 @@
                                         ; convert next character
         (let ((p table))
           (while p
+            ;(message "trying %s" (caar p))
             (if (looking-at (caar p))
                 (progn
                   (delete-char (- (match-end 0) (match-beginning 0)))
                   (insert (cdar p))
+                  (message "%s → %s" (caar p) (cdar p))
                   (left-char)
                   (setq p nil))
               (setq p (cdr p)))))

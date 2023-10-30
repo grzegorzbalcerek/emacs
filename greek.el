@@ -246,8 +246,6 @@
   (interactive "r")
   (convert-text-region bwgrk-to-greek beg end))
 
-(global-set-key (kbd "C-c g B") 'greek-from-bwgrk-region)
-
 (setq greek-to-bwgrk
       '(
         ("Ὀ" . "VO")
@@ -495,7 +493,6 @@
   (interactive "r")
   (convert-text-region greek-to-bwgrk beg end))
 
-(global-set-key (kbd "C-c g b") 'greek-to-bwgrk-region)
 
 (setq greek-transliteration
       '(
@@ -625,6 +622,7 @@
         ("ῃ" . "ēᵢ")
         ("ᾳ" . "aᵢ")
         ("ὢ" . "ō")
+        ("αὒ" . "au");?
         ("ὒ" . "y")
         ("ὂ" . "o")
         ("ἲ" . "i")
@@ -650,6 +648,7 @@
         ("ϋ" . "y")
         ("ϊ" . "i")
         ("ὦ" . "ō")
+        ("αὖ" . "au");?
         ("ὖ" . "y")
         ("ἶ" . "i")
         ("ἦ" . "ē")
@@ -683,7 +682,7 @@
         ("ὔ" . "y")
         ("ὄ" . "o")
         ("ἴ" . "i")
-        ("ἤ" . "h")
+        ("ἤ" . "ē")
         ("ἔ" . "e")
         ("ἄ" . "a")
         ("ᾥ" . "hōᵢ")
@@ -698,13 +697,15 @@
         ("ἕ" . "he")
         ("ἅ" . "ha")
         ("ῴ" . "ōᵢ")
-        ("ῄ" . "hᵢ")
+        ("ῄ" . "ēᵢ")
         ("ᾴ" . "aᵢ")
         ("ΐ" . "i")
         ("ΐ" . "i")
         ("ώ" . "ō")
         ("ώ" . "ō")
+        ("αύ" . "au")
         ("ύ" . "y")
+        ("αύ" . "au")
         ("ύ" . "y")
         ("ό" . "o")
         ("ό" . "o")
@@ -747,5 +748,3 @@
 (defun greek-transliterate-region(beg end)
   (interactive "r")
   (convert-text-region greek-transliteration beg end))
-
-(global-set-key (kbd "C-c g t") 'greek-transliterate-region)
