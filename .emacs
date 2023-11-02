@@ -11,7 +11,6 @@
  '(inhibit-startup-screen t)
  '(make-backup-files nil)
  '(max-lisp-eval-depth 999999)
- '(max-specpdl-size 999999)
  '(mouse-drag-copy-region t)
  '(org-babel-load-languages '((js . t) (awk . t) (python . t) (emacs-lisp . t)))
  '(org-babel-python-command "python3")
@@ -25,6 +24,7 @@
  '(org-latex-packages-alist
    '(("left=10mm,top=10mm,right=10mm,bottom=15mm" "geometry" nil)))
  '(org-time-stamp-rounding-minutes '(0 1))
+ '(outline-minor-mode-prefix [3])
  '(package-archives
    '(("gnu" . "https://elpa.gnu.org/packages/")
      ("nongnu" . "https://elpa.nongnu.org/nongnu/")
