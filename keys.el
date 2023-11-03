@@ -39,8 +39,6 @@
 
 (global-set-key (kbd "s-<") (lambda(n)(interactive "p")(self-insert-command n ?«)))
 (global-set-key (kbd "s->") (lambda(n)(interactive "p")(self-insert-command n ?»)))
-(global-set-key (kbd "s-,") (lambda(n)(interactive "p")(self-insert-command n ?«)))
-(global-set-key (kbd "s-.") (lambda(n)(interactive "p")(self-insert-command n ?»)))
 
 (global-set-key (kbd "s-'") (lambda(n)(interactive "p")(self-insert-command n ?‚)))
 (global-set-key (kbd "s-\"") (lambda(n)(interactive "p")(self-insert-command n ?„)))
@@ -52,12 +50,14 @@
 (global-set-key (kbd "s-[") (lambda(n)(interactive "p")(self-insert-command n ?‘)))
 (global-set-key (kbd "s-{") (lambda(n)(interactive "p")(self-insert-command n ?“)))
 
-(global-set-key (kbd "C-$") (lambda(n)(interactive "p")(self-insert-command n ?§)))
+(global-set-key (kbd "s-.") (lambda(n)(interactive "p")(self-insert-command n ?·)))
+(global-set-key (kbd "s-*") (lambda(n)(interactive "p")(self-insert-command n ?•)))
 (global-set-key (kbd "s-:") (lambda(n)(interactive "p")(self-insert-command n ?…)))
-(global-set-key (kbd "s-;") (lambda(n)(interactive "p")(self-insert-command n ?·)))
 (global-set-key (kbd "s--") (lambda(n)(interactive "p")(self-insert-command n ?−)))
 (global-set-key (kbd "s-_") (lambda(n)(interactive "p")(self-insert-command n ?—)))
 (global-set-key (kbd "s-=") (lambda(n)(interactive "p")(self-insert-command n ?–)))
+
+(global-set-key (kbd "C-$") (lambda(n)(interactive "p")(self-insert-command n ?§)))
 
 (global-set-key (kbd "<M-insert>") 'delete-selection-mode)
 
@@ -168,7 +168,8 @@
 (global-set-key (kbd "C-c g q") (lambda(n)(interactive "p")(self-insert-command n ?χ)))
 (global-set-key (kbd "C-c g r") (lambda(n)(interactive "p")(self-insert-command n ?ρ)))
 (global-set-key (kbd "C-c g s") (lambda(n)(interactive "p")(self-insert-command n ?σ)))
-(global-set-key (kbd "C-c g w") (lambda(n)(interactive "p")(self-insert-command n ?ω)))
+(global-set-key (kbd "C-c g t") (lambda(n)(interactive "p")(self-insert-command n ?τ)))
+(global-set-key (kbd "C-c g u") (lambda(n)(interactive "p")(self-insert-command n ?υ)))
 (global-set-key (kbd "C-c g x") (lambda(n)(interactive "p")(self-insert-command n ?ξ)))
 (global-set-key (kbd "C-c g y") (lambda(n)(interactive "p")(self-insert-command n ?ψ)))
 (global-set-key (kbd "C-c g z") (lambda(n)(interactive "p")(self-insert-command n ?ζ)))
@@ -192,6 +193,8 @@
 (global-set-key (kbd "C-c g Q") (lambda(n)(interactive "p")(self-insert-command n ?Χ)))
 (global-set-key (kbd "C-c g R") (lambda(n)(interactive "p")(self-insert-command n ?Ρ)))
 (global-set-key (kbd "C-c g S") (lambda(n)(interactive "p")(self-insert-command n ?Σ)))
+(global-set-key (kbd "C-c g T") (lambda(n)(interactive "p")(self-insert-command n ?Τ)))
+(global-set-key (kbd "C-c g U") (lambda(n)(interactive "p")(self-insert-command n ?Υ)))
 (global-set-key (kbd "C-c g W") (lambda(n)(interactive "p")(self-insert-command n ?Ω)))
 (global-set-key (kbd "C-c g X") (lambda(n)(interactive "p")(self-insert-command n ?Ξ)))
 (global-set-key (kbd "C-c g Y") (lambda(n)(interactive "p")(self-insert-command n ?Ψ)))
