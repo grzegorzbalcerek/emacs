@@ -1,5 +1,5 @@
 
-(global-set-key (kbd "C-s-|") 'toggle-truncate-lines)
+(global-set-key (kbd "C-M-|") 'toggle-truncate-lines)
 (global-set-key (kbd "M-o m") 'enriched-toggle-markup)
 
 (global-set-key (kbd "s-j") 'mc/mark-next-like-this)
@@ -8,11 +8,6 @@
 
 (global-set-key (kbd "C-s-\\") 'split-window-right)
 (global-set-key (kbd "C-s-`") 'split-window-below)
-(global-set-key (kbd "<C-s-left>") (lambda (arg)(interactive "P") (if arg (windmove-delete-left)(windmove-left))))
-(global-set-key (kbd "<C-s-right>") (lambda (arg)(interactive "P") (if arg (windmove-delete-right)(windmove-right))))
-(global-set-key (kbd "<C-s-up>") (lambda (arg)(interactive "P") (if arg (windmove-delete-up)(windmove-up))))
-(global-set-key (kbd "<C-s-down>") (lambda (arg)(interactive "P") (if arg (windmove-delete-down)(windmove-down))))
-(global-set-key (kbd "<C-s-return>") 'delete-other-windows)
 
 (global-set-key (kbd "<s-left>") 'intelligent-previous-buffer)
 (global-set-key (kbd "<s-right>") 'intelligent-next-buffer)
@@ -20,14 +15,21 @@
 (global-set-key (kbd "<s-down>") 'buffer-menu)
 (global-set-key (kbd "<s-backspace>") (lambda()(interactive)(kill-buffer nil)))
 
+(global-set-key (kbd "<C-s-left>") (lambda ()(interactive) (scroll-right 10)))
+(global-set-key (kbd "<C-s-right>") (lambda ()(interactive) (scroll-left 10)))
+(global-set-key (kbd "<C-s-down>") (lambda ()(interactive) (scroll-up 5)))
+(global-set-key (kbd "<C-s-up>") (lambda ()(interactive) (scroll-down 5)))
+
 (global-set-key [f1] 'save-buffer)
-(global-set-key [f2] 'delete-trailing-whitespace)
-(global-set-key [f5] 'compile)
-(global-set-key [f6] 'recompile)
-(global-set-key [f7] 'previous-error)
-(global-set-key [f8] 'next-error)
+(global-set-key [f2] 'other-window)
+(global-set-key [M-f4] 'kill-buffer)
+;(global-set-key [f5] 'compile)
+;(global-set-key [f6] 'recompile)
+;(global-set-key [f7] 'previous-error)
+;(global-set-key [f8] 'next-error)
 (global-set-key [f9] 'delete-whitespace-rectangle)
 (global-set-key [f10] 'open-rectangle)
+(global-set-key [f11] 'delete-trailing-whitespace)
 
 (global-set-key (kbd "C-M-y") 'yank-replace-region)
 
@@ -36,6 +38,10 @@
 (global-set-key (kbd "<C-S-return>") 'duplicate-line)
 (global-set-key (kbd "<C-M-S-backspace>") 'copy-line)
 (global-set-key (kbd "s-x") 'ucode-to-char)
+(global-set-key [C-return] 'solid-line)
+(global-set-key [M-return] 'dotted-line)
+(global-set-key [S-return] 'bullet-line)
+(global-set-key [C-M-return] 'space-out-char)
 
 (global-set-key (kbd "s-<") (lambda(n)(interactive "p")(self-insert-command n ?«)))
 (global-set-key (kbd "s->") (lambda(n)(interactive "p")(self-insert-command n ?»)))
@@ -61,6 +67,11 @@
 
 (global-set-key (kbd "<M-insert>") 'delete-selection-mode)
 
+                                        ; windows
+(global-set-key (kbd "C-c <left>") (lambda (arg)(interactive "P") (if arg (windmove-delete-left)(windmove-left))))
+(global-set-key (kbd "C-c <right>") (lambda (arg)(interactive "P") (if arg (windmove-delete-right)(windmove-right))))
+(global-set-key (kbd "C-c <up>") (lambda (arg)(interactive "P") (if arg (windmove-delete-up)(windmove-up))))
+(global-set-key (kbd "C-c <down>") (lambda (arg)(interactive "P") (if arg (windmove-delete-down)(windmove-down))))
                                         ; index
 (global-set-key (kbd "C-c i 1") (lambda(n)(interactive "p")(self-insert-command n ?¹)))
 (global-set-key (kbd "C-c i 2") (lambda(n)(interactive "p")(self-insert-command n ?²)))

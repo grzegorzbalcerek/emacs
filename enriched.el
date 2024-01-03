@@ -116,6 +116,7 @@
 (defun set-face-small-region(b e)(interactive "r")(set-face-region-or-row 'small b e))
 (defun set-face-tea-region(b e)(interactive "r")(set-face-region-or-word 'tea b e))
 (defun set-face-teab-region(b e)(interactive "r")(set-face-region-or-word 'teab b e))
+(defun set-face-underline-region(b e)(interactive "r")(set-face-region-or-word 'underline b e))
 (defun set-face-vio-region(b e)(interactive "r")(set-face-region-or-word 'vio b e))
 (defun set-face-viob-region(b e)(interactive "r")(set-face-region-or-word 'viob b e))
 
@@ -157,7 +158,7 @@
     ("S" . set-face-skyb-region)
     ("t" . set-face-tea-region)
     ("T" . set-face-teab-region)
-    ;u
+    ("u" . set-face-underline-region)
     ("v" . set-face-vio-region)
     ("V" . set-face-viob-region)
     ("w" . set-face-mar-region)
@@ -173,9 +174,9 @@
   )
 
 (defun set-tabs-times-n(n)
-  "set the variable tab-stop-list at 2 and then at n, n*2, n*3…"
+  "set the variable tab-stop-list at 2, 4 and then at n, n*2, n*3…"
   (interactive "p")
-  (let ((new-tab-stop-list (list 2 n (* n 2) (* n 3) (* n 4) (* n 5) (* n 6))))
+  (let ((new-tab-stop-list (list 2 4 n (* n 2)(* n 3)(* n 4)(* n 5)(* n 6)(* n 7)(* n 8)(* n 9)(* n 10)(* n 11)(* n 12)(* n 13)(* n 14))))
     (setq-local tab-stop-list new-tab-stop-list)
     (message "tab-stop-list set to %s" new-tab-stop-list)))
 
@@ -296,11 +297,6 @@
   (interactive)
   (title-face-region (point-at-bol)(point-at-eol) "notes"))
 
-(defun todo-face-for-line()
-  "sets the right todo face for the current line"
-  (interactive)
-  (title-face-region (point-at-bol)(point-at-eol) "todo"))
-
 (defun show-face()
   (interactive)
   (message "face: %s" (get-text-property (point) 'face)))
@@ -321,16 +317,6 @@
   (reindent-then-newline-and-indent)
   (beginning-of-line)
   (delete-whitespace-rectangle (line-beginning-position) (line-end-position)))
-
-(defun newline-and-solid-line()
-  (interactive)
-  (insert-newline)
-  (insert "——————————————————————————————————————————————————————————————————————————————————————————"))
-
-(defun newline-and-dotted-line()
-  (interactive)
-  (insert-newline)
-  (insert "··························································································"))
 
 (defun prefixed-newline(prefix)
   (interactive "P")
@@ -406,15 +392,12 @@
                                         ;z
   (local-set-key [tab] 'tab-cycle)
   (local-set-key [return] 'prefixed-newline)
-  (local-set-key [C-return] 'newline-and-solid-line)
-  (local-set-key [M-return] 'newline-and-dotted-line)
   (local-set-key [C-tab] 'join-next-word)
   (local-set-key [?\M-\r] (lambda()(interactive)(insert "\n")))
   (local-set-key [C-f1] 'header-face-for-line)
   (local-set-key [C-f2] 'notes-face-for-line)
-  (local-set-key [C-f3] 'todo-face-for-line)
   (local-set-key [f5] 'facemenu-set-invisible)
-  (local-set-key [f6] 'facemenu-remove-special)
+  (local-set-key [C-f5] 'facemenu-remove-special)
   (local-set-key [f7] 'defaultify-blanks-region)
   (local-set-key [C-f7] 'show-face)
   (local-set-key [f8] 'tab-fill-region)

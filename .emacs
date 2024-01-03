@@ -43,6 +43,9 @@
  ;; If there is more than one, they won't work right.
  )
 
+(add-to-list 'default-frame-alist
+                       '(font . "Liberation Mono-10"))
+
 (setq w32-lwindow-modifier 'super)
 (if (functionp 'w32-register-hot-key)
     (w32-register-hot-key [s-]))
@@ -66,8 +69,8 @@
 (load-file "~/repos/emacs/org.el")
 (load-file "~/repos/emacs/keys.el")
 
-(if (file-exists-p "~/.init.el")
-    (load-file "~/.init.el"))
+(if (file-exists-p "~/.emacs2")
+    (load-file "~/.emacs2"))
 
 (set-buffer "*scratch*")
 (insert "\n")
