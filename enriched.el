@@ -346,7 +346,7 @@
   (modify-syntax-entry ?\„ "(”")
   (modify-syntax-entry ?\” ")„")
   (setq-local outline-regexp "[*—]+")
-  (setq-local outline-minor-mode-prefix "")
+  ;(setq-local outline-minor-mode-prefix "")
   (setq-local indent-line-function 'tab-to-tab-stop)
   (outline-minor-mode)
   (local-set-key (kbd "M-o a") (lambda(b e)(interactive "r")(set-face-aqu-region b e)))

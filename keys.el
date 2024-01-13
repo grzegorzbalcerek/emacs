@@ -6,19 +6,21 @@
 (global-set-key (kbd "C-S-s-j") 'mc/mark-all-like-this)
 (global-set-key (kbd "S-s-j") 'mc/unmark-previous-like-this)
 
-(global-set-key (kbd "C-s-\\") 'split-window-right)
-(global-set-key (kbd "C-s-`") 'split-window-below)
-
 (global-set-key (kbd "<s-left>") 'intelligent-previous-buffer)
 (global-set-key (kbd "<s-right>") 'intelligent-next-buffer)
 (global-set-key (kbd "<s-up>") (lambda()(interactive)(dired ".")))
 (global-set-key (kbd "<s-down>") 'buffer-menu)
 (global-set-key (kbd "<s-backspace>") (lambda()(interactive)(kill-buffer nil)))
 
-(global-set-key (kbd "<C-s-left>") (lambda ()(interactive) (scroll-right 10)))
-(global-set-key (kbd "<C-s-right>") (lambda ()(interactive) (scroll-left 10)))
-(global-set-key (kbd "<C-s-down>") (lambda ()(interactive) (scroll-up 5)))
-(global-set-key (kbd "<C-s-up>") (lambda ()(interactive) (scroll-down 5)))
+(global-set-key (kbd "<C-s-left>") (lambda (n)(interactive "p") (scroll-right n)))
+(global-set-key (kbd "<C-s-right>") (lambda (n)(interactive "p") (scroll-left n)))
+(global-set-key (kbd "<C-s-down>") (lambda (n)(interactive "p") (scroll-up n)))
+(global-set-key (kbd "<C-s-up>") (lambda (n)(interactive "p") (scroll-down n)))
+(global-set-key (kbd "<C-M-s-left>") (lambda ()(interactive) (scroll-right 10)))
+(global-set-key (kbd "<C-M-s-right>") (lambda ()(interactive) (scroll-left 10)))
+(global-set-key (kbd "<C-M-s-down>") (lambda ()(interactive) (scroll-up 5)))
+(global-set-key (kbd "<C-M-s-up>") (lambda ()(interactive) (scroll-down 5)))
+(global-set-key (kbd "<s-return>") 'other-window)
 
 (global-set-key [f1] 'save-buffer)
 (global-set-key [f2] 'other-window)
