@@ -54,6 +54,7 @@
    (mark-active
     (progn
       ;(message "Setting face %s to region" face)
+      (facemenu-set-face 'default beg end)
       (facemenu-set-face face beg end)))
    ((and (looking-at "[ \n]") (looking-back " "))
     (facemenu-set-face (car face)))
@@ -66,6 +67,7 @@
         (forward-word 1)
         (let ((end (point)))
           (backward-word 1)
+          (facemenu-set-face 'default (point) end)
           (facemenu-set-face face (point) end)))))))
 
 (defun set-face-region-or-row(face beg end)

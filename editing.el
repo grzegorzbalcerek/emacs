@@ -85,7 +85,7 @@
   (set-mark-command nil)
   (search-backward-regexp "[^0-9a-fA-F]")
   (forward-char 1)
-  (let ((v (buffer-substring (region-beginning)(region-end)))) 
+  (let ((v (buffer-substring (region-beginning)(region-end))))
     (kill-region(region-beginning)(region-end))
     (insert-char (string-to-number v 16))))
 
@@ -239,3 +239,100 @@
         (replace-string "X" "-x" nil beg end)
         (replace-string "Y" "-y" nil beg end)
         (replace-string "Z" "-z" nil beg end)))))
+
+(defun join-remote-lines (b e)
+  "Join the line where e is to the line where b is.
+  When joining, make sure that the line at b is padded to the mulitple of the value from the ?6 register.
+  To set value 125 into register ?6 use: C-1-2-5 C-x r n 6.
+  If no value is provided in the register then join without padding.
+  After joining, move b and e one line up."
+  (interactive "r")
+                                        ; set in b0 the beginning of line b
+  (goto-char b)
+  (move-beginning-of-line nil)
+  (let ((b0 (point)))
+                                        ; set in e0 the beginning of line e
+    (goto-char e)
+    (move-beginning-of-line nil)
+    (let ((e0 (point-marker)))
+                                        ; set in e1 the beginning of line e
+      (move-end-of-line nil)
+      (let ((e1 (point)))
+                                        ; save and delete the line e
+        (let ((str (buffer-substring e0 e1)))
+          (delete-region e0 (+ 1 e1))
+                                        ; delete trailing spaces between b and e0
+          (delete-trailing-whitespace b e0)
+                                        ; insert the saved text into line b with padding
+          (goto-char b)
+          (move-end-of-line nil)
+          (let ((pad-number (get-register ?6)))
+            (if (> pad-number 0)
+                (let ((pad-spaces (- pad-number (mod (- (point) b0) pad-number))))
+                  (message "%s %s %s %s" b0 (point) pad-number pad-spaces)
+                  (insert-char ?  pad-spaces)))
+            (insert str)
+                                        ; set mark to the line after e
+            (goto-char e0)
+            (previous-line 1)
+            (set-mark (point))
+                                        ; set point to one line below initial position
+            (goto-char b)
+            (previous-line 1)))))))
+
+(global-set-key (kbd "C-M-^") 'join-remote-lines)
+
+(defun split-remote-lines (b e)
+  "Split the line where b is by keeping the initial ?6  bytes (col-width) and insert the rest into b.
+  To set value 125 into register ?6 use: C-1-2-5 C-x r n 6.
+  If no value is provided in the register then do nothing.
+  After joining, move b one line down and add a new line after e."
+  (interactive "r")
+                                        ; check if col-width is available
+  (let* ((b (copy-marker b))
+         (e (copy-marker e))
+         (str "")
+         (col-width (get-register ?6)))
+    (if (> col-width 0)
+        (progn
+                                        ; check if line is longer than col-width
+          (goto-char b)
+          (if (> (- (pos-eol) (pos-bol)) col-width)
+                                        ; save and delete the first col-width characters on the line
+              (progn
+                (setq str (buffer-substring (+ (pos-bol) col-width) (pos-eol)))
+                (delete-region (+ (pos-bol) col-width) (pos-eol))))
+                                        ; insert the saved line (if it was saved) and a new line at e
+          (goto-char e)
+          (insert str)
+          (insert "\n")
+          (set-mark (point))
+          (goto-char b)
+          (next-line 1)))))
+
+(global-set-key (kbd "C-M-&") 'split-remote-lines)
+                    
+                                        ; make e to be a marker
+      (move-end-of-line nil)
+      (let ((e1 (point)))
+                                        ; save and delete the line e
+        (let ((str (buffer-substring e0 e1)))
+          (delete-region e0 (+ 1 e1))
+                                        ; delete trailing spaces between b and e0
+          (delete-trailing-whitespace b e0)
+                                        ; insert the saved text into line b with padding
+          (goto-char b)
+          (move-end-of-line nil)
+            (if (> pad-number 0)
+                (let ((pad-spaces (- pad-number (mod (- (point) b0) pad-number))))
+                  (message "%s %s %s %s" b0 (point) pad-number pad-spaces)
+                  (insert-char ?  pad-spaces)))
+            (insert str)
+                                        ; set mark to the line after e
+            (goto-char e0)
+            (previous-line 1)
+            (set-mark (point))
+                                        ; set point to one line below initial position
+            (goto-char b)
+            (previous-line 1)))))))
+
