@@ -240,18 +240,32 @@
         (replace-string "Y" "-y" nil beg end)
         (replace-string "Z" "-z" nil beg end)))))
 
-(defun join-remote-lines (b e)
+(defun col-width (raw-prefix prefix)
+  "Based on the values of the prefix and the value stored in register ?6
+   return the col-width for the join-remote-lines and split-remote-lines functions
+   and store it in ?6 if not yet there.
+   Raise an error if the col-width is unknown"
+  (if raw-prefix
+      (progn
+        (set-register ?6 prefix)
+        prefix)
+    (let ((col-width (get-register ?6)))
+      (unless col-width
+        (error "Unknown col-width value. Store it into the register ?6 or use a prefix for calling the function"))
+      col-width)))
+
+(defun join-remote-lines (raw-prefix prefix b e)
   "Join the line where e is to the line where b is.
   When joining, make sure that the line at b is padded to the mulitple of the value from the ?6 register (col-width).
   To set value 125 into register ?6 use: C-1-2-5 C-x r n 6.
   If no value is provided in the register then join without padding.
   After joining, move b and e one line up."
-  (interactive "r")
+  (interactive "P\np\nr")
                                         ; set in b0 the beginning of line b
   (let* ((b (copy-marker b))
          (e (copy-marker e))
          (str "")
-         (col-width (get-register ?6)))
+         (col-width (col-width raw-prefix prefix)))
                                         ; save and delete the line e
     (goto-char e)
     (let ((str (buffer-substring (pos-bol) (pos-eol))))
@@ -275,17 +289,17 @@
 
 (global-set-key (kbd "C-M-^") 'join-remote-lines)
 
-(defun split-remote-lines (b e)
+(defun split-remote-lines (raw-prefix prefix b e)
   "Split the line where b is by keeping the initial ?6  bytes (col-width) and insert the rest into b.
   To set value 125 into register ?6 use: C-1-2-5 C-x r n 6.
   If no value is provided in the register then do nothing.
   After joining, move b one line down and add a new line after e."
-  (interactive "r")
+  (interactive "P\np\nr")
                                         ; check if col-width is available
   (let* ((b (copy-marker b))
          (e (copy-marker e))
          (str "")
-         (col-width (get-register ?6)))
+         (col-width (col-width raw-prefix prefix)))
     (if (> col-width 0)
         (progn
                                         ; check if line is longer than col-width
