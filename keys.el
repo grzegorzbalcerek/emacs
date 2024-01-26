@@ -6,11 +6,10 @@
 (global-set-key (kbd "C-S-s-j") 'mc/mark-all-like-this)
 (global-set-key (kbd "S-s-j") 'mc/unmark-previous-like-this)
 
-(global-set-key (kbd "<s-left>") 'intelligent-previous-buffer)
-(global-set-key (kbd "<s-right>") 'intelligent-next-buffer)
 (global-set-key (kbd "<s-up>") (lambda()(interactive)(dired ".")))
 (global-set-key (kbd "<s-down>") 'buffer-menu)
 (global-set-key (kbd "<s-backspace>") (lambda()(interactive)(kill-buffer nil)))
+(global-set-key [M-f4] (lambda()(interactive)(kill-buffer nil)))
 
 (global-set-key (kbd "<C-s-left>") (lambda (n)(interactive "p") (scroll-right n)))
 (global-set-key (kbd "<C-s-right>") (lambda (n)(interactive "p") (scroll-left n)))
@@ -32,7 +31,6 @@
 (global-set-key (kbd "<s-M-return>") 'other-window)
 
 (global-set-key [f1] 'save-buffer)
-(global-set-key [M-f4] 'kill-buffer)
 ;(global-set-key [f5] 'compile)
 ;(global-set-key [f6] 'recompile)
 ;(global-set-key [f7] 'previous-error)
@@ -42,18 +40,6 @@
 (global-set-key [f10] 'open-rectangle)
 (global-set-key [f11] 'picture-mode)
 (global-set-key [C-f11] 'picture-mode-exit)
-
-(global-set-key (kbd "C-M-y") 'yank-replace-region)
-
-(global-set-key (kbd "<M-down>") 'move-line-down)
-(global-set-key (kbd "<M-up>") 'move-line-up)
-(global-set-key (kbd "<C-S-return>") 'duplicate-line)
-(global-set-key (kbd "<C-M-S-backspace>") 'copy-line)
-(global-set-key (kbd "s-x") 'ucode-to-char)
-(global-set-key [C-return] 'solid-line)
-(global-set-key [M-return] 'dotted-line)
-(global-set-key [S-return] 'bullet-line)
-(global-set-key [C-M-return] 'space-out-char)
 
 (global-set-key (kbd "s-<") (lambda(n)(interactive "p")(self-insert-command n ?«)))
 (global-set-key (kbd "s->") (lambda(n)(interactive "p")(self-insert-command n ?»)))
@@ -218,6 +204,3 @@
 (global-set-key (kbd "C-c g Y") (lambda(n)(interactive "p")(self-insert-command n ?Ψ)))
 (global-set-key (kbd "C-c g Z") (lambda(n)(interactive "p")(self-insert-command n ?Ζ)))
 
-(global-set-key (kbd "C-c G t") 'greek-transliterate-region)
-(global-set-key (kbd "C-c G b") 'greek-to-bwgrk-region)
-(global-set-key (kbd "C-c G B") 'greek-from-bwgrk-region)

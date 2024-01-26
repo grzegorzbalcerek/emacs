@@ -32,8 +32,8 @@
  '(package-selected-packages
    '(tree-sitter-langs typescript-mode tree-sitter company multiple-cursors lsp-mode rust-mode))
  '(speedbar-show-unknown-files t)
- '(tab-stop-list '(2 25 50 75 100 125 150))
- '(truncate-lines nil)
+ '(tab-stop-list '(2 25 50 75 100 125 150 175 200 225 250 275 300 325 350 375 400))
+ '(truncate-lines t)
  '(typescript-mode-hook '(display-line-numbers-mode lsp))
  '(word-wrap t))
 (custom-set-faces
@@ -56,17 +56,20 @@
 (global-tab-line-mode)
 
 (set-register ?. '(file . "~/.emacs"))
+(set-register ?2 '(file . "~/.emacs2"))
+(set-register ?b '(file . "~/bin"))
 (set-register ?e '(file . "~/doc/emacs/"))
-(set-register ?m '(file . "~/Makefile"))
 (set-register ?p '(file . "~/pub/"))
 (set-register ?r '(file . "~/doc/rbs/"))
 (set-register ?E '(file . "~/repos/emacs/"))
 
+(load-file "~/repos/emacs/buffers.el")
+(load-file "~/repos/emacs/convert.el")
 (load-file "~/repos/emacs/editing.el")
+(load-file "~/repos/emacs/lines.el")
 (load-file "~/repos/emacs/text.el")
-(load-file "~/repos/emacs/greek.el")
 (load-file "~/repos/emacs/enriched.el")
-(load-file "~/repos/emacs/org.el")
+;(load-file "~/repos/emacs/org.el")
 (load-file "~/repos/emacs/keys.el")
 
 (if (file-exists-p "~/.emacs2")
