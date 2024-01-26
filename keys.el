@@ -35,6 +35,7 @@
 ;(global-set-key [f6] 'recompile)
 ;(global-set-key [f7] 'previous-error)
 ;(global-set-key [f8] 'next-error)
+(global-set-key [M-f8] 'edit-tab-stops)
 (global-set-key [f9] 'delete-whitespace-rectangle)
 (global-set-key [C-f9] 'delete-trailing-whitespace)
 (global-set-key [f10] 'open-rectangle)

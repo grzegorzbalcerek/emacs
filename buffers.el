@@ -1,3 +1,5 @@
+
+
 (setq buffer-names-to-skip
       '(
         "*Backtrace*"
@@ -14,6 +16,7 @@
         "*ts-ls::stderr*"
         ))
 
+
 (defun intelligent-change-buffer(move-function)
        (let ((this-buffer-name (buffer-name(current-buffer))))
          (funcall move-function)
@@ -24,14 +27,16 @@
                   (equal major-mode 'dired-mode)))
            (funcall move-function))))
 
-(defun intelligent-next-buffer()
-  (interactive)
-  (intelligent-change-buffer 'next-buffer))
-
-(global-set-key (kbd "<s-right>") 'intelligent-next-buffer)
 
 (defun intelligent-previous-buffer()
   (interactive)
   (intelligent-change-buffer 'previous-buffer))
 
+
+(defun intelligent-next-buffer()
+  (interactive)
+  (intelligent-change-buffer 'next-buffer))
+
+
 (global-set-key (kbd "<s-left>") 'intelligent-previous-buffer)
+(global-set-key (kbd "<s-right>") 'intelligent-next-buffer)

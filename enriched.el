@@ -175,30 +175,6 @@
     (set-face-background 'cursor "black"))
   )
 
-(defun set-tabs-times-n(n)
-  "set the variable tab-stop-list at 2, 4 and then at n, n*2, n*3…"
-  (interactive "p")
-  (let ((new-tab-stop-list (list 2 4 n (* n 2)(* n 3)(* n 4)(* n 5)(* n 6)(* n 7)(* n 8)(* n 9)(* n 10)(* n 11)(* n 12)(* n 13)(* n 14))))
-    (setq-local tab-stop-list new-tab-stop-list)
-    (message "tab-stop-list set to %s" new-tab-stop-list)))
-
-
-(defun tab-fill-region(b e)
-  "relocates pieces of text that are separated by at least 2 spaces
-   accodring to the tab list"
-  (interactive "r")
-  (let ((beg (copy-marker b nil))
-        (end (copy-marker e t)))
-    (message "tab-fill-region 1")
-    (save-excursion
-      (goto-char beg)
-      (while (re-search-forward "  +\\| *\t+[ \t]*" end t)
-        (replace-match "  ")
-        (tab-to-tab-stop)))))
-
-(defun join-next-word()
-  (interactive)
-  (replace-next-re " +" " "))
 
 (setq enriched-translations
       '((face
@@ -394,7 +370,6 @@
                                         ;z
   (local-set-key [tab] 'tab-cycle)
   (local-set-key [return] 'prefixed-newline)
-  (local-set-key [C-tab] 'join-next-word)
   (local-set-key [?\M-\r] (lambda()(interactive)(insert "\n")))
   (local-set-key [C-f1] 'header-face-for-line)
   (local-set-key [C-f2] 'notes-face-for-line)
@@ -402,11 +377,7 @@
   (local-set-key [C-f5] 'facemenu-remove-special)
   (local-set-key [f7] 'defaultify-blanks-region)
   (local-set-key [C-f7] 'show-face)
-  (local-set-key [f8] 'tab-fill-region)
-  (local-set-key [C-f8] 'set-tabs-times-n)
-  (local-set-key [M-f8] 'edit-tab-stops)
   (local-set-key [f12] 'faces-minor-mode)
-  (local-set-key [tool-bar isearch-forward] 'yank-replace-region)
   (local-set-key (kbd "C-a") 'beginning-of-line)
   )
 
