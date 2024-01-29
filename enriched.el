@@ -372,7 +372,7 @@
   (local-set-key [return] 'prefixed-newline)
   (local-set-key [?\M-\r] (lambda()(interactive)(insert "\n")))
   (local-set-key [C-f1] 'header-face-for-line)
-  (local-set-key [C-f2] 'notes-face-for-line)
+  (local-set-key [M-f1] 'notes-face-for-line)
   (local-set-key [f5] 'facemenu-set-invisible)
   (local-set-key [C-f5] 'facemenu-remove-special)
   (local-set-key [f7] 'defaultify-blanks-region)
