@@ -1,4 +1,23 @@
 
+(setq rbs-opening-quotation-mark "“")
+(setq rbs-closing-quotation-mark "”")
+
+(defun rbs-customize-language-environment()
+  (interactive)
+  (cond
+   ((equal current-language-environment "English")
+    (setq rbs-opening-quotation-mark "“")
+    (setq rbs-closing-quotation-mark "”"))
+   ((equal current-language-environment "French")
+    (setq rbs-opening-quotation-mark "« ")
+    (setq rbs-closing-quotation-mark " »"))
+   ((equal current-language-environment "Polish")
+    (setq rbs-opening-quotation-mark "„")
+    (setq rbs-closing-quotation-mark "”"))))
+
+(add-hook 'set-language-environment-hook 'rbs-customize-language-environment)
+(rbs-customize-language-environment)
+
 (defun position-address(pos)
   "Return the line number of the position pos within a verse.
    A verse starts with its number"
@@ -15,12 +34,17 @@
 
 (defun kill-new-region-and-address(b e)
   (interactive "r")
-  (let ((str (format "« %s » (%s)" (buffer-substring b e)(position-address b))))
-    (message str)
-    (kill-new str)))
+  (let* ((str (format "%s%s%s (%s)"
+                      rbs-opening-quotation-mark
+                      (buffer-substring b e)
+                      rbs-closing-quotation-mark
+                      (position-address b)))
+         (str2 (replace-regexp-in-string "  +" " " str)))
+    (message str2)
+    (kill-new str2)))
 
 (defun rbs-enriched-mode-customizations()
   (interactive)
-  (local-set-key [f6] 'kill-new-region-and-address))
+  (local-set-key [f2] 'kill-new-region-and-address))
 
 (add-hook 'enriched-mode-hook 'rbs-enriched-mode-customizations)
