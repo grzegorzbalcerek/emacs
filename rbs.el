@@ -52,9 +52,16 @@
   (kill-new rbs-register t)
   (message rbs-register))
 
+(defun register-append-address(b e)
+  (interactive "r")
+  (setq rbs-register (format "%s, %s)" (substring rbs-register 0 -1) (position-address b)))
+  (kill-new rbs-register t)
+  (message rbs-register))
+
 (defun rbs-enriched-mode-customizations()
   (interactive)
   (local-set-key [f2] 'register-new-region-and-address)
-  (local-set-key [C-f2] 'register-append-region-and-address))
+  (local-set-key [C-f2] 'register-append-region-and-address)
+  (local-set-key [M-f2] 'register-append-address))
 
 (add-hook 'enriched-mode-hook 'rbs-enriched-mode-customizations)

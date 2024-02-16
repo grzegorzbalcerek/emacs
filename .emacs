@@ -69,7 +69,6 @@
 (load-file "~/repos/emacs/keys.el")
 (load-file "~/repos/emacs/lines.el")
 (load-file "~/repos/emacs/rbs.el")
-(load-file "~/repos/emacs/remotelines.el")
 (load-file "~/repos/emacs/tabs.el")
 (load-file "~/repos/emacs/text.el")
 (load-file "~/repos/emacs/yank.el")

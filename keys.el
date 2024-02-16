@@ -11,14 +11,20 @@
 (global-set-key (kbd "<s-backspace>") (lambda()(interactive)(kill-buffer nil)))
 (global-set-key [M-f4] (lambda()(interactive)(kill-buffer nil)))
 
+
 (global-set-key (kbd "<C-s-left>") (lambda (n)(interactive "p") (scroll-right n)))
 (global-set-key (kbd "<C-s-right>") (lambda (n)(interactive "p") (scroll-left n)))
 (global-set-key (kbd "<C-s-down>") (lambda (n)(interactive "p") (scroll-up n)))
 (global-set-key (kbd "<C-s-up>") (lambda (n)(interactive "p") (scroll-down n)))
-(global-set-key (kbd "<C-M-s-left>") (lambda ()(interactive) (scroll-right 10)))
-(global-set-key (kbd "<C-M-s-right>") (lambda ()(interactive) (scroll-left 10)))
-(global-set-key (kbd "<C-M-s-down>") (lambda ()(interactive) (scroll-up 5)))
-(global-set-key (kbd "<C-M-s-up>") (lambda ()(interactive) (scroll-down 5)))
+
+(set-register ?h 10) ; set registers ?h to the default values of horizontal fast scroll
+(set-register ?v 5) ; set registers ?v to the default values of vertical fast scroll
+(global-set-key (kbd "<C-M-s-left>") (lambda ()(interactive) (scroll-right (get-register ?h))))
+(global-set-key (kbd "<C-M-s-right>") (lambda ()(interactive) (scroll-left (get-register ?h))))
+(global-set-key (kbd "<C-M-s-down>") (lambda ()(interactive) (scroll-up (get-register ?v))))
+(global-set-key (kbd "<C-M-s-up>") (lambda ()(interactive) (scroll-down (get-register ?v))))
+(global-set-key (kbd "<M-left>") (lambda ()(interactive) (left-char (get-register ?h))))
+(global-set-key (kbd "<M-right>") (lambda ()(interactive) (right-char (get-register ?h))))
 
 (global-set-key (kbd "C-c <left>") 'windmove-delete-left)
 (global-set-key (kbd "C-c <right>") 'windmove-right)
