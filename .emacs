@@ -66,6 +66,7 @@
 (load-file "~/repos/emacs/buffers.el")
 (load-file "~/repos/emacs/convert.el")
 (load-file "~/repos/emacs/enriched.el")
+(load-file "~/repos/emacs/faces.el")
 (load-file "~/repos/emacs/keys.el")
 (load-file "~/repos/emacs/lines.el")
 (load-file "~/repos/emacs/rbs.el")
