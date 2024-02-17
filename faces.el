@@ -265,11 +265,11 @@
     ("9" . 'facemenu-set-invisible)
     ("0" . 'facemenu-remove-special)
 
-    ("i" . (lambda(b e)(interactive "r")(set-face-region-or-word 'italic b e nil)))
-    ("l" . (lambda(b e)(interactive "r")(set-face-region-or-word 'bold-italic b e nil)))
-    ("b" . (lambda(b e)(interactive "r")(set-face-region-or-word 'bold b e nil)))
-    ("d" . (lambda(b e)(interactive "r")(set-face-region-or-word 'default b e nil)))
-    ("u" . (lambda(b e)(interactive "r")(set-face-region-or-word 'underline b e nil)))
+    ("i" . (lambda(b e)(interactive "r")(set-face-region-or-word 'italic b e)))
+    ("l" . (lambda(b e)(interactive "r")(set-face-region-or-word 'bold-italic b e)))
+    ("b" . (lambda(b e)(interactive "r")(set-face-region-or-word 'bold b e)))
+    ("d" . (lambda(b e)(interactive "r")(set-face-region-or-word 'default b e)))
+    ("u" . (lambda(b e)(interactive "r")(set-face-region-or-word 'underline b e)))
     )
   (if faces-minor-mode
       (set-face-background 'cursor "red")
