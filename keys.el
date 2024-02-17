@@ -64,14 +64,22 @@
 (global-set-key (kbd "s-.") (lambda(n)(interactive "p")(self-insert-command n ?·)))
 (global-set-key (kbd "s-*") (lambda(n)(interactive "p")(self-insert-command n ?•)))
 (global-set-key (kbd "s-:") (lambda(n)(interactive "p")(self-insert-command n ?…)))
-(global-set-key (kbd "s--") (lambda(n)(interactive "p")(self-insert-command n ?−)))
-(global-set-key (kbd "s-_") (lambda(n)(interactive "p")(self-insert-command n ?—)))
-(global-set-key (kbd "s-=") (lambda(n)(interactive "p")(self-insert-command n ?–)))
 
 (global-set-key (kbd "C-$") (lambda(n)(interactive "p")(self-insert-command n ?§)))
 
 (global-set-key (kbd "<M-insert>") 'delete-selection-mode)
 
+                                        ; dashes
+(global-set-key (kbd "s--") (lambda(n)(interactive "p")(self-insert-command n ?−))) ; minus x2212
+(global-set-key (kbd "s-2") (lambda(n)(interactive "p")(self-insert-command n ?‒))) ; figure-dash x2012
+(global-set-key (kbd "s-3") (lambda(n)(interactive "p")(self-insert-command n ?–))) ; en-dash x2013
+(global-set-key (kbd "s-4") (lambda(n)(interactive "p")(self-insert-command n ?—))) ; em-dash x2014
+(global-set-key (kbd "s-5") (lambda(n)(interactive "p")(self-insert-command n ?―))) ; horizontal-bar x2015
+(global-set-key (kbd "C-c - -") (lambda(n)(interactive "p")(self-insert-command n ?−))) ; minus x2212
+(global-set-key (kbd "C-c - 2") (lambda(n)(interactive "p")(self-insert-command n ?‒))) ; figure-dash x2012
+(global-set-key (kbd "C-c - 3") (lambda(n)(interactive "p")(self-insert-command n ?–))) ; en-dash x2013
+(global-set-key (kbd "C-c - 4") (lambda(n)(interactive "p")(self-insert-command n ?—))) ; em-dash x2014
+(global-set-key (kbd "C-c - 5") (lambda(n)(interactive "p")(self-insert-command n ?―))) ; horizontal-bar x2015
                                         ; index
 (global-set-key (kbd "C-c i 1") (lambda(n)(interactive "p")(self-insert-command n ?¹)))
 (global-set-key (kbd "C-c i 2") (lambda(n)(interactive "p")(self-insert-command n ?²)))
