@@ -68,11 +68,10 @@
 (load-file "~/repos/emacs/enriched.el")
 (load-file "~/repos/emacs/faces.el")
 (load-file "~/repos/emacs/keys.el")
+(load-file "~/repos/emacs/killyank.el")
 (load-file "~/repos/emacs/lines.el")
-(load-file "~/repos/emacs/rbs.el")
 (load-file "~/repos/emacs/tabs.el")
 (load-file "~/repos/emacs/text.el")
-(load-file "~/repos/emacs/yank.el")
 ;(load-file "~/repos/emacs/org.el")
 
 (if (file-exists-p "~/.emacs2")

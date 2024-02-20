@@ -10,12 +10,6 @@
 (global-set-key (kbd "s-x") 'ucode-to-char)
 
 
-;(defun rereplace(regex str)
-;  (goto-char (point-min))
-;  (while (re-search-forward regex nil t)
-;    (replace-match str)))
-;
-;
 ;(defun polish-region(beg end)
 ;  (interactive "r")
 ;  (setq end (rereplace-with-bounds beg end " \"" " „"))
