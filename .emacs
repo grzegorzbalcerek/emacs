@@ -71,7 +71,6 @@
 (load-file "~/repos/emacs/killyank.el")
 (load-file "~/repos/emacs/lines.el")
 (load-file "~/repos/emacs/tabs.el")
-(load-file "~/repos/emacs/text.el")
 ;(load-file "~/repos/emacs/org.el")
 
 (if (file-exists-p "~/.emacs2")
