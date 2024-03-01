@@ -27,16 +27,21 @@
           (while p
             (if (looking-at (caar p))
                 (progn
-                  (delete-char (- (match-end 0) (match-beginning 0)))
-                  (dolist (c (split-string (cdar p) "" t))
-                    (message "c1: %s" c)
-                    (self-insert-command 1 (string-to-char c)))
-                  ;(insert (cdar p))
-                  (message "d1: %s → %s" (caar p) (cdar p))
-                  (left-char)
-                  (setq p nil))
+                  (let ((b (match-beginning 0))
+                        (e (match-end 0)))
+                    (message "go to %s" e)
+                    (goto-char e)
+                    (dolist (c (split-string (cdar p) "" t))
+                      (self-insert-command 1 (string-to-char c)))
+                    (message "delete region %s %s" b e)
+                    (delete-region b e)
+                                        ;(message "%s → %s" (caar p) (cdar p))
+                    (left-char)
+                    (setq p nil)))
               (setq p (cdr p)))))
-        (right-char)))))
+        (right-char)))
+    (goto-char begm)))
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                                  unicode to a char                                   ;;
