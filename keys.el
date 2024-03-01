@@ -48,6 +48,8 @@
 (global-set-key [f11] 'picture-mode)
 (global-set-key [C-f11] 'picture-mode-exit)
 
+(global-set-key (kbd "<C-S-SPC>") (lambda(n)(interactive "p")(self-insert-command n ? )))
+
 (global-set-key (kbd "s-<") (lambda(n)(interactive "p")(self-insert-command n ?«)))
 (global-set-key (kbd "s->") (lambda(n)(interactive "p")(self-insert-command n ?»)))
 
@@ -80,28 +82,17 @@
 (global-set-key (kbd "C-c - 3") (lambda(n)(interactive "p")(self-insert-command n ?–))) ; en-dash x2013
 (global-set-key (kbd "C-c - 4") (lambda(n)(interactive "p")(self-insert-command n ?—))) ; em-dash x2014
 (global-set-key (kbd "C-c - 5") (lambda(n)(interactive "p")(self-insert-command n ?―))) ; horizontal-bar x2015
-                                        ; index
-(global-set-key (kbd "C-c i 1") (lambda(n)(interactive "p")(self-insert-command n ?¹)))
-(global-set-key (kbd "C-c i 2") (lambda(n)(interactive "p")(self-insert-command n ?²)))
-(global-set-key (kbd "C-c i 3") (lambda(n)(interactive "p")(self-insert-command n ?³)))
-(global-set-key (kbd "C-c i 4") (lambda(n)(interactive "p")(self-insert-command n ?⁴)))
-(global-set-key (kbd "C-c i 5") (lambda(n)(interactive "p")(self-insert-command n ?⁵)))
-(global-set-key (kbd "C-c i 6") (lambda(n)(interactive "p")(self-insert-command n ?⁶)))
-(global-set-key (kbd "C-c i 7") (lambda(n)(interactive "p")(self-insert-command n ?⁷)))
-(global-set-key (kbd "C-c i 8") (lambda(n)(interactive "p")(self-insert-command n ?⁸)))
-(global-set-key (kbd "C-c i 9") (lambda(n)(interactive "p")(self-insert-command n ?⁹)))
-(global-set-key (kbd "C-c i 0") (lambda(n)(interactive "p")(self-insert-command n ?⁰)))
-                                        ; arrow
-(global-set-key (kbd "C-c a 1") (lambda(n)(interactive "p")(self-insert-command n ?↖)))
-(global-set-key (kbd "C-c a 2") (lambda(n)(interactive "p")(self-insert-command n ?↑)))
-(global-set-key (kbd "C-c a 3") (lambda(n)(interactive "p")(self-insert-command n ?↗)))
-(global-set-key (kbd "C-c a 4") (lambda(n)(interactive "p")(self-insert-command n ?←)))
-(global-set-key (kbd "C-c a 5") (lambda(n)(interactive "p")(self-insert-command n ?↕)))
-(global-set-key (kbd "C-c a 6") (lambda(n)(interactive "p")(self-insert-command n ?→)))
-(global-set-key (kbd "C-c a 7") (lambda(n)(interactive "p")(self-insert-command n ?↙)))
-(global-set-key (kbd "C-c a 8") (lambda(n)(interactive "p")(self-insert-command n ?↓)))
-(global-set-key (kbd "C-c a 9") (lambda(n)(interactive "p")(self-insert-command n ?↘)))
-(global-set-key (kbd "C-c a 0") (lambda(n)(interactive "p")(self-insert-command n ?↔)))
+                                        ; apice (it) = superscript
+(global-set-key (kbd "C-c a 1") (lambda(n)(interactive "p")(self-insert-command n ?¹)))
+(global-set-key (kbd "C-c a 2") (lambda(n)(interactive "p")(self-insert-command n ?²)))
+(global-set-key (kbd "C-c a 3") (lambda(n)(interactive "p")(self-insert-command n ?³)))
+(global-set-key (kbd "C-c a 4") (lambda(n)(interactive "p")(self-insert-command n ?⁴)))
+(global-set-key (kbd "C-c a 5") (lambda(n)(interactive "p")(self-insert-command n ?⁵)))
+(global-set-key (kbd "C-c a 6") (lambda(n)(interactive "p")(self-insert-command n ?⁶)))
+(global-set-key (kbd "C-c a 7") (lambda(n)(interactive "p")(self-insert-command n ?⁷)))
+(global-set-key (kbd "C-c a 8") (lambda(n)(interactive "p")(self-insert-command n ?⁸)))
+(global-set-key (kbd "C-c a 9") (lambda(n)(interactive "p")(self-insert-command n ?⁹)))
+(global-set-key (kbd "C-c a 0") (lambda(n)(interactive "p")(self-insert-command n ?⁰)))
                                         ; double arrow
 (global-set-key (kbd "C-c d 1") (lambda(n)(interactive "p")(self-insert-command n ?⇖)))
 (global-set-key (kbd "C-c d 2") (lambda(n)(interactive "p")(self-insert-command n ?⇑)))
@@ -113,25 +104,36 @@
 (global-set-key (kbd "C-c d 8") (lambda(n)(interactive "p")(self-insert-command n ?⇓)))
 (global-set-key (kbd "C-c d 9") (lambda(n)(interactive "p")(self-insert-command n ?⇙)))
 (global-set-key (kbd "C-c d 0") (lambda(n)(interactive "p")(self-insert-command n ?⇔)))
-                                        ; accent `
+                                        ; freccia (it) = arrow
+(global-set-key (kbd "C-c f 1") (lambda(n)(interactive "p")(self-insert-command n ?↖)))
+(global-set-key (kbd "C-c f 2") (lambda(n)(interactive "p")(self-insert-command n ?↑)))
+(global-set-key (kbd "C-c f 3") (lambda(n)(interactive "p")(self-insert-command n ?↗)))
+(global-set-key (kbd "C-c f 4") (lambda(n)(interactive "p")(self-insert-command n ?←)))
+(global-set-key (kbd "C-c f 5") (lambda(n)(interactive "p")(self-insert-command n ?↕)))
+(global-set-key (kbd "C-c f 6") (lambda(n)(interactive "p")(self-insert-command n ?→)))
+(global-set-key (kbd "C-c f 7") (lambda(n)(interactive "p")(self-insert-command n ?↙)))
+(global-set-key (kbd "C-c f 8") (lambda(n)(interactive "p")(self-insert-command n ?↓)))
+(global-set-key (kbd "C-c f 9") (lambda(n)(interactive "p")(self-insert-command n ?↘)))
+(global-set-key (kbd "C-c f 0") (lambda(n)(interactive "p")(self-insert-command n ?↔)))
+                                        ; accent grave `
 (global-set-key (kbd "C-c ` a") (lambda(n)(interactive "p")(self-insert-command n ?à)))
 (global-set-key (kbd "C-c ` A") (lambda(n)(interactive "p")(self-insert-command n ?À)))
 (global-set-key (kbd "C-c ` e") (lambda(n)(interactive "p")(self-insert-command n ?è)))
 (global-set-key (kbd "C-c ` E") (lambda(n)(interactive "p")(self-insert-command n ?È)))
 (global-set-key (kbd "C-c ` u") (lambda(n)(interactive "p")(self-insert-command n ?ù)))
 (global-set-key (kbd "C-c ` U") (lambda(n)(interactive "p")(self-insert-command n ?Ù)))
-
-(global-set-key (kbd "C-c ^ a") (lambda(n)(interactive "p")(self-insert-command n ?á)))
-(global-set-key (kbd "C-c ^ A") (lambda(n)(interactive "p")(self-insert-command n ?Á)))
+                                        ; accent '
+(global-set-key (kbd "C-c ' a") (lambda(n)(interactive "p")(self-insert-command n ?á)))
+(global-set-key (kbd "C-c ' A") (lambda(n)(interactive "p")(self-insert-command n ?Á)))
 (global-set-key (kbd "C-c ' e") (lambda(n)(interactive "p")(self-insert-command n ?é)))
 (global-set-key (kbd "C-c ' E") (lambda(n)(interactive "p")(self-insert-command n ?É)))
-(global-set-key (kbd "C-c ^ i") (lambda(n)(interactive "p")(self-insert-command n ?í)))
-(global-set-key (kbd "C-c ^ I") (lambda(n)(interactive "p")(self-insert-command n ?Í)))
-(global-set-key (kbd "C-c ^ o") (lambda(n)(interactive "p")(self-insert-command n ?ó)))
-(global-set-key (kbd "C-c ^ O") (lambda(n)(interactive "p")(self-insert-command n ?Ó)))
-(global-set-key (kbd "C-c ^ u") (lambda(n)(interactive "p")(self-insert-command n ?ú)))
-(global-set-key (kbd "C-c ^ U") (lambda(n)(interactive "p")(self-insert-command n ?Ú)))
-
+(global-set-key (kbd "C-c ' i") (lambda(n)(interactive "p")(self-insert-command n ?í)))
+(global-set-key (kbd "C-c ' I") (lambda(n)(interactive "p")(self-insert-command n ?Í)))
+(global-set-key (kbd "C-c ' o") (lambda(n)(interactive "p")(self-insert-command n ?ó)))
+(global-set-key (kbd "C-c ' O") (lambda(n)(interactive "p")(self-insert-command n ?Ó)))
+(global-set-key (kbd "C-c ' u") (lambda(n)(interactive "p")(self-insert-command n ?ú)))
+(global-set-key (kbd "C-c ' U") (lambda(n)(interactive "p")(self-insert-command n ?Ú)))
+                                        ; accent ^
 (global-set-key (kbd "C-c ^ a") (lambda(n)(interactive "p")(self-insert-command n ?â)))
 (global-set-key (kbd "C-c ^ A") (lambda(n)(interactive "p")(self-insert-command n ?Â)))
 (global-set-key (kbd "C-c ^ e") (lambda(n)(interactive "p")(self-insert-command n ?ê)))
