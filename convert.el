@@ -1,6 +1,16 @@
+;-*- lexical-binding: t -*-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                                        utils                                         ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defun activate-urls()
+  "make buttons for urls"
+  (interactive)
+  (save-excursion
+    (goto-char (point-min))
+    (while (re-search-forward "http[s]?://[^ \n]+" nil t)
+      (let ((b (match-beginning 0))
+            (e (match-end 0)))
+        (make-button b e 'action (lambda (x) (browse-url (buffer-substring b e))))))))
 
 (defun replace-re(regex str beg end)
   "replaces regular expressions with a string within a region"
