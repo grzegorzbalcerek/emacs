@@ -71,6 +71,9 @@
 
 (global-set-key (kbd "<M-insert>") 'delete-selection-mode)
 
+(global-set-key (kbd "C-c x") (lambda(n)(interactive "p")(self-insert-command n ?☒)))
+(global-set-key (kbd "C-c v") (lambda(n)(interactive "p")(self-insert-command n ?☑)))
+
                                         ; dashes
 (global-set-key (kbd "s--") (lambda(n)(interactive "p")(self-insert-command n ?−))) ; minus x2212
 (global-set-key (kbd "s-2") (lambda(n)(interactive "p")(self-insert-command n ?‒))) ; figure-dash x2012
