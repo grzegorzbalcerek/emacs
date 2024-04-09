@@ -152,6 +152,8 @@
       (next-line 1)
       )))
 
+(global-set-key (kbd "C-M-^") 'join-two-lines)
+
 (defun split-two-lines (raw-prefix prefix b e)
   "Split the line where b is by keeping the initial ?c  bytes (col-width) and insert the rest into b.
   To set value 125 into register ?c use: C-1-2-5 C-x r n 6.
@@ -180,5 +182,4 @@
           (goto-char b)
           (next-line 1)))))
 
-(global-set-key (kbd "C-M-^") 'join-two-lines)
 (global-set-key (kbd "C-M-&") 'split-two-lines)
