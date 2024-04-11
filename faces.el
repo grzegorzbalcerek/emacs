@@ -1,3 +1,64 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;                                    face functions                                    ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defun set-face-region-or-word(face beg end)
+  (interactive)
+  (cond
+   (mark-active
+    (progn
+      ;(message "Setting face %s to region" face)
+      (facemenu-set-face face beg end)))
+   ((and (looking-at "[ \n]") (looking-back " "))
+    (facemenu-set-face (car face)))
+   (t
+    (progn
+      ;(message "Setting face %s to word" face)
+      (save-excursion
+        (if (looking-at "[.,;· \n]")
+            (left-char 1))
+        (forward-word 1)
+        (let ((end (point)))
+          (backward-word 1)
+          (facemenu-set-face face (point) end)))))))
+
+(defun set-face-region-or-row(face beg end)
+  (interactive)
+  (cond
+   (mark-active
+    (progn
+      ;(message "Setting face %s to region" face)
+      (facemenu-set-face face beg end)))
+   ((and (looking-at "[ \n]") (looking-back " "))
+    (facemenu-set-face (car face)))
+   (t
+    (progn
+      ;(message "Setting face %s to region" face)
+      (facemenu-set-face face (line-beginning-position) (line-end-position))))))
+
+(defun show-face()
+  (interactive)
+  (message "face: %s" (get-text-property (point) 'face)))
+
+(global-set-key (kbd "C-x _") 'show-face)
+
+(defun defaultify-blanks-region(beg end)
+  "set the default face for spaces and newlines in region"
+  (interactive "r")
+  (let ((begm (copy-marker beg nil))
+        (endm (copy-marker end t)))
+    (save-excursion
+      (goto-char begm)
+      (while (< (point) endm)
+        (if (looking-at "[ \n]")
+            (facemenu-set-face 'default (point) (1+ (point))))
+        (right-char)))))
+
+(global-set-key (kbd "M-o DEL") 'defaultify-blanks-region)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;                                   face definitions                                   ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
                                         ; f foreground
 (defface fdef '((t (:foreground "#000000" :weight bold))) "foreground default")
@@ -112,40 +173,6 @@
 (defface half '((t (:height 0.5))) "height 0.5")
 (defface small '((t (:height 0.75))) "height 0.75")
 
-(defun set-face-region-or-word(face beg end)
-  (interactive)
-  (cond
-   (mark-active
-    (progn
-      ;(message "Setting face %s to region" face)
-      (facemenu-set-face face beg end)))
-   ((and (looking-at "[ \n]") (looking-back " "))
-    (facemenu-set-face (car face)))
-   (t
-    (progn
-      ;(message "Setting face %s to word" face)
-      (save-excursion
-        (if (looking-at "[.,;· \n]")
-            (left-char 1))
-        (forward-word 1)
-        (let ((end (point)))
-          (backward-word 1)
-          (facemenu-set-face face (point) end)))))))
-
-(defun set-face-region-or-row(face beg end)
-  (interactive)
-  (cond
-   (mark-active
-    (progn
-      ;(message "Setting face %s to region" face)
-      (facemenu-set-face face beg end)))
-   ((and (looking-at "[ \n]") (looking-back " "))
-    (facemenu-set-face (car face)))
-   (t
-    (progn
-      ;(message "Setting face %s to region" face)
-      (facemenu-set-face face (line-beginning-position) (line-end-position))))))
-
 (setq enriched-translations
       '((face
          (header1 "header1")(header2 "header2")(header3 "header3")
@@ -204,21 +231,121 @@
         (unknown
          (nil format-annotate-value))))
 
-(defun show-face()
-  (interactive)
-  (message "face: %s" (get-text-property (point) 'face)))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;                                      face keys                                       ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(defun defaultify-blanks-region(beg end)
-  "set the default face for spaces and newlines in region"
-  (interactive "r")
-  (let ((begm (copy-marker beg nil))
-        (endm (copy-marker end t)))
-    (save-excursion
-      (goto-char begm)
-      (while (< (point) endm)
-        (if (looking-at "[ \n]")
-            (facemenu-set-face 'default (point) (1+ (point))))
-        (right-char)))))
+                                        ;M-o b bold M-o d default M-o i italic M-o l bold-italic M-o m enriched-toggle-markup M-o o facemenu-set-face M-o u underline
+(global-set-key (kbd "M-o a") (lambda(b e)(interactive "r")(set-face-region-or-word 'faqu b e)))
+(global-set-key (kbd "M-o c") (lambda(b e)(interactive "r")(set-face-region-or-word 'fblu b e)))
+(global-set-key (kbd "M-o e") (lambda(b e)(interactive "r")(set-face-region-or-word 'fora b e)))
+(global-set-key (kbd "M-o f") (lambda(b e)(interactive "r")(set-face-region-or-word 'ffuc b e)))
+(global-set-key (kbd "M-o g") (lambda(b e)(interactive "r")(set-face-region-or-word 'fgre b e)))
+(global-set-key (kbd "M-o h") (lambda(b e)(interactive "r")(set-face-region-or-word 'fpur b e)))
+(global-set-key (kbd "M-o j") (lambda(b e)(interactive "r")(set-face-region-or-word 'fmar b e)))
+(global-set-key (kbd "M-o k") (lambda(b e)(interactive "r")(set-face-region-or-word 'flim b e)))
+(global-set-key (kbd "M-o n") (lambda(b e)(interactive "r")(set-face-region-or-word 'fnav b e)))
+(global-set-key (kbd "M-o p") (lambda(b e)(interactive "r")(set-face-region-or-word 'fpin b e)))
+(global-set-key (kbd "M-o q") (lambda(b e)(interactive "r")(set-face-region-or-word 'foli b e)))
+(global-set-key (kbd "M-o r") (lambda(b e)(interactive "r")(set-face-region-or-word 'fred b e)))
+(global-set-key (kbd "M-o s") (lambda(b e)(interactive "r")(set-face-region-or-word 'fsky b e)))
+(global-set-key (kbd "M-o t") (lambda(b e)(interactive "r")(set-face-region-or-word 'ftea b e)))
+(global-set-key (kbd "M-o v") (lambda(b e)(interactive "r")(set-face-region-or-word 'fvio b e)))
+(global-set-key (kbd "M-o x") (lambda(b e)(interactive "r")(set-face-region-or-word 'fgra b e)))
+(global-set-key (kbd "M-o y") (lambda(b e)(interactive "r")(set-face-region-or-word 'fyel b e)))
+
+(global-set-key (kbd "M-o A") (lambda(b e)(interactive "r")(set-face-region-or-word 'baqu b e)))
+(global-set-key (kbd "M-o C") (lambda(b e)(interactive "r")(set-face-region-or-word 'bblu b e)))
+(global-set-key (kbd "M-o E") (lambda(b e)(interactive "r")(set-face-region-or-word 'bora b e)))
+(global-set-key (kbd "M-o F") (lambda(b e)(interactive "r")(set-face-region-or-word 'bfuc b e)))
+(global-set-key (kbd "M-o G") (lambda(b e)(interactive "r")(set-face-region-or-word 'bgre b e)))
+(global-set-key (kbd "M-o H") (lambda(b e)(interactive "r")(set-face-region-or-word 'bpur b e)))
+(global-set-key (kbd "M-o J") (lambda(b e)(interactive "r")(set-face-region-or-word 'bmar b e)))
+(global-set-key (kbd "M-o K") (lambda(b e)(interactive "r")(set-face-region-or-word 'blim b e)))
+(global-set-key (kbd "M-o N") (lambda(b e)(interactive "r")(set-face-region-or-word 'bnav b e)))
+(global-set-key (kbd "M-o P") (lambda(b e)(interactive "r")(set-face-region-or-word 'bpin b e)))
+(global-set-key (kbd "M-o Q") (lambda(b e)(interactive "r")(set-face-region-or-word 'boli b e)))
+(global-set-key (kbd "M-o R") (lambda(b e)(interactive "r")(set-face-region-or-word 'bred b e)))
+(global-set-key (kbd "M-o S") (lambda(b e)(interactive "r")(set-face-region-or-word 'bsky b e)))
+(global-set-key (kbd "M-o T") (lambda(b e)(interactive "r")(set-face-region-or-word 'btea b e)))
+(global-set-key (kbd "M-o V") (lambda(b e)(interactive "r")(set-face-region-or-word 'bvio b e)))
+(global-set-key (kbd "M-o X") (lambda(b e)(interactive "r")(set-face-region-or-word 'bgra b e)))
+(global-set-key (kbd "M-o Y") (lambda(b e)(interactive "r")(set-face-region-or-word 'byel b e)))
+
+(global-set-key (kbd "M-o C-a") (lambda(b e)(interactive "r")(set-face-region-or-word 'saqu b e)))
+(global-set-key (kbd "M-o C-c") (lambda(b e)(interactive "r")(set-face-region-or-word 'sblu b e)))
+(global-set-key (kbd "M-o C-e") (lambda(b e)(interactive "r")(set-face-region-or-word 'sora b e)))
+(global-set-key (kbd "M-o C-f") (lambda(b e)(interactive "r")(set-face-region-or-word 'sfuc b e)))
+(global-set-key (kbd "M-o C-g") (lambda(b e)(interactive "r")(set-face-region-or-word 'sgre b e)))
+(global-set-key (kbd "M-o C-h") (lambda(b e)(interactive "r")(set-face-region-or-word 'spur b e)))
+(global-set-key (kbd "M-o C-j") (lambda(b e)(interactive "r")(set-face-region-or-word 'smar b e)))
+(global-set-key (kbd "M-o C-k") (lambda(b e)(interactive "r")(set-face-region-or-word 'slim b e)))
+(global-set-key (kbd "M-o C-n") (lambda(b e)(interactive "r")(set-face-region-or-word 'snav b e)))
+(global-set-key (kbd "M-o C-p") (lambda(b e)(interactive "r")(set-face-region-or-word 'spin b e)))
+(global-set-key (kbd "M-o C-q") (lambda(b e)(interactive "r")(set-face-region-or-word 'soli b e)))
+(global-set-key (kbd "M-o C-r") (lambda(b e)(interactive "r")(set-face-region-or-word 'sred b e)))
+(global-set-key (kbd "M-o C-s") (lambda(b e)(interactive "r")(set-face-region-or-word 'ssky b e)))
+(global-set-key (kbd "M-o C-t") (lambda(b e)(interactive "r")(set-face-region-or-word 'stea b e)))
+(global-set-key (kbd "M-o C-v") (lambda(b e)(interactive "r")(set-face-region-or-word 'svio b e)))
+(global-set-key (kbd "M-o C-x") (lambda(b e)(interactive "r")(set-face-region-or-word 'sgra b e)))
+(global-set-key (kbd "M-o C-y") (lambda(b e)(interactive "r")(set-face-region-or-word 'syel b e)))
+
+(global-set-key (kbd "M-o M-a") (lambda(b e)(interactive "r")(set-face-region-or-word 'uaqu b e)))
+(global-set-key (kbd "M-o M-c") (lambda(b e)(interactive "r")(set-face-region-or-word 'ublu b e)))
+(global-set-key (kbd "M-o M-e") (lambda(b e)(interactive "r")(set-face-region-or-word 'uora b e)))
+(global-set-key (kbd "M-o M-f") (lambda(b e)(interactive "r")(set-face-region-or-word 'ufuc b e)))
+(global-set-key (kbd "M-o M-g") (lambda(b e)(interactive "r")(set-face-region-or-word 'ugre b e)))
+(global-set-key (kbd "M-o M-h") (lambda(b e)(interactive "r")(set-face-region-or-word 'upur b e)))
+(global-set-key (kbd "M-o M-j") (lambda(b e)(interactive "r")(set-face-region-or-word 'umar b e)))
+(global-set-key (kbd "M-o M-k") (lambda(b e)(interactive "r")(set-face-region-or-word 'ulim b e)))
+(global-set-key (kbd "M-o M-n") (lambda(b e)(interactive "r")(set-face-region-or-word 'unav b e)))
+(global-set-key (kbd "M-o M-p") (lambda(b e)(interactive "r")(set-face-region-or-word 'upin b e)))
+(global-set-key (kbd "M-o M-q") (lambda(b e)(interactive "r")(set-face-region-or-word 'uoli b e)))
+(global-set-key (kbd "M-o M-r") (lambda(b e)(interactive "r")(set-face-region-or-word 'ured b e)))
+(global-set-key (kbd "M-o M-s") (lambda(b e)(interactive "r")(set-face-region-or-word 'usky b e)))
+(global-set-key (kbd "M-o M-t") (lambda(b e)(interactive "r")(set-face-region-or-word 'utea b e)))
+(global-set-key (kbd "M-o M-v") (lambda(b e)(interactive "r")(set-face-region-or-word 'uvio b e)))
+(global-set-key (kbd "M-o M-x") (lambda(b e)(interactive "r")(set-face-region-or-word 'ugra b e)))
+(global-set-key (kbd "M-o M-y") (lambda(b e)(interactive "r")(set-face-region-or-word 'uyel b e)))
+
+(global-set-key (kbd "M-o C-M-a") (lambda(b e)(interactive "r")(set-face-region-or-word 'xaqu b e)))
+(global-set-key (kbd "M-o C-M-c") (lambda(b e)(interactive "r")(set-face-region-or-word 'xblu b e)))
+(global-set-key (kbd "M-o C-M-e") (lambda(b e)(interactive "r")(set-face-region-or-word 'xora b e)))
+(global-set-key (kbd "M-o C-M-f") (lambda(b e)(interactive "r")(set-face-region-or-word 'xfuc b e)))
+(global-set-key (kbd "M-o C-M-g") (lambda(b e)(interactive "r")(set-face-region-or-word 'xgre b e)))
+(global-set-key (kbd "M-o C-M-h") (lambda(b e)(interactive "r")(set-face-region-or-word 'xpur b e)))
+(global-set-key (kbd "M-o C-M-j") (lambda(b e)(interactive "r")(set-face-region-or-word 'xmar b e)))
+(global-set-key (kbd "M-o C-M-k") (lambda(b e)(interactive "r")(set-face-region-or-word 'xlim b e)))
+(global-set-key (kbd "M-o C-M-n") (lambda(b e)(interactive "r")(set-face-region-or-word 'xnav b e)))
+(global-set-key (kbd "M-o C-M-p") (lambda(b e)(interactive "r")(set-face-region-or-word 'xpin b e)))
+(global-set-key (kbd "M-o C-M-q") (lambda(b e)(interactive "r")(set-face-region-or-word 'xoli b e)))
+(global-set-key (kbd "M-o C-M-r") (lambda(b e)(interactive "r")(set-face-region-or-word 'xred b e)))
+(global-set-key (kbd "M-o C-M-s") (lambda(b e)(interactive "r")(set-face-region-or-word 'xsky b e)))
+(global-set-key (kbd "M-o C-M-t") (lambda(b e)(interactive "r")(set-face-region-or-word 'xtea b e)))
+(global-set-key (kbd "M-o C-M-v") (lambda(b e)(interactive "r")(set-face-region-or-word 'xvio b e)))
+(global-set-key (kbd "M-o C-M-x") (lambda(b e)(interactive "r")(set-face-region-or-word 'xgra b e)))
+(global-set-key (kbd "M-o C-M-y") (lambda(b e)(interactive "r")(set-face-region-or-word 'xyel b e)))
+
+(global-set-key (kbd "M-o 1") (lambda(b e)(interactive "r")(set-face-region-or-row 'header1 b e)))
+(global-set-key (kbd "M-o 2") (lambda(b e)(interactive "r")(set-face-region-or-row 'header2 b e)))
+(global-set-key (kbd "M-o 3") (lambda(b e)(interactive "r")(set-face-region-or-row 'header3 b e)))
+(global-set-key (kbd "M-o !") (lambda(b e)(interactive "r")(set-face-region-or-row 'grayheader1 b e)))
+(global-set-key (kbd "M-o @") (lambda(b e)(interactive "r")(set-face-region-or-row 'grayheader2 b e)))
+(global-set-key (kbd "M-o #") (lambda(b e)(interactive "r")(set-face-region-or-row 'grayheader3 b e)))
+(global-set-key (kbd "M-o 4") (lambda(b e)(interactive "r")(set-face-region-or-row 'small b e)))
+(global-set-key (kbd "M-o 5") (lambda(b e)(interactive "r")(set-face-region-or-row 'half b e)))
+(global-set-key (kbd "M-o 9") 'facemenu-set-invisible)
+(global-set-key (kbd "M-o 0") 'facemenu-remove-special)
+
+(global-set-key (kbd "M-o b") (lambda(b e)(interactive "r")(set-face-region-or-word 'bold b e)))
+(global-set-key (kbd "M-o d") (lambda(b e)(interactive "r")(set-face-region-or-word 'default b e)))
+(global-set-key (kbd "M-o i") (lambda(b e)(interactive "r")(set-face-region-or-word 'italic b e)))
+(global-set-key (kbd "M-o l") (lambda(b e)(interactive "r")(set-face-region-or-word 'bold-italic b e)))
+(global-set-key (kbd "M-o u") (lambda(b e)(interactive "r")(set-face-region-or-word 'underline b e)))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;                                   face minor modes                                   ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (define-minor-mode faces-minor-mode
   "Toggle Faces minor mode.
@@ -289,123 +416,4 @@
     (set-face-background 'cursor "black"))
   )
 
-(global-set-key (kbd "M-o a") (lambda(b e)(interactive "r")(set-face-region-or-word 'faqu b e)))
-(global-set-key (kbd "M-o c") (lambda(b e)(interactive "r")(set-face-region-or-word 'fblu b e)))
-(global-set-key (kbd "M-o e") (lambda(b e)(interactive "r")(set-face-region-or-word 'fora b e)))
-(global-set-key (kbd "M-o f") (lambda(b e)(interactive "r")(set-face-region-or-word 'ffuc b e)))
-(global-set-key (kbd "M-o g") (lambda(b e)(interactive "r")(set-face-region-or-word 'fgre b e)))
-(global-set-key (kbd "M-o h") (lambda(b e)(interactive "r")(set-face-region-or-word 'fpur b e)))
-(global-set-key (kbd "M-o j") (lambda(b e)(interactive "r")(set-face-region-or-word 'fmar b e)))
-(global-set-key (kbd "M-o k") (lambda(b e)(interactive "r")(set-face-region-or-word 'flim b e)))
-(global-set-key (kbd "M-o n") (lambda(b e)(interactive "r")(set-face-region-or-word 'fnav b e)))
-(global-set-key (kbd "M-o p") (lambda(b e)(interactive "r")(set-face-region-or-word 'fpin b e)))
-(global-set-key (kbd "M-o q") (lambda(b e)(interactive "r")(set-face-region-or-word 'foli b e)))
-(global-set-key (kbd "M-o r") (lambda(b e)(interactive "r")(set-face-region-or-word 'fred b e)))
-(global-set-key (kbd "M-o s") (lambda(b e)(interactive "r")(set-face-region-or-word 'fsky b e)))
-(global-set-key (kbd "M-o t") (lambda(b e)(interactive "r")(set-face-region-or-word 'ftea b e)))
-(global-set-key (kbd "M-o v") (lambda(b e)(interactive "r")(set-face-region-or-word 'fvio b e)))
-(global-set-key (kbd "M-o x") (lambda(b e)(interactive "r")(set-face-region-or-word 'fgra b e)))
-(global-set-key (kbd "M-o y") (lambda(b e)(interactive "r")(set-face-region-or-word 'fyel b e)))
-
-(global-set-key (kbd "M-o A") (lambda(b e)(interactive "r")(set-face-region-or-word 'baqu b e)))
-(global-set-key (kbd "M-o C") (lambda(b e)(interactive "r")(set-face-region-or-word 'bblu b e)))
-(global-set-key (kbd "M-o E") (lambda(b e)(interactive "r")(set-face-region-or-word 'bora b e)))
-(global-set-key (kbd "M-o F") (lambda(b e)(interactive "r")(set-face-region-or-word 'bfuc b e)))
-(global-set-key (kbd "M-o G") (lambda(b e)(interactive "r")(set-face-region-or-word 'bgre b e)))
-(global-set-key (kbd "M-o H") (lambda(b e)(interactive "r")(set-face-region-or-word 'bpur b e)))
-(global-set-key (kbd "M-o J") (lambda(b e)(interactive "r")(set-face-region-or-word 'bmar b e)))
-(global-set-key (kbd "M-o K") (lambda(b e)(interactive "r")(set-face-region-or-word 'blim b e)))
-(global-set-key (kbd "M-o N") (lambda(b e)(interactive "r")(set-face-region-or-word 'bnav b e)))
-(global-set-key (kbd "M-o P") (lambda(b e)(interactive "r")(set-face-region-or-word 'bpin b e)))
-(global-set-key (kbd "M-o Q") (lambda(b e)(interactive "r")(set-face-region-or-word 'boli b e)))
-(global-set-key (kbd "M-o R") (lambda(b e)(interactive "r")(set-face-region-or-word 'bred b e)))
-(global-set-key (kbd "M-o S") (lambda(b e)(interactive "r")(set-face-region-or-word 'bsky b e)))
-(global-set-key (kbd "M-o T") (lambda(b e)(interactive "r")(set-face-region-or-word 'btea b e)))
-(global-set-key (kbd "M-o V") (lambda(b e)(interactive "r")(set-face-region-or-word 'bvio b e)))
-(global-set-key (kbd "M-o X") (lambda(b e)(interactive "r")(set-face-region-or-word 'bgra b e)))
-(global-set-key (kbd "M-o Y") (lambda(b e)(interactive "r")(set-face-region-or-word 'byel b e)))
-
-(global-set-key (kbd "M-o C-a") (lambda(b e)(interactive "r")(set-face-region-or-word 'saqu b e)))
-(global-set-key (kbd "M-o C-c") (lambda(b e)(interactive "r")(set-face-region-or-word 'sblu b e)))
-(global-set-key (kbd "M-o C-e") (lambda(b e)(interactive "r")(set-face-region-or-word 'sora b e)))
-(global-set-key (kbd "M-o C-f") (lambda(b e)(interactive "r")(set-face-region-or-word 'sfuc b e)))
-(global-set-key (kbd "M-o C-g") (lambda(b e)(interactive "r")(set-face-region-or-word 'sgre b e)))
-(global-set-key (kbd "M-o C-h") (lambda(b e)(interactive "r")(set-face-region-or-word 'spur b e)))
-(global-set-key (kbd "M-o C-j") (lambda(b e)(interactive "r")(set-face-region-or-word 'smar b e)))
-(global-set-key (kbd "M-o C-k") (lambda(b e)(interactive "r")(set-face-region-or-word 'slim b e)))
-(global-set-key (kbd "M-o C-n") (lambda(b e)(interactive "r")(set-face-region-or-word 'snav b e)))
-(global-set-key (kbd "M-o C-p") (lambda(b e)(interactive "r")(set-face-region-or-word 'spin b e)))
-(global-set-key (kbd "M-o C-q") (lambda(b e)(interactive "r")(set-face-region-or-word 'soli b e)))
-(global-set-key (kbd "M-o C-r") (lambda(b e)(interactive "r")(set-face-region-or-word 'sred b e)))
-(global-set-key (kbd "M-o C-s") (lambda(b e)(interactive "r")(set-face-region-or-word 'ssky b e)))
-(global-set-key (kbd "M-o C-t") (lambda(b e)(interactive "r")(set-face-region-or-word 'stea b e)))
-(global-set-key (kbd "M-o C-v") (lambda(b e)(interactive "r")(set-face-region-or-word 'svio b e)))
-(global-set-key (kbd "M-o C-x") (lambda(b e)(interactive "r")(set-face-region-or-word 'sgra b e)))
-(global-set-key (kbd "M-o C-y") (lambda(b e)(interactive "r")(set-face-region-or-word 'syel b e)))
-
-                                        ;b bold
-                                        ;d default
-                                        ;i italic
-                                        ;l bold-italic
-                                        ;m markup
-                                        ;u underline
-(global-set-key (kbd "M-o M-a") (lambda(b e)(interactive "r")(set-face-region-or-word 'uaqu b e)))
-(global-set-key (kbd "M-o M-c") (lambda(b e)(interactive "r")(set-face-region-or-word 'ublu b e)))
-(global-set-key (kbd "M-o M-e") (lambda(b e)(interactive "r")(set-face-region-or-word 'uora b e)))
-(global-set-key (kbd "M-o M-f") (lambda(b e)(interactive "r")(set-face-region-or-word 'ufuc b e)))
-(global-set-key (kbd "M-o M-g") (lambda(b e)(interactive "r")(set-face-region-or-word 'ugre b e)))
-(global-set-key (kbd "M-o M-h") (lambda(b e)(interactive "r")(set-face-region-or-word 'upur b e)))
-(global-set-key (kbd "M-o M-j") (lambda(b e)(interactive "r")(set-face-region-or-word 'umar b e)))
-(global-set-key (kbd "M-o M-k") (lambda(b e)(interactive "r")(set-face-region-or-word 'ulim b e)))
-(global-set-key (kbd "M-o M-n") (lambda(b e)(interactive "r")(set-face-region-or-word 'unav b e)))
-(global-set-key (kbd "M-o M-p") (lambda(b e)(interactive "r")(set-face-region-or-word 'upin b e)))
-(global-set-key (kbd "M-o M-q") (lambda(b e)(interactive "r")(set-face-region-or-word 'uoli b e)))
-(global-set-key (kbd "M-o M-r") (lambda(b e)(interactive "r")(set-face-region-or-word 'ured b e)))
-(global-set-key (kbd "M-o M-s") (lambda(b e)(interactive "r")(set-face-region-or-word 'usky b e)))
-(global-set-key (kbd "M-o M-t") (lambda(b e)(interactive "r")(set-face-region-or-word 'utea b e)))
-(global-set-key (kbd "M-o M-v") (lambda(b e)(interactive "r")(set-face-region-or-word 'uvio b e)))
-(global-set-key (kbd "M-o M-x") (lambda(b e)(interactive "r")(set-face-region-or-word 'ugra b e)))
-(global-set-key (kbd "M-o M-y") (lambda(b e)(interactive "r")(set-face-region-or-word 'uyel b e)))
-
-(global-set-key (kbd "M-o C-M-a") (lambda(b e)(interactive "r")(set-face-region-or-word 'xaqu b e)))
-(global-set-key (kbd "M-o C-M-c") (lambda(b e)(interactive "r")(set-face-region-or-word 'xblu b e)))
-(global-set-key (kbd "M-o C-M-e") (lambda(b e)(interactive "r")(set-face-region-or-word 'xora b e)))
-(global-set-key (kbd "M-o C-M-f") (lambda(b e)(interactive "r")(set-face-region-or-word 'xfuc b e)))
-(global-set-key (kbd "M-o C-M-g") (lambda(b e)(interactive "r")(set-face-region-or-word 'xgre b e)))
-(global-set-key (kbd "M-o C-M-h") (lambda(b e)(interactive "r")(set-face-region-or-word 'xpur b e)))
-(global-set-key (kbd "M-o C-M-j") (lambda(b e)(interactive "r")(set-face-region-or-word 'xmar b e)))
-(global-set-key (kbd "M-o C-M-k") (lambda(b e)(interactive "r")(set-face-region-or-word 'xlim b e)))
-(global-set-key (kbd "M-o C-M-n") (lambda(b e)(interactive "r")(set-face-region-or-word 'xnav b e)))
-(global-set-key (kbd "M-o C-M-p") (lambda(b e)(interactive "r")(set-face-region-or-word 'xpin b e)))
-(global-set-key (kbd "M-o C-M-q") (lambda(b e)(interactive "r")(set-face-region-or-word 'xoli b e)))
-(global-set-key (kbd "M-o C-M-r") (lambda(b e)(interactive "r")(set-face-region-or-word 'xred b e)))
-(global-set-key (kbd "M-o C-M-s") (lambda(b e)(interactive "r")(set-face-region-or-word 'xsky b e)))
-(global-set-key (kbd "M-o C-M-t") (lambda(b e)(interactive "r")(set-face-region-or-word 'xtea b e)))
-(global-set-key (kbd "M-o C-M-v") (lambda(b e)(interactive "r")(set-face-region-or-word 'xvio b e)))
-(global-set-key (kbd "M-o C-M-x") (lambda(b e)(interactive "r")(set-face-region-or-word 'xgra b e)))
-(global-set-key (kbd "M-o C-M-y") (lambda(b e)(interactive "r")(set-face-region-or-word 'xyel b e)))
-
-(global-set-key (kbd "M-o 1") (lambda(b e)(interactive "r")(set-face-region-or-row 'header1 b e)))
-(global-set-key (kbd "M-o 2") (lambda(b e)(interactive "r")(set-face-region-or-row 'header2 b e)))
-(global-set-key (kbd "M-o 3") (lambda(b e)(interactive "r")(set-face-region-or-row 'header3 b e)))
-(global-set-key (kbd "M-o !") (lambda(b e)(interactive "r")(set-face-region-or-row 'grayheader1 b e)))
-(global-set-key (kbd "M-o @") (lambda(b e)(interactive "r")(set-face-region-or-row 'grayheader2 b e)))
-(global-set-key (kbd "M-o #") (lambda(b e)(interactive "r")(set-face-region-or-row 'grayheader3 b e)))
-(global-set-key (kbd "M-o 4") (lambda(b e)(interactive "r")(set-face-region-or-row 'small b e)))
-(global-set-key (kbd "M-o 5") (lambda(b e)(interactive "r")(set-face-region-or-row 'half b e)))
-(global-set-key (kbd "M-o 9") 'facemenu-set-invisible)
-(global-set-key (kbd "M-o 0") 'facemenu-remove-special)
-
-(global-set-key (kbd "M-o b") (lambda(b e)(interactive "r")(set-face-region-or-word 'bold b e)))
-(global-set-key (kbd "M-o d") (lambda(b e)(interactive "r")(set-face-region-or-word 'default b e)))
-(global-set-key (kbd "M-o i") (lambda(b e)(interactive "r")(set-face-region-or-word 'italic b e)))
-(global-set-key (kbd "M-o l") (lambda(b e)(interactive "r")(set-face-region-or-word 'bold-italic b e)))
-(global-set-key (kbd "M-o u") (lambda(b e)(interactive "r")(set-face-region-or-word 'underline b e)))
-
-(global-set-key (kbd "M-o DEL") 'defaultify-blanks-region)
-
-                                      ;M-o m enriched-toggle-markup
-                                      ;M-o o facemenu-set-face
-
-(global-set-key [C-f12] 'show-face)
 (global-set-key [f12] 'faces-minor-mode)
