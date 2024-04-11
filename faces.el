@@ -476,69 +476,151 @@
 
 (global-set-key [f12] 'faces-minor-mode)
 
+(define-minor-mode only-fg-faces-minor-mode "OnlyFG" nil " OnlyFG" nil)
+(define-minor-mode only-bg-faces-minor-mode "OnlyBG" nil " OnlyBG" nil)
+(define-minor-mode only-ol-faces-minor-mode "OnlyOL" nil " OnlyOL" nil)
+(define-minor-mode only-st-faces-minor-mode "OnlyST" nil " OnlyST" nil)
+(define-minor-mode only-ul-faces-minor-mode "OnlyUL" nil " OnlyUL" nil)
+(define-minor-mode only-bx-faces-minor-mode "OnlyBX" nil " OnlyBX" nil)
+
+(defun disable-only-faces-modes()
+  (interactive)
+  (only-fg-faces-minor-mode -1)
+  (only-bg-faces-minor-mode -1)
+  (only-ol-faces-minor-mode -1)
+  (only-st-faces-minor-mode -1)
+  (only-ul-faces-minor-mode -1)
+  (only-bx-faces-minor-mode -1))
+
 (define-minor-mode hide-fg-faces-minor-mode
   "Toggle minor mode for hiding foreground faces."
-  nil
-  " HideFG"
-  nil
-  (if hide-fg-faces-minor-mode
-      (hide-faces ffaces)
-    (show-faces ffaces)))
-
+  nil " HideFG" nil
+  (disable-only-faces-modes)
+  (if hide-fg-faces-minor-mode (hide-faces ffaces) (show-faces ffaces)))
 (global-set-key (kbd "s-f") 'hide-fg-faces-minor-mode)
 
 (define-minor-mode hide-bg-faces-minor-mode
   "Toggle minor mode for hiding background faces."
-  nil
-  " HideBG"
-  nil
-  (if hide-bg-faces-minor-mode
-      (hide-faces bfaces)
-    (show-faces bfaces)))
-
+  nil " HideBG" nil
+  (disable-only-faces-modes)
+  (if hide-bg-faces-minor-mode (hide-faces bfaces) (show-faces bfaces)))
 (global-set-key (kbd "s-b") 'hide-bg-faces-minor-mode)
 
 (define-minor-mode hide-ol-faces-minor-mode
   "Toggle minor mode for hiding overline faces."
-  nil
-  " HideOL"
-  nil
-  (if hide-ol-faces-minor-mode
-      (hide-faces ofaces)
-    (show-faces ofaces)))
-
+  nil " HideOL" nil
+  (disable-only-faces-modes)
+  (if hide-ol-faces-minor-mode (hide-faces ofaces) (show-faces ofaces)))
 (global-set-key (kbd "s-o") 'hide-ol-faces-minor-mode)
 
 (define-minor-mode hide-st-faces-minor-mode
   "Toggle minor mode for hiding strike-through faces."
-  nil
-  " HideST"
-  nil
-  (if hide-st-faces-minor-mode
-      (hide-faces sfaces)
-    (show-faces sfaces)))
-
+  nil " HideST" nil
+  (disable-only-faces-modes)
+  (if hide-st-faces-minor-mode (hide-faces sfaces) (show-faces sfaces)))
 (global-set-key (kbd "s-s") 'hide-st-faces-minor-mode)
 
 (define-minor-mode hide-ul-faces-minor-mode
   "Toggle minor mode for hiding underline faces."
-  nil
-  " HideUL"
-  nil
-  (if hide-ul-faces-minor-mode
-      (hide-faces ufaces)
-    (show-faces ufaces)))
-
+  nil " HideUL" nil
+  (disable-only-faces-modes)
+  (if hide-ul-faces-minor-mode (hide-faces ufaces) (show-faces ufaces)))
 (global-set-key (kbd "s-u") 'hide-ul-faces-minor-mode)
 
-(define-minor-mode hide-box-faces-minor-mode
+(define-minor-mode hide-bx-faces-minor-mode
   "Toggle minor mode for hiding box faces."
-  nil
-  " HideBX"
-  nil
-  (if hide-box-faces-minor-mode
-      (hide-faces xfaces)
-    (show-faces xfaces)))
+  nil " HideBX" nil
+  (disable-only-faces-modes)
+  (if hide-bx-faces-minor-mode (hide-faces xfaces) (show-faces xfaces)))
+(global-set-key (kbd "s-x") 'hide-bx-faces-minor-mode)
 
-(global-set-key (kbd "s-x") 'hide-box-faces-minor-mode)
+(defun only-fg-faces()
+  "Hide all faces except fg"
+  (interactive)
+  (disable-only-faces-modes)
+  (if hide-fg-faces-minor-mode (hide-fg-faces-minor-mode 'toggle))
+  (if (not hide-bg-faces-minor-mode) (hide-bg-faces-minor-mode 'toggle))
+  (if (not hide-ol-faces-minor-mode) (hide-ol-faces-minor-mode 'toggle))
+  (if (not hide-st-faces-minor-mode) (hide-st-faces-minor-mode 'toggle))
+  (if (not hide-ul-faces-minor-mode) (hide-ul-faces-minor-mode 'toggle))
+  (if (not hide-bx-faces-minor-mode) (hide-bx-faces-minor-mode 'toggle))
+  (only-fg-faces-minor-mode))
+(global-set-key (kbd "C-s-f") 'only-fg-faces)
 
+(defun only-bg-faces()
+  "Hide all faces except bg"
+  (interactive)
+  (disable-only-faces-modes)
+  (if (not hide-fg-faces-minor-mode) (hide-fg-faces-minor-mode 'toggle))
+  (if hide-bg-faces-minor-mode (hide-bg-faces-minor-mode 'toggle))
+  (if (not hide-ol-faces-minor-mode) (hide-ol-faces-minor-mode 'toggle))
+  (if (not hide-st-faces-minor-mode) (hide-st-faces-minor-mode 'toggle))
+  (if (not hide-ul-faces-minor-mode) (hide-ul-faces-minor-mode 'toggle))
+  (if (not hide-bx-faces-minor-mode) (hide-bx-faces-minor-mode 'toggle))
+  (only-bg-faces-minor-mode))
+(global-set-key (kbd "C-s-b") 'only-bg-faces)
+
+(defun only-ol-faces()
+  "Hide all faces except ol"
+  (interactive)
+  (disable-only-faces-modes)
+  (if (not hide-fg-faces-minor-mode) (hide-fg-faces-minor-mode 'toggle))
+  (if (not hide-bg-faces-minor-mode) (hide-bg-faces-minor-mode 'toggle))
+  (if hide-ol-faces-minor-mode (hide-ol-faces-minor-mode 'toggle))
+  (if (not hide-st-faces-minor-mode) (hide-st-faces-minor-mode 'toggle))
+  (if (not hide-ul-faces-minor-mode) (hide-ul-faces-minor-mode 'toggle))
+  (if (not hide-bx-faces-minor-mode) (hide-bx-faces-minor-mode 'toggle))
+  (only-ol-faces-minor-mode))
+(global-set-key (kbd "C-s-o") 'only-ol-faces)
+
+(defun only-st-faces()
+  "Hide all faces except st"
+  (interactive)
+  (disable-only-faces-modes)
+  (if (not hide-fg-faces-minor-mode) (hide-fg-faces-minor-mode 'toggle))
+  (if (not hide-bg-faces-minor-mode) (hide-bg-faces-minor-mode 'toggle))
+  (if (not hide-ol-faces-minor-mode) (hide-ol-faces-minor-mode 'toggle))
+  (if hide-st-faces-minor-mode (hide-st-faces-minor-mode 'toggle))
+  (if (not hide-ul-faces-minor-mode) (hide-ul-faces-minor-mode 'toggle))
+  (if (not hide-bx-faces-minor-mode) (hide-bx-faces-minor-mode 'toggle))
+  (only-st-faces-minor-mode))
+(global-set-key (kbd "C-s-s") 'only-st-faces)
+
+(defun only-ul-faces()
+  "Hide all faces except ul"
+  (interactive)
+  (disable-only-faces-modes)
+  (if (not hide-fg-faces-minor-mode) (hide-fg-faces-minor-mode 'toggle))
+  (if (not hide-bg-faces-minor-mode) (hide-bg-faces-minor-mode 'toggle))
+  (if (not hide-ol-faces-minor-mode) (hide-ol-faces-minor-mode 'toggle))
+  (if (not hide-st-faces-minor-mode) (hide-st-faces-minor-mode 'toggle))
+  (if hide-ul-faces-minor-mode (hide-ul-faces-minor-mode 'toggle))
+  (if (not hide-bx-faces-minor-mode) (hide-bx-faces-minor-mode 'toggle))
+  (only-ul-faces-minor-mode))
+(global-set-key (kbd "C-s-u") 'only-ul-faces)
+
+(defun only-bx-faces()
+  "Hide all faces except bx"
+  (interactive)
+  (disable-only-faces-modes)
+  (if (not hide-fg-faces-minor-mode) (hide-fg-faces-minor-mode 'toggle))
+  (if (not hide-bg-faces-minor-mode) (hide-bg-faces-minor-mode 'toggle))
+  (if (not hide-ol-faces-minor-mode) (hide-ol-faces-minor-mode 'toggle))
+  (if (not hide-st-faces-minor-mode) (hide-st-faces-minor-mode 'toggle))
+  (if (not hide-ul-faces-minor-mode) (hide-ul-faces-minor-mode 'toggle))
+  (if hide-bx-faces-minor-mode (hide-bx-faces-minor-mode 'toggle))
+  (only-bx-faces-minor-mode))
+(global-set-key (kbd "C-s-x") 'only-bx-faces)
+
+(defun show-all-faces()
+  "Show all faces"
+  (interactive)
+  (disable-only-faces-modes)
+  (if hide-fg-faces-minor-mode (hide-fg-faces-minor-mode 'toggle))
+  (if hide-bg-faces-minor-mode (hide-bg-faces-minor-mode 'toggle))
+  (if hide-ol-faces-minor-mode (hide-ol-faces-minor-mode 'toggle))
+  (if hide-st-faces-minor-mode (hide-st-faces-minor-mode 'toggle))
+  (if hide-ul-faces-minor-mode (hide-ul-faces-minor-mode 'toggle))
+  (if hide-bx-faces-minor-mode (hide-bx-faces-minor-mode 'toggle)))
+(global-set-key (kbd "s-a") 'show-all-faces)
+  
