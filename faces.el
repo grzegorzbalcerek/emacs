@@ -62,9 +62,7 @@
 
 (defun hide-faces(faces)
   (interactive)
-  (dolist (face faces)
-    (message "face: %s" face)
-    (face-remap-set-base face nil)))
+  (dolist (face faces) (face-remap-set-base face nil)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                                   face definitions                                   ;;
@@ -112,6 +110,27 @@
 (defface bvio '((t (:background "#8000ff"))) "background violet")
 (defface byel '((t (:background "#ffff00"))) "background yellow")
 
+                                        ; o overline
+(defface odef '((t (:overline "#000000"))) "overline default")
+(defface onil '((t (:overline nil)))       "overline nil")
+(defface oaqu '((t (:overline "#00ffff"))) "overline aqua/cyan")
+(defface oblu '((t (:overline "#0000ff"))) "overline blue")
+(defface ofuc '((t (:overline "#ff00ff"))) "overline fuchsia/magenta")
+(defface ogra '((t (:overline "#bfbfbf"))) "overline gray75")
+(defface ogre '((t (:overline "#008000"))) "overline green")
+(defface olim '((t (:overline "#00ff00"))) "overline lime")
+(defface omar '((t (:overline "#800000"))) "overline maroon/brown")
+(defface onav '((t (:overline "#000080"))) "overline navy")
+(defface ooli '((t (:overline "#bfbf00"))) "overline olive")
+(defface oora '((t (:overline "#ff8000"))) "overline orange")
+(defface opin '((t (:overline "#ff80ff"))) "overline pink")
+(defface opur '((t (:overline "#bf00bf"))) "overline purple")
+(defface ored '((t (:overline "#ff0000"))) "overline red")
+(defface osky '((t (:overline "#0080ff"))) "overline sky blue")
+(defface otea '((t (:overline "#00bfbf"))) "overline teal")
+(defface ovio '((t (:overline "#8000ff"))) "overline violet")
+(defface oyel '((t (:overline "#ffff00"))) "overline yellow")
+
                                         ; s strike-through
 (defface sdef '((t (:strike-through "#000000"))) "strike-through default")
 (defface snil '((t (:strike-through nil)))       "strike-through nil")
@@ -155,24 +174,24 @@
 (defface uyel '((t (:underline "#ffff00"))) "underline yellow")
 
                                         ; o box
-(defface odef '((t (:box nil)))                                      "box default")
-(defface oaqu '((t (:box (:line-width (-2 . -2) :color "#00ffff")))) "box aqua/cyan")
-(defface oblu '((t (:box (:line-width (-2 . -2) :color "#0000ff")))) "box blue")
-(defface ofuc '((t (:box (:line-width (-2 . -2) :color "#ff00ff")))) "box fuchsia/magenta")
-(defface ogra '((t (:box (:line-width (-2 . -2) :color "#bfbfbf")))) "box gray75")
-(defface ogre '((t (:box (:line-width (-2 . -2) :color "#008000")))) "box green")
-(defface olim '((t (:box (:line-width (-2 . -2) :color "#00ff00")))) "box lime")
-(defface omar '((t (:box (:line-width (-2 . -2) :color "#800000")))) "box maroon/brown")
-(defface onav '((t (:box (:line-width (-2 . -2) :color "#000080")))) "box navy")
-(defface ooli '((t (:box (:line-width (-2 . -2) :color "#bfbf00")))) "box olive")
-(defface oora '((t (:box (:line-width (-2 . -2) :color "#ff8000")))) "box orange")
-(defface opin '((t (:box (:line-width (-2 . -2) :color "#ff80ff")))) "box pink")
-(defface opur '((t (:box (:line-width (-2 . -2) :color "#bf00bf")))) "box purple")
-(defface ored '((t (:box (:line-width (-2 . -2) :color "#ff0000")))) "box red")
-(defface osky '((t (:box (:line-width (-2 . -2) :color "#0080ff")))) "box sky blue")
-(defface otea '((t (:box (:line-width (-2 . -2) :color "#00bfbf")))) "box teal")
-(defface ovio '((t (:box (:line-width (-2 . -2) :color "#8000ff")))) "box violet")
-(defface oyel '((t (:box (:line-width (-2 . -2) :color "#ffff00")))) "box yellow")
+(defface xdef '((t (:box nil)))                                      "box default")
+(defface xaqu '((t (:box (:line-width (-2 . -2) :color "#00ffff")))) "box aqua/cyan")
+(defface xblu '((t (:box (:line-width (-2 . -2) :color "#0000ff")))) "box blue")
+(defface xfuc '((t (:box (:line-width (-2 . -2) :color "#ff00ff")))) "box fuchsia/magenta")
+(defface xgra '((t (:box (:line-width (-2 . -2) :color "#bfbfbf")))) "box gray75")
+(defface xgre '((t (:box (:line-width (-2 . -2) :color "#008000")))) "box green")
+(defface xlim '((t (:box (:line-width (-2 . -2) :color "#00ff00")))) "box lime")
+(defface xmar '((t (:box (:line-width (-2 . -2) :color "#800000")))) "box maroon/brown")
+(defface xnav '((t (:box (:line-width (-2 . -2) :color "#000080")))) "box navy")
+(defface xoli '((t (:box (:line-width (-2 . -2) :color "#bfbf00")))) "box olive")
+(defface xora '((t (:box (:line-width (-2 . -2) :color "#ff8000")))) "box orange")
+(defface xpin '((t (:box (:line-width (-2 . -2) :color "#ff80ff")))) "box pink")
+(defface xpur '((t (:box (:line-width (-2 . -2) :color "#bf00bf")))) "box purple")
+(defface xred '((t (:box (:line-width (-2 . -2) :color "#ff0000")))) "box red")
+(defface xsky '((t (:box (:line-width (-2 . -2) :color "#0080ff")))) "box sky blue")
+(defface xtea '((t (:box (:line-width (-2 . -2) :color "#00bfbf")))) "box teal")
+(defface xvio '((t (:box (:line-width (-2 . -2) :color "#8000ff")))) "box violet")
+(defface xyel '((t (:box (:line-width (-2 . -2) :color "#ffff00")))) "box yellow")
 
 (defface header1 '((t (:weight bold :height 1.15))) "weight bold height 1.15")
 (defface header2 '((t (:weight bold :height 1.10))) "weight bold height 1.10")
@@ -188,25 +207,25 @@
          (header1 "header1")(header2 "header2")(header3 "header3")
          (grayheader1 "grayheader1")(grayheader2 "grayheader2")(grayheader3 "grayheader3")
          (small "small")(half "half")
-         (fdef "fdef")(bdef "bdef")(sdef "sdef")(udef "udef")(odef "odef")
-         (fnil "fnil")(bnil "bnil")(snil "snil")(unil "unil")(onil "onil")
-         (faqu "faqu")(baqu "baqu")(saqu "saqu")(uaqu "uaqu")(oaqu "oaqu")
-         (fblu "fblu")(bblu "bblu")(sblu "sblu")(ublu "ublu")(oblu "oblu")
-         (ffuc "ffuc")(bfuc "bfuc")(sfuc "sfuc")(ufuc "ufuc")(ofuc "ofuc")
-         (fgra "fgra")(bgra "bgra")(sgra "sgra")(ugra "ugra")(ogra "ogra")
-         (fgre "fgre")(bgre "bgre")(sgre "sgre")(ugre "ugre")(ogre "ogre")
-         (flim "flim")(blim "blim")(slim "slim")(ulim "ulim")(olim "olim")
-         (fmar "fmar")(bmar "bmar")(smar "smar")(umar "umar")(omar "omar")
-         (fnav "fnav")(bnav "bnav")(snav "snav")(unav "unav")(onav "onav")
-         (foli "foli")(boli "boli")(soli "soli")(uoli "uoli")(ooli "ooli")
-         (fora "fora")(bora "bora")(sora "sora")(uora "uora")(oora "oora")
-         (fpin "fpin")(bpin "bpin")(spin "spin")(upin "upin")(opin "opin")
-         (fpur "fpur")(bpur "bpur")(spur "spur")(upur "upur")(opur "opur")
-         (fred "fred")(bred "bred")(sred "sred")(ured "ured")(ored "ored")
-         (fsky "fsky")(bsky "bsky")(ssky "ssky")(usky "usky")(osky "osky")
-         (ftea "ftea")(btea "btea")(stea "stea")(utea "utea")(otea "otea")
-         (fvio "fvio")(bvio "bvio")(svio "svio")(uvio "uvio")(ovio "ovio")
-         (fyel "fyel")(byel "byel")(syel "syel")(uyel "uyel")(oyel "oyel")
+         (fdef "fdef")(bdef "bdef")(odef "odef")(sdef "sdef")(udef "udef")(xdef "xdef")
+         (fnil "fnil")(bnil "bnil")(onil "onil")(snil "snil")(unil "unil")(xnil "xnil")
+         (faqu "faqu")(baqu "baqu")(oaqu "oaqu")(saqu "saqu")(uaqu "uaqu")(xaqu "xaqu")
+         (fblu "fblu")(bblu "bblu")(oblu "oblu")(sblu "sblu")(ublu "ublu")(xblu "xblu")
+         (ffuc "ffuc")(bfuc "bfuc")(ofuc "ofuc")(sfuc "sfuc")(ufuc "ufuc")(xfuc "xfuc")
+         (fgra "fgra")(bgra "bgra")(ogra "ogra")(sgra "sgra")(ugra "ugra")(xgra "xgra")
+         (fgre "fgre")(bgre "bgre")(ogre "ogre")(sgre "sgre")(ugre "ugre")(xgre "xgre")
+         (flim "flim")(blim "blim")(olim "olim")(slim "slim")(ulim "ulim")(xlim "xlim")
+         (fmar "fmar")(bmar "bmar")(omar "omar")(smar "smar")(umar "umar")(xmar "xmar")
+         (fnav "fnav")(bnav "bnav")(onav "onav")(snav "snav")(unav "unav")(xnav "xnav")
+         (foli "foli")(boli "boli")(ooli "ooli")(soli "soli")(uoli "uoli")(xoli "xoli")
+         (fora "fora")(bora "bora")(oora "oora")(sora "sora")(uora "uora")(xora "xora")
+         (fpin "fpin")(bpin "bpin")(opin "opin")(spin "spin")(upin "upin")(xpin "xpin")
+         (fpur "fpur")(bpur "bpur")(opur "opur")(spur "spur")(upur "upur")(xpur "xpur")
+         (fred "fred")(bred "bred")(ored "ored")(sred "sred")(ured "ured")(xred "xred")
+         (fsky "fsky")(bsky "bsky")(osky "osky")(ssky "ssky")(usky "usky")(xsky "xsky")
+         (ftea "ftea")(btea "btea")(otea "otea")(stea "stea")(utea "utea")(xtea "xtea")
+         (fvio "fvio")(bvio "bvio")(ovio "ovio")(svio "svio")(uvio "uvio")(xvio "xvio")
+         (fyel "fyel")(byel "byel")(oyel "oyel")(syel "syel")(uyel "uyel")(xyel "xyel")
          (bold-italic "bold" "italic")
          (bold "bold")
          (italic "italic")
@@ -247,9 +266,10 @@
 
 (setq ffaces '(faqu fblu fora ffuc fgre fpur fmar flim fnav fpin foli fred fsky ftea fvio fwhi fgra fyel))
 (setq bfaces '(baqu bblu bora bfuc bgre bpur bmar blim bnav bpin boli bred bsky btea bvio bwhi bgra byel))
+(setq ofaces '(oaqu oblu oora ofuc ogre opur omar olim onav opin ooli ored osky otea ovio owhi ogra oyel))
 (setq sfaces '(saqu sblu sora sfuc sgre spur smar slim snav spin soli sred ssky stea svio swhi sgra syel))
 (setq ufaces '(uaqu ublu uora ufuc ugre upur umar ulim unav upin uoli ured usky utea uvio uwhi ugra uyel))
-(setq ofaces '(oaqu oblu oora ofuc ogre opur omar olim onav opin ooli ored osky otea ovio owhi ogra oyel))
+(setq xfaces '(xaqu xblu xora xfuc xgre xpur xmar xlim xnav xpin xoli xred xsky xtea xvio xwhi xgra xyel))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                                      face keys                                       ;;
@@ -292,23 +312,41 @@
 (global-set-key (kbd "M-o X") (lambda(b e)(interactive "r")(set-face-region-or-word 'bgra b e)))
 (global-set-key (kbd "M-o Y") (lambda(b e)(interactive "r")(set-face-region-or-word 'byel b e)))
 
-(global-set-key (kbd "M-o C-a") (lambda(b e)(interactive "r")(set-face-region-or-word 'saqu b e)))
-(global-set-key (kbd "M-o C-c") (lambda(b e)(interactive "r")(set-face-region-or-word 'sblu b e)))
-(global-set-key (kbd "M-o C-e") (lambda(b e)(interactive "r")(set-face-region-or-word 'sora b e)))
-(global-set-key (kbd "M-o C-f") (lambda(b e)(interactive "r")(set-face-region-or-word 'sfuc b e)))
-(global-set-key (kbd "M-o C-g") (lambda(b e)(interactive "r")(set-face-region-or-word 'sgre b e)))
-(global-set-key (kbd "M-o C-h") (lambda(b e)(interactive "r")(set-face-region-or-word 'spur b e)))
-(global-set-key (kbd "M-o C-j") (lambda(b e)(interactive "r")(set-face-region-or-word 'smar b e)))
-(global-set-key (kbd "M-o C-k") (lambda(b e)(interactive "r")(set-face-region-or-word 'slim b e)))
-(global-set-key (kbd "M-o C-n") (lambda(b e)(interactive "r")(set-face-region-or-word 'snav b e)))
-(global-set-key (kbd "M-o C-p") (lambda(b e)(interactive "r")(set-face-region-or-word 'spin b e)))
-(global-set-key (kbd "M-o C-q") (lambda(b e)(interactive "r")(set-face-region-or-word 'soli b e)))
-(global-set-key (kbd "M-o C-r") (lambda(b e)(interactive "r")(set-face-region-or-word 'sred b e)))
-(global-set-key (kbd "M-o C-s") (lambda(b e)(interactive "r")(set-face-region-or-word 'ssky b e)))
-(global-set-key (kbd "M-o C-t") (lambda(b e)(interactive "r")(set-face-region-or-word 'stea b e)))
-(global-set-key (kbd "M-o C-v") (lambda(b e)(interactive "r")(set-face-region-or-word 'svio b e)))
-(global-set-key (kbd "M-o C-x") (lambda(b e)(interactive "r")(set-face-region-or-word 'sgra b e)))
-(global-set-key (kbd "M-o C-y") (lambda(b e)(interactive "r")(set-face-region-or-word 'syel b e)))
+(global-set-key (kbd "M-o C-a") (lambda(b e)(interactive "r")(set-face-region-or-word 'oaqu b e)))
+(global-set-key (kbd "M-o C-c") (lambda(b e)(interactive "r")(set-face-region-or-word 'oblu b e)))
+(global-set-key (kbd "M-o C-e") (lambda(b e)(interactive "r")(set-face-region-or-word 'oora b e)))
+(global-set-key (kbd "M-o C-f") (lambda(b e)(interactive "r")(set-face-region-or-word 'ofuc b e)))
+(global-set-key (kbd "M-o C-g") (lambda(b e)(interactive "r")(set-face-region-or-word 'ogre b e)))
+(global-set-key (kbd "M-o C-h") (lambda(b e)(interactive "r")(set-face-region-or-word 'opur b e)))
+(global-set-key (kbd "M-o C-j") (lambda(b e)(interactive "r")(set-face-region-or-word 'omar b e)))
+(global-set-key (kbd "M-o C-k") (lambda(b e)(interactive "r")(set-face-region-or-word 'olim b e)))
+(global-set-key (kbd "M-o C-n") (lambda(b e)(interactive "r")(set-face-region-or-word 'onav b e)))
+(global-set-key (kbd "M-o C-p") (lambda(b e)(interactive "r")(set-face-region-or-word 'opin b e)))
+(global-set-key (kbd "M-o C-q") (lambda(b e)(interactive "r")(set-face-region-or-word 'ooli b e)))
+(global-set-key (kbd "M-o C-r") (lambda(b e)(interactive "r")(set-face-region-or-word 'ored b e)))
+(global-set-key (kbd "M-o C-s") (lambda(b e)(interactive "r")(set-face-region-or-word 'osky b e)))
+(global-set-key (kbd "M-o C-t") (lambda(b e)(interactive "r")(set-face-region-or-word 'otea b e)))
+(global-set-key (kbd "M-o C-v") (lambda(b e)(interactive "r")(set-face-region-or-word 'ovio b e)))
+(global-set-key (kbd "M-o C-x") (lambda(b e)(interactive "r")(set-face-region-or-word 'ogra b e)))
+(global-set-key (kbd "M-o C-y") (lambda(b e)(interactive "r")(set-face-region-or-word 'oyel b e)))
+
+(global-set-key (kbd "M-o s-a") (lambda(b e)(interactive "r")(set-face-region-or-word 'saqu b e)))
+(global-set-key (kbd "M-o s-c") (lambda(b e)(interactive "r")(set-face-region-or-word 'sblu b e)))
+(global-set-key (kbd "M-o s-e") (lambda(b e)(interactive "r")(set-face-region-or-word 'sora b e)))
+(global-set-key (kbd "M-o s-f") (lambda(b e)(interactive "r")(set-face-region-or-word 'sfuc b e)))
+(global-set-key (kbd "M-o s-g") (lambda(b e)(interactive "r")(set-face-region-or-word 'sgre b e)))
+(global-set-key (kbd "M-o s-h") (lambda(b e)(interactive "r")(set-face-region-or-word 'spur b e)))
+(global-set-key (kbd "M-o s-j") (lambda(b e)(interactive "r")(set-face-region-or-word 'smar b e)))
+(global-set-key (kbd "M-o s-k") (lambda(b e)(interactive "r")(set-face-region-or-word 'slim b e)))
+(global-set-key (kbd "M-o s-n") (lambda(b e)(interactive "r")(set-face-region-or-word 'snav b e)))
+(global-set-key (kbd "M-o s-p") (lambda(b e)(interactive "r")(set-face-region-or-word 'spin b e)))
+(global-set-key (kbd "M-o s-q") (lambda(b e)(interactive "r")(set-face-region-or-word 'soli b e)))
+(global-set-key (kbd "M-o s-r") (lambda(b e)(interactive "r")(set-face-region-or-word 'sred b e)))
+(global-set-key (kbd "M-o s-s") (lambda(b e)(interactive "r")(set-face-region-or-word 'ssky b e)))
+(global-set-key (kbd "M-o s-t") (lambda(b e)(interactive "r")(set-face-region-or-word 'stea b e)))
+(global-set-key (kbd "M-o s-v") (lambda(b e)(interactive "r")(set-face-region-or-word 'svio b e)))
+(global-set-key (kbd "M-o s-x") (lambda(b e)(interactive "r")(set-face-region-or-word 'sgra b e)))
+(global-set-key (kbd "M-o s-y") (lambda(b e)(interactive "r")(set-face-region-or-word 'syel b e)))
 
 (global-set-key (kbd "M-o M-a") (lambda(b e)(interactive "r")(set-face-region-or-word 'uaqu b e)))
 (global-set-key (kbd "M-o M-c") (lambda(b e)(interactive "r")(set-face-region-or-word 'ublu b e)))
@@ -438,14 +476,69 @@
 
 (global-set-key [f12] 'faces-minor-mode)
 
-(define-minor-mode hide-box-faces-minor-mode
-  "Toggle minor mode for hiding box faces."
+(define-minor-mode hide-fg-faces-minor-mode
+  "Toggle minor mode for hiding foreground faces."
   nil
-  " HideBOX"
+  " HideFG"
   nil
-  (if hide-box-faces-minor-mode
+  (if hide-fg-faces-minor-mode
+      (hide-faces ffaces)
+    (show-faces ffaces)))
+
+(global-set-key (kbd "s-f") 'hide-fg-faces-minor-mode)
+
+(define-minor-mode hide-bg-faces-minor-mode
+  "Toggle minor mode for hiding background faces."
+  nil
+  " HideBG"
+  nil
+  (if hide-bg-faces-minor-mode
+      (hide-faces bfaces)
+    (show-faces bfaces)))
+
+(global-set-key (kbd "s-b") 'hide-bg-faces-minor-mode)
+
+(define-minor-mode hide-ol-faces-minor-mode
+  "Toggle minor mode for hiding overline faces."
+  nil
+  " HideOL"
+  nil
+  (if hide-ol-faces-minor-mode
       (hide-faces ofaces)
     (show-faces ofaces)))
 
-(global-set-key (kbd "s-o") 'hide-box-faces-minor-mode)
+(global-set-key (kbd "s-o") 'hide-ol-faces-minor-mode)
+
+(define-minor-mode hide-st-faces-minor-mode
+  "Toggle minor mode for hiding strike-through faces."
+  nil
+  " HideST"
+  nil
+  (if hide-st-faces-minor-mode
+      (hide-faces sfaces)
+    (show-faces sfaces)))
+
+(global-set-key (kbd "s-s") 'hide-st-faces-minor-mode)
+
+(define-minor-mode hide-ul-faces-minor-mode
+  "Toggle minor mode for hiding underline faces."
+  nil
+  " HideUL"
+  nil
+  (if hide-ul-faces-minor-mode
+      (hide-faces ufaces)
+    (show-faces ufaces)))
+
+(global-set-key (kbd "s-u") 'hide-ul-faces-minor-mode)
+
+(define-minor-mode hide-box-faces-minor-mode
+  "Toggle minor mode for hiding box faces."
+  nil
+  " HideBX"
+  nil
+  (if hide-box-faces-minor-mode
+      (hide-faces xfaces)
+    (show-faces xfaces)))
+
+(global-set-key (kbd "s-x") 'hide-box-faces-minor-mode)
 

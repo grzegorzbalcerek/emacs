@@ -21,40 +21,72 @@ Text-Width: 90
 <half>half</half>
 
 
-<faqu>faqu</faqu> <baqu>baqu</baqu> <saqu>saqu</saqu> <uaqu>uaqu</uaqu> <oaqu>oaqu</oaqu>
+<faqu>faqu</faqu> <baqu>baqu</baqu> <oaqu>oaqu</oaqu> <saqu>saqu</saqu> <uaqu>uaqu</uaqu> <xaqu>xaqu</xaqu>
 
-<fblu>fblu</fblu> <bblu>bblu</bblu> <sblu>sblu</sblu> <ublu>ublu</ublu> <oblu>oblu</oblu>
+<fblu>fblu</fblu> <bblu>bblu</bblu> <oblu>oblu</oblu> <sblu>sblu</sblu> <ublu>ublu</ublu> <xblu>xblu</xblu>
 
-<ffuc>ffuc</ffuc> <bfuc>bfuc</bfuc> <sfuc>sfuc</sfuc> <ufuc>ufuc</ufuc> <ofuc>ofuc</ofuc>
+<ffuc>ffuc</ffuc> <bfuc>bfuc</bfuc> <ofuc>ofuc</ofuc> <sfuc>sfuc</sfuc> <ufuc>ufuc</ufuc> <xfuc>xfuc</xfuc>
 
-<fgra>fgra</fgra> <bgra>bgra</bgra> <sgra>sgra</sgra> <ugra>ugra</ugra> <ogra>ogra</ogra>
+<fgra>fgra</fgra> <bgra>bgra</bgra> <ogra>ogra</ogra> <sgra>sgra</sgra> <ugra>ugra</ugra> <xgra>xgra</xgra>
 
-<fgre>fgre</fgre> <bgre>bgre</bgre> <sgre>sgre</sgre> <ugre>ugre</ugre> <ogre>ogre</ogre>
+<fgre>fgre</fgre> <bgre>bgre</bgre> <ogre>ogre</ogre> <sgre>sgre</sgre> <ugre>ugre</ugre> <xgre>xgre</xgre>
 
-<flim>flim</flim> <blim>blim</blim> <slim>slim</slim> <ulim>ulim</ulim> <olim>olim</olim>
+<flim>flim</flim> <blim>blim</blim> <olim>olim</olim> <slim>slim</slim> <ulim>ulim</ulim> <xlim>xlim</xlim>
 
-<fmar>fmar</fmar> <bmar>bmar</bmar> <smar>smar</smar> <umar>umar</umar> <omar>omar</omar>
+<fmar>fmar</fmar> <bmar>bmar</bmar> <omar>omar</omar> <smar>smar</smar> <umar>umar</umar> <xmar>xmar</xmar>
 
-<fnav>fnav</fnav> <bnav>bnav</bnav> <snav>snav</snav> <unav>unav</unav> <onav>onav</onav>
+<fnav>fnav</fnav> <bnav>bnav</bnav> <onav>onav</onav> <snav>snav</snav> <unav>unav</unav> <xnav>xnav</xnav>
 
-<foli>foli</foli> <boli>boli</boli> <soli>soli</soli> <uoli>uoli</uoli> <ooli>ooli</ooli>
+<foli>foli</foli> <boli>boli</boli> <ooli>ooli</ooli> <soli>soli</soli> <uoli>uoli</uoli> <xoli>xoli</xoli>
 
-<fora>fora</fora> <bora>bora</bora> <sora>sora</sora> <uora>uora</uora> <oora>oora</oora>
+<fora>fora</fora> <bora>bora</bora> <oora>oora</oora> <sora>sora</sora> <uora>uora</uora> <xora>xora</xora>
 
-<fpin>fpin</fpin> <bpin>bpin</bpin> <spin>spin</spin> <upin>upin</upin> <opin>opin</opin>
+<fpin>fpin</fpin> <bpin>bpin</bpin> <opin>opin</opin> <spin>spin</spin> <upin>upin</upin> <xpin>xpin</xpin>
 
-<fpur>fpur</fpur> <bpur>bpur</bpur> <spur>spur</spur> <upur>upur</upur> <opur>opur</opur>
+<fpur>fpur</fpur> <bpur>bpur</bpur> <opur>opur</opur> <spur>spur</spur> <upur>upur</upur> <xpur>xpur</xpur>
 
-<fred>fred</fred> <bred>bred</bred> <sred>sred</sred> <ured>ured</ured> <ored>ored</ored>
+<fred>fred</fred> <bred>bred</bred> <ored>ored</ored> <sred>sred</sred> <ured>ured</ured> <xred>xred</xred>
 
-<fsky>fsky</fsky> <bsky>bsky</bsky> <ssky>ssky</ssky> <usky>usky</usky> <osky>osky</osky>
+<fsky>fsky</fsky> <bsky>bsky</bsky> <osky>osky</osky> <ssky>ssky</ssky> <usky>usky</usky> <xsky>xsky</xsky>
 
-<ftea>ftea</ftea> <btea>btea</btea> <stea>stea</stea> <utea>utea</utea> <otea>otea</otea>
+<ftea>ftea</ftea> <btea>btea</btea> <otea>otea</otea> <stea>stea</stea> <utea>utea</utea> <xtea>xtea</xtea>
 
-<fvio>fvio</fvio> <bvio>bvio</bvio> <svio>svio</svio> <uvio>uvio</uvio> <ovio>ovio</ovio>
+<fvio>fvio</fvio> <bvio>bvio</bvio> <ovio>ovio</ovio> <svio>svio</svio> <uvio>uvio</uvio> <xvio>xvio</xvio>
 
-<fyel>fyel</fyel> <byel>byel</byel> <syel>syel</syel> <uyel>uyel</uyel> <oyel>oyel</oyel>
+<fyel>fyel</fyel> <byel>byel</byel> <oyel>oyel</oyel> <syel>syel</syel> <uyel>uyel</uyel> <xyel>xyel</xyel>
 
 
 Ala ma kota!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
