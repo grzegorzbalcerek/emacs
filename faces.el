@@ -206,7 +206,7 @@
 (setq xfaces '(xaqu xblu xora xfuc xgre xpur xmar xlim xnav xpin xoli xred xsky xtea xvio xwhi xgra xyel))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;                              exclusive face modes                                    ;;
+;;                              face exclusive modes                                    ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (define-minor-mode only-fg-faces-minor-mode "OnlyFG" nil " OnlyFG" nil)
@@ -225,17 +225,44 @@
   (only-ul-faces-minor-mode -1)
   (only-bx-faces-minor-mode -1))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;                              face selection modes                                    ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(define-minor-mode select-fg-faces-minor-mode "Select FG" nil " FG" nil)
+(define-minor-mode select-bg-faces-minor-mode "Select BG" nil " BG" nil)
+(define-minor-mode select-ol-faces-minor-mode "Select OL" nil " OL" nil)
+(define-minor-mode select-st-faces-minor-mode "Select ST" nil " ST" nil)
+(define-minor-mode select-ul-faces-minor-mode "Select UL" nil " UL" nil)
+(define-minor-mode select-bx-faces-minor-mode "Select BX" nil " BX" nil)
+
+(defun disable-select-faces-modes()
+  (interactive)
+  (select-fg-faces-minor-mode -1)
+  (select-bg-faces-minor-mode -1)
+  (select-ol-faces-minor-mode -1)
+  (select-st-faces-minor-mode -1)
+  (select-ul-faces-minor-mode -1)
+  (select-bx-faces-minor-mode -1))
+
+(defun select-fg-faces() (interactive) (disable-select-faces-modes) (select-fg-faces-minor-mode))
+(defun select-bg-faces() (interactive) (disable-select-faces-modes) (select-bg-faces-minor-mode))
+(defun select-ol-faces() (interactive) (disable-select-faces-modes) (select-ol-faces-minor-mode))
+(defun select-st-faces() (interactive) (disable-select-faces-modes) (select-st-faces-minor-mode))
+(defun select-ul-faces() (interactive) (disable-select-faces-modes) (select-ul-faces-minor-mode))
+(defun select-bx-faces() (interactive) (disable-select-faces-modes) (select-bx-faces-minor-mode))
+
 (defun select-face(face-or-color)
   "Based on the selected exclusive mode and the provided face or its color, return a face"
   (interactive)
   (cond
    ((symbolp face-or-color) face-or-color)
-   (only-fg-faces-minor-mode (intern (concat "f" face-or-color)))
-   (only-bg-faces-minor-mode (intern (concat "b" face-or-color)))
-   (only-ol-faces-minor-mode (intern (concat "o" face-or-color)))
-   (only-st-faces-minor-mode (intern (concat "s" face-or-color)))
-   (only-ul-faces-minor-mode (intern (concat "u" face-or-color)))
-   (only-bx-faces-minor-mode (intern (concat "b" face-or-color)))
+   (select-fg-faces-minor-mode (intern (concat "f" face-or-color)))
+   (select-bg-faces-minor-mode (intern (concat "b" face-or-color)))
+   (select-ol-faces-minor-mode (intern (concat "o" face-or-color)))
+   (select-st-faces-minor-mode (intern (concat "s" face-or-color)))
+   (select-ul-faces-minor-mode (intern (concat "u" face-or-color)))
+   (select-bx-faces-minor-mode (intern (concat "x" face-or-color)))
    (t (intern (concat "f" face-or-color)))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -397,23 +424,23 @@
 (global-set-key (kbd "M-o M-x") (lambda(b e)(interactive "r")(set-face-region-or-word 'ugra b e)))
 (global-set-key (kbd "M-o M-y") (lambda(b e)(interactive "r")(set-face-region-or-word 'uyel b e)))
 
-(global-set-key (kbd "M-o C-M-a") (lambda(b e)(interactive "r")(set-face-region-or-word 'oaqu b e)))
-(global-set-key (kbd "M-o C-M-c") (lambda(b e)(interactive "r")(set-face-region-or-word 'oblu b e)))
-(global-set-key (kbd "M-o C-M-e") (lambda(b e)(interactive "r")(set-face-region-or-word 'oora b e)))
-(global-set-key (kbd "M-o C-M-f") (lambda(b e)(interactive "r")(set-face-region-or-word 'ofuc b e)))
-(global-set-key (kbd "M-o C-M-g") (lambda(b e)(interactive "r")(set-face-region-or-word 'ogre b e)))
-(global-set-key (kbd "M-o C-M-h") (lambda(b e)(interactive "r")(set-face-region-or-word 'opur b e)))
-(global-set-key (kbd "M-o C-M-j") (lambda(b e)(interactive "r")(set-face-region-or-word 'omar b e)))
-(global-set-key (kbd "M-o C-M-k") (lambda(b e)(interactive "r")(set-face-region-or-word 'olim b e)))
-(global-set-key (kbd "M-o C-M-n") (lambda(b e)(interactive "r")(set-face-region-or-word 'onav b e)))
-(global-set-key (kbd "M-o C-M-p") (lambda(b e)(interactive "r")(set-face-region-or-word 'opin b e)))
-(global-set-key (kbd "M-o C-M-q") (lambda(b e)(interactive "r")(set-face-region-or-word 'ooli b e)))
-(global-set-key (kbd "M-o C-M-r") (lambda(b e)(interactive "r")(set-face-region-or-word 'ored b e)))
-(global-set-key (kbd "M-o C-M-s") (lambda(b e)(interactive "r")(set-face-region-or-word 'osky b e)))
-(global-set-key (kbd "M-o C-M-t") (lambda(b e)(interactive "r")(set-face-region-or-word 'otea b e)))
-(global-set-key (kbd "M-o C-M-v") (lambda(b e)(interactive "r")(set-face-region-or-word 'ovio b e)))
-(global-set-key (kbd "M-o C-M-x") (lambda(b e)(interactive "r")(set-face-region-or-word 'ogra b e)))
-(global-set-key (kbd "M-o C-M-y") (lambda(b e)(interactive "r")(set-face-region-or-word 'oyel b e)))
+(global-set-key (kbd "M-o C-M-a") (lambda(b e)(interactive "r")(set-face-region-or-word 'xaqu b e)))
+(global-set-key (kbd "M-o C-M-c") (lambda(b e)(interactive "r")(set-face-region-or-word 'xblu b e)))
+(global-set-key (kbd "M-o C-M-e") (lambda(b e)(interactive "r")(set-face-region-or-word 'xora b e)))
+(global-set-key (kbd "M-o C-M-f") (lambda(b e)(interactive "r")(set-face-region-or-word 'xfuc b e)))
+(global-set-key (kbd "M-o C-M-g") (lambda(b e)(interactive "r")(set-face-region-or-word 'xgre b e)))
+(global-set-key (kbd "M-o C-M-h") (lambda(b e)(interactive "r")(set-face-region-or-word 'xpur b e)))
+(global-set-key (kbd "M-o C-M-j") (lambda(b e)(interactive "r")(set-face-region-or-word 'xmar b e)))
+(global-set-key (kbd "M-o C-M-k") (lambda(b e)(interactive "r")(set-face-region-or-word 'xlim b e)))
+(global-set-key (kbd "M-o C-M-n") (lambda(b e)(interactive "r")(set-face-region-or-word 'xnav b e)))
+(global-set-key (kbd "M-o C-M-p") (lambda(b e)(interactive "r")(set-face-region-or-word 'xpin b e)))
+(global-set-key (kbd "M-o C-M-q") (lambda(b e)(interactive "r")(set-face-region-or-word 'xoli b e)))
+(global-set-key (kbd "M-o C-M-r") (lambda(b e)(interactive "r")(set-face-region-or-word 'xred b e)))
+(global-set-key (kbd "M-o C-M-s") (lambda(b e)(interactive "r")(set-face-region-or-word 'xsky b e)))
+(global-set-key (kbd "M-o C-M-t") (lambda(b e)(interactive "r")(set-face-region-or-word 'xtea b e)))
+(global-set-key (kbd "M-o C-M-v") (lambda(b e)(interactive "r")(set-face-region-or-word 'xvio b e)))
+(global-set-key (kbd "M-o C-M-x") (lambda(b e)(interactive "r")(set-face-region-or-word 'xgra b e)))
+(global-set-key (kbd "M-o C-M-y") (lambda(b e)(interactive "r")(set-face-region-or-word 'xyel b e)))
 
 (global-set-key (kbd "M-o 1") (lambda(b e)(interactive "r")(set-face-region-or-row (intern (concat "hea" "der1")) b e)))
 (global-set-key (kbd "M-o 2") (lambda(b e)(interactive "r")(set-face-region-or-row 'header2 b e)))
@@ -463,25 +490,13 @@
     ("y" . (lambda(b e)(interactive "r")(set-face-region-or-word "yel" b e)))
     ("z" . (lambda(b e)(interactive "r")(set-face-region-or-word "nil" b e)))
 
-    ("A" . (lambda(b e)(interactive "r")(set-face-region-or-word 'baqu b e)))
-    ("C" . (lambda(b e)(interactive "r")(set-face-region-or-word 'bblu b e)))
-    ("E" . (lambda(b e)(interactive "r")(set-face-region-or-word 'bora b e)))
-    ("F" . (lambda(b e)(interactive "r")(set-face-region-or-word 'bfuc b e)))
-    ("G" . (lambda(b e)(interactive "r")(set-face-region-or-word 'bgre b e)))
-    ("H" . (lambda(b e)(interactive "r")(set-face-region-or-word 'bpur b e)))
-    ("J" . (lambda(b e)(interactive "r")(set-face-region-or-word 'bmar b e)))
-    ("K" . (lambda(b e)(interactive "r")(set-face-region-or-word 'blim b e)))
-    ("N" . (lambda(b e)(interactive "r")(set-face-region-or-word 'bnav b e)))
-    ("P" . (lambda(b e)(interactive "r")(set-face-region-or-word 'bpin b e)))
-    ("Q" . (lambda(b e)(interactive "r")(set-face-region-or-word 'boli b e)))
-    ("R" . (lambda(b e)(interactive "r")(set-face-region-or-word 'bred b e)))
-    ("S" . (lambda(b e)(interactive "r")(set-face-region-or-word 'bsky b e)))
-    ("T" . (lambda(b e)(interactive "r")(set-face-region-or-word 'btea b e)))
-    ("V" . (lambda(b e)(interactive "r")(set-face-region-or-word 'bvio b e)))
-    ("W" . (lambda(b e)(interactive "r")(set-face-region-or-word 'bdef b e)))
-    ("X" . (lambda(b e)(interactive "r")(set-face-region-or-word 'bgra b e)))
-    ("Y" . (lambda(b e)(interactive "r")(set-face-region-or-word 'byel b e)))
-    ("Z" . (lambda(b e)(interactive "r")(set-face-region-or-word 'bnil b e)))
+    ("D" . disable-select-faces-modes)
+    ("F" . select-fg-faces)
+    ("B" . select-bg-faces)
+    ("O" . select-ol-faces)
+    ("S" . select-st-faces)
+    ("U" . select-ul-faces)
+    ("X" . select-bx-faces)
 
     ("1" . (lambda(b e)(interactive "r")(set-face-region-or-row 'header1 b e)))
     ("2" . (lambda(b e)(interactive "r")(set-face-region-or-row 'header2 b e)))
@@ -509,44 +524,45 @@
 
 (define-minor-mode hide-fg-faces-minor-mode
   "Toggle minor mode for hiding foreground faces."
-  nil " HideFG" nil
+  nil " fg" nil
   (disable-only-faces-modes)
   (if hide-fg-faces-minor-mode (hide-faces ffaces) (show-faces ffaces)))
 (global-set-key (kbd "s-f") 'hide-fg-faces-minor-mode)
 
 (define-minor-mode hide-bg-faces-minor-mode
   "Toggle minor mode for hiding background faces."
-  nil " HideBG" nil
+  nil " bg" nil
   (disable-only-faces-modes)
   (if hide-bg-faces-minor-mode (hide-faces bfaces) (show-faces bfaces)))
 (global-set-key (kbd "s-b") 'hide-bg-faces-minor-mode)
 
 (define-minor-mode hide-ol-faces-minor-mode
   "Toggle minor mode for hiding overline faces."
-  nil " HideOL" nil
+  nil " ol" nil
   (disable-only-faces-modes)
   (if hide-ol-faces-minor-mode (hide-faces ofaces) (show-faces ofaces)))
 (global-set-key (kbd "s-o") 'hide-ol-faces-minor-mode)
 
 (define-minor-mode hide-st-faces-minor-mode
   "Toggle minor mode for hiding strike-through faces."
-  nil " HideST" nil
+  nil " st" nil
   (disable-only-faces-modes)
   (if hide-st-faces-minor-mode (hide-faces sfaces) (show-faces sfaces)))
 (global-set-key (kbd "s-s") 'hide-st-faces-minor-mode)
 
 (define-minor-mode hide-ul-faces-minor-mode
   "Toggle minor mode for hiding underline faces."
-  nil " HideUL" nil
+  nil " ul" nil
   (disable-only-faces-modes)
   (if hide-ul-faces-minor-mode (hide-faces ufaces) (show-faces ufaces)))
 (global-set-key (kbd "s-u") 'hide-ul-faces-minor-mode)
 
 (define-minor-mode hide-bx-faces-minor-mode
   "Toggle minor mode for hiding box faces."
-  nil " HideBX" nil
+  nil " bx" nil
   (disable-only-faces-modes)
   (if hide-bx-faces-minor-mode (hide-faces xfaces) (show-faces xfaces)))
+
 (global-set-key (kbd "s-x") 'hide-bx-faces-minor-mode)
 
 (defun only-fg-faces()
