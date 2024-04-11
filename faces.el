@@ -1,70 +1,4 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;                                    face functions                                    ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(defun set-face-region-or-word(face beg end)
-  (interactive)
-  (cond
-   (mark-active
-    (progn
-      ;(message "Setting face %s to region" face)
-      (facemenu-set-face face beg end)))
-   ((and (looking-at "[ \n]") (looking-back " "))
-    (facemenu-set-face (car face)))
-   (t
-    (progn
-      ;(message "Setting face %s to word" face)
-      (save-excursion
-        (if (looking-at "[.,;· \n]")
-            (left-char 1))
-        (forward-word 1)
-        (let ((end (point)))
-          (backward-word 1)
-          (facemenu-set-face face (point) end)))))))
-
-(defun set-face-region-or-row(face beg end)
-  (interactive)
-  (cond
-   (mark-active
-    (progn
-      ;(message "Setting face %s to region" face)
-      (facemenu-set-face face beg end)))
-   ((and (looking-at "[ \n]") (looking-back " "))
-    (facemenu-set-face (car face)))
-   (t
-    (progn
-      ;(message "Setting face %s to region" face)
-      (facemenu-set-face face (line-beginning-position) (line-end-position))))))
-
-(defun show-face()
-  (interactive)
-  (message "face: %s" (get-text-property (point) 'face)))
-
-(global-set-key (kbd "C-x _") 'show-face)
-
-(defun defaultify-blanks-region(beg end)
-  "set the default face for spaces and newlines in region"
-  (interactive "r")
-  (let ((begm (copy-marker beg nil))
-        (endm (copy-marker end t)))
-    (save-excursion
-      (goto-char begm)
-      (while (< (point) endm)
-        (if (looking-at "[ \n]")
-            (facemenu-set-face 'default (point) (1+ (point))))
-        (right-char)))))
-
-(global-set-key (kbd "M-o DEL") 'defaultify-blanks-region)
-
-(defun show-faces(faces)
-  (interactive)
-  (dolist (face faces) (face-remap-reset-base face)))
-
-(defun hide-faces(faces)
-  (interactive)
-  (dolist (face faces) (face-remap-set-base face nil)))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                                   face definitions                                   ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -272,6 +206,103 @@
 (setq xfaces '(xaqu xblu xora xfuc xgre xpur xmar xlim xnav xpin xoli xred xsky xtea xvio xwhi xgra xyel))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;                              exclusive face modes                                    ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(define-minor-mode only-fg-faces-minor-mode "OnlyFG" nil " OnlyFG" nil)
+(define-minor-mode only-bg-faces-minor-mode "OnlyBG" nil " OnlyBG" nil)
+(define-minor-mode only-ol-faces-minor-mode "OnlyOL" nil " OnlyOL" nil)
+(define-minor-mode only-st-faces-minor-mode "OnlyST" nil " OnlyST" nil)
+(define-minor-mode only-ul-faces-minor-mode "OnlyUL" nil " OnlyUL" nil)
+(define-minor-mode only-bx-faces-minor-mode "OnlyBX" nil " OnlyBX" nil)
+
+(defun disable-only-faces-modes()
+  (interactive)
+  (only-fg-faces-minor-mode -1)
+  (only-bg-faces-minor-mode -1)
+  (only-ol-faces-minor-mode -1)
+  (only-st-faces-minor-mode -1)
+  (only-ul-faces-minor-mode -1)
+  (only-bx-faces-minor-mode -1))
+
+(defun select-face(face-or-color)
+  "Based on the selected exclusive mode and the provided face or its color, return a face"
+  (interactive)
+  (cond
+   ((symbolp face-or-color) face-or-color)
+   (only-fg-faces-minor-mode (intern (concat "f" face-or-color)))
+   (only-bg-faces-minor-mode (intern (concat "b" face-or-color)))
+   (only-ol-faces-minor-mode (intern (concat "o" face-or-color)))
+   (only-st-faces-minor-mode (intern (concat "s" face-or-color)))
+   (only-ul-faces-minor-mode (intern (concat "u" face-or-color)))
+   (only-bx-faces-minor-mode (intern (concat "b" face-or-color)))
+   (t (intern (concat "f" face-or-color)))))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;                                    face functions                                    ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defun set-face-region-or-word(face-or-color beg end)
+  (interactive)
+  (let ((face (select-face face-or-color)))
+    (cond
+     (mark-active
+      (progn
+        (facemenu-set-face face beg end)))
+     ((and (looking-at "[ \n]") (looking-back " ")))
+     (t
+      (progn
+        (save-excursion
+          (if (looking-at "[.,;· \n]")
+              (left-char 1))
+          (forward-word 1)
+          (let ((end (point)))
+            (backward-word 1)
+            (facemenu-set-face face (point) end))))))))
+
+(defun set-face-region-or-row(face beg end)
+  (interactive)
+  (cond
+   (mark-active
+    (progn
+      ;(message "Setting face %s to region" face)
+      (facemenu-set-face face beg end)))
+   ((and (looking-at "[ \n]") (looking-back " ")))
+   (t
+    (progn
+      ;(message "Setting face %s to region" face)
+      (facemenu-set-face face (line-beginning-position) (line-end-position))))))
+
+(defun show-face()
+  (interactive)
+  (message "face: %s" (get-text-property (point) 'face)))
+
+(global-set-key (kbd "C-x _") 'show-face)
+
+(defun defaultify-blanks-region(beg end)
+  "set the default face for spaces and newlines in region"
+  (interactive "r")
+  (let ((begm (copy-marker beg nil))
+        (endm (copy-marker end t)))
+    (save-excursion
+      (goto-char begm)
+      (while (< (point) endm)
+        (if (looking-at "[ \n]")
+            (facemenu-set-face 'default (point) (1+ (point))))
+        (right-char)))))
+
+(global-set-key (kbd "M-o DEL") 'defaultify-blanks-region)
+
+(defun show-faces(faces)
+  (interactive)
+  (dolist (face faces) (face-remap-reset-base face)))
+
+(defun hide-faces(faces)
+  (interactive)
+  (dolist (face faces) (face-remap-set-base face nil)))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                                      face keys                                       ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -384,7 +415,7 @@
 (global-set-key (kbd "M-o C-M-x") (lambda(b e)(interactive "r")(set-face-region-or-word 'ogra b e)))
 (global-set-key (kbd "M-o C-M-y") (lambda(b e)(interactive "r")(set-face-region-or-word 'oyel b e)))
 
-(global-set-key (kbd "M-o 1") (lambda(b e)(interactive "r")(set-face-region-or-row 'header1 b e)))
+(global-set-key (kbd "M-o 1") (lambda(b e)(interactive "r")(set-face-region-or-row (intern (concat "hea" "der1")) b e)))
 (global-set-key (kbd "M-o 2") (lambda(b e)(interactive "r")(set-face-region-or-row 'header2 b e)))
 (global-set-key (kbd "M-o 3") (lambda(b e)(interactive "r")(set-face-region-or-row 'header3 b e)))
 (global-set-key (kbd "M-o !") (lambda(b e)(interactive "r")(set-face-region-or-row 'grayheader1 b e)))
@@ -412,25 +443,25 @@
   nil
   " Faces"
   '(
-    ("a" . (lambda(b e)(interactive "r")(set-face-region-or-word 'faqu b e)))
-    ("c" . (lambda(b e)(interactive "r")(set-face-region-or-word 'fblu b e)))
-    ("e" . (lambda(b e)(interactive "r")(set-face-region-or-word 'fora b e)))
-    ("f" . (lambda(b e)(interactive "r")(set-face-region-or-word 'ffuc b e)))
-    ("g" . (lambda(b e)(interactive "r")(set-face-region-or-word 'fgre b e)))
-    ("h" . (lambda(b e)(interactive "r")(set-face-region-or-word 'fpur b e)))
-    ("j" . (lambda(b e)(interactive "r")(set-face-region-or-word 'fmar b e)))
-    ("k" . (lambda(b e)(interactive "r")(set-face-region-or-word 'flim b e)))
-    ("n" . (lambda(b e)(interactive "r")(set-face-region-or-word 'fnav b e)))
-    ("p" . (lambda(b e)(interactive "r")(set-face-region-or-word 'fpin b e)))
-    ("q" . (lambda(b e)(interactive "r")(set-face-region-or-word 'foli b e)))
-    ("r" . (lambda(b e)(interactive "r")(set-face-region-or-word 'fred b e)))
-    ("s" . (lambda(b e)(interactive "r")(set-face-region-or-word 'fsky b e)))
-    ("t" . (lambda(b e)(interactive "r")(set-face-region-or-word 'ftea b e)))
-    ("v" . (lambda(b e)(interactive "r")(set-face-region-or-word 'fvio b e)))
-    ("w" . (lambda(b e)(interactive "r")(set-face-region-or-word 'fwhi b e)))
-    ("x" . (lambda(b e)(interactive "r")(set-face-region-or-word 'fgra b e)))
-    ("y" . (lambda(b e)(interactive "r")(set-face-region-or-word 'fyel b e)))
-    ("z" . (lambda(b e)(interactive "r")(set-face-region-or-word 'fbla b e)))
+    ("a" . (lambda(b e)(interactive "r")(set-face-region-or-word "aqu" b e)))
+    ("c" . (lambda(b e)(interactive "r")(set-face-region-or-word "blu" b e)))
+    ("e" . (lambda(b e)(interactive "r")(set-face-region-or-word "ora" b e)))
+    ("f" . (lambda(b e)(interactive "r")(set-face-region-or-word "fuc" b e)))
+    ("g" . (lambda(b e)(interactive "r")(set-face-region-or-word "gre" b e)))
+    ("h" . (lambda(b e)(interactive "r")(set-face-region-or-word "pur" b e)))
+    ("j" . (lambda(b e)(interactive "r")(set-face-region-or-word "mar" b e)))
+    ("k" . (lambda(b e)(interactive "r")(set-face-region-or-word "lim" b e)))
+    ("n" . (lambda(b e)(interactive "r")(set-face-region-or-word "nav" b e)))
+    ("p" . (lambda(b e)(interactive "r")(set-face-region-or-word "pin" b e)))
+    ("q" . (lambda(b e)(interactive "r")(set-face-region-or-word "oli" b e)))
+    ("r" . (lambda(b e)(interactive "r")(set-face-region-or-word "red" b e)))
+    ("s" . (lambda(b e)(interactive "r")(set-face-region-or-word "sky" b e)))
+    ("t" . (lambda(b e)(interactive "r")(set-face-region-or-word "tea" b e)))
+    ("v" . (lambda(b e)(interactive "r")(set-face-region-or-word "vio" b e)))
+    ("w" . (lambda(b e)(interactive "r")(set-face-region-or-word "def" b e)))
+    ("x" . (lambda(b e)(interactive "r")(set-face-region-or-word "gra" b e)))
+    ("y" . (lambda(b e)(interactive "r")(set-face-region-or-word "yel" b e)))
+    ("z" . (lambda(b e)(interactive "r")(set-face-region-or-word "nil" b e)))
 
     ("A" . (lambda(b e)(interactive "r")(set-face-region-or-word 'baqu b e)))
     ("C" . (lambda(b e)(interactive "r")(set-face-region-or-word 'bblu b e)))
@@ -447,10 +478,10 @@
     ("S" . (lambda(b e)(interactive "r")(set-face-region-or-word 'bsky b e)))
     ("T" . (lambda(b e)(interactive "r")(set-face-region-or-word 'btea b e)))
     ("V" . (lambda(b e)(interactive "r")(set-face-region-or-word 'bvio b e)))
-    ("W" . (lambda(b e)(interactive "r")(set-face-region-or-word 'bwhi b e)))
+    ("W" . (lambda(b e)(interactive "r")(set-face-region-or-word 'bdef b e)))
     ("X" . (lambda(b e)(interactive "r")(set-face-region-or-word 'bgra b e)))
     ("Y" . (lambda(b e)(interactive "r")(set-face-region-or-word 'byel b e)))
-    ("Z" . (lambda(b e)(interactive "r")(set-face-region-or-word 'bbla b e)))
+    ("Z" . (lambda(b e)(interactive "r")(set-face-region-or-word 'bnil b e)))
 
     ("1" . (lambda(b e)(interactive "r")(set-face-region-or-row 'header1 b e)))
     ("2" . (lambda(b e)(interactive "r")(set-face-region-or-row 'header2 b e)))
@@ -475,22 +506,6 @@
   )
 
 (global-set-key [f12] 'faces-minor-mode)
-
-(define-minor-mode only-fg-faces-minor-mode "OnlyFG" nil " OnlyFG" nil)
-(define-minor-mode only-bg-faces-minor-mode "OnlyBG" nil " OnlyBG" nil)
-(define-minor-mode only-ol-faces-minor-mode "OnlyOL" nil " OnlyOL" nil)
-(define-minor-mode only-st-faces-minor-mode "OnlyST" nil " OnlyST" nil)
-(define-minor-mode only-ul-faces-minor-mode "OnlyUL" nil " OnlyUL" nil)
-(define-minor-mode only-bx-faces-minor-mode "OnlyBX" nil " OnlyBX" nil)
-
-(defun disable-only-faces-modes()
-  (interactive)
-  (only-fg-faces-minor-mode -1)
-  (only-bg-faces-minor-mode -1)
-  (only-ol-faces-minor-mode -1)
-  (only-st-faces-minor-mode -1)
-  (only-ul-faces-minor-mode -1)
-  (only-bx-faces-minor-mode -1))
 
 (define-minor-mode hide-fg-faces-minor-mode
   "Toggle minor mode for hiding foreground faces."
