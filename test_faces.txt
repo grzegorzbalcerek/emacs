@@ -1,0 +1,44 @@
+Content-Type: text/enriched
+Text-Width: 90
+
+
+
+<header1>Header 1</header1>
+
+<header2>Header 2</header2>
+
+<header3>Header 3</header3>
+
+<grayheader1>Gray Header 1</grayheader1>
+
+<grayheader2>Gray Header 2</grayheader2>
+
+<grayheader3>Gray Header 3</grayheader3>
+
+
+<small>small</small>
+
+<half>half</half>
+
+
+<faqu>faqu</faqu> <baqu>baqu</baqu> <saqu>saqu</saqu> <uaqu>uaqu</uaqu> <xaqu>xaqu</xaqu>
+<fblu>fblu</fblu> <bblu>bblu</bblu> <sblu>sblu</sblu> <ublu>ublu</ublu> <xblu>xblu</xblu>
+<ffuc>ffuc</ffuc> <bfuc>bfuc</bfuc> <sfuc>sfuc</sfuc> <ufuc>ufuc</ufuc> <xfuc>xfuc</xfuc>
+<fgra>fgra</fgra> <bgra>bgra</bgra> <sgra>sgra</sgra> <ugra>ugra</ugra> <xgra>xgra</xgra>
+<fgre>fgre</fgre> <bgre>bgre</bgre> <sgre>sgre</sgre> <ugre>ugre</ugre> <xgre>xgre</xgre>
+<flim>flim</flim> <blim>blim</blim> <slim>slim</slim> <ulim>ulim</ulim> <xlim>xlim</xlim>
+<fmar>fmar</fmar> <bmar>bmar</bmar> <smar>smar</smar> <umar>umar</umar> <xmar>xmar</xmar>
+<fnav>fnav</fnav> <bnav>bnav</bnav> <snav>snav</snav> <unav>unav</unav> <xnav>xnav</xnav>
+<foli>foli</foli> <boli>boli</boli> <soli>soli</soli> <uoli>uoli</uoli> <xoli>xoli</xoli>
+<fora>fora</fora> <bora>bora</bora> <sora>sora</sora> <uora>uora</uora> <xora>xora</xora>
+<fpin>fpin</fpin> <bpin>bpin</bpin> <spin>spin</spin> <upin>upin</upin> <xpin>xpin</xpin>
+<fpur><fpur>fpur</fpur></fpur> <bpur>bpur</bpur> <spur>spur</spur> <upur>upur</upur> <xpur>xpur</xpur>
+<fred>fred</fred> <bred>bred</bred> <sred>sred</sred> <ured>ured</ured> <xred>xred</xred>
+<fsky>fsky</fsky> <bsky>bsky</bsky> <ssky>ssky</ssky> <usky>usky</usky> <xsky>xsky</xsky>
+<ftea>ftea</ftea> <btea>btea</btea> <stea>stea</stea> <utea>utea</utea> <xtea>xtea</xtea>
+<fvio>fvio</fvio> <bvio>bvio</bvio> <svio>svio</svio> <uvio>uvio</uvio> <xvio>xvio</xvio>
+<fyel>fyel</fyel> <byel>byel</byel> <syel>syel</syel> <uyel>uyel</uyel> <xyel>xyel</xyel>
+
+
+Ala ma kota!
+
