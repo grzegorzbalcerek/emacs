@@ -58,3 +58,6 @@ Text-Width: 90
 
 Ala ma kota!
 
+
+\([<</]\)f \1s
+\([<</]\)f \1x

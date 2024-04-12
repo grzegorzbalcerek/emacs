@@ -3,9 +3,9 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
                                         ; f foreground
-(defface fdef '((t (:foreground "#000000" :weight bold))) "foreground default")
-(defface fnil '((t (:foreground "#000000" :weight normal))) "foreground nil")
+(defface fnil '((t (:foreground nil :weight normal))) "foreground nil")
 (defface faqu '((t (:foreground "#00ffff" :weight bold))) "foreground aqua/cyan")
+(defface fbla '((t (:foreground "#000000" :weight bold))) "foreground default")
 (defface fblu '((t (:foreground "#0000ff" :weight bold))) "foreground blue")
 (defface ffuc '((t (:foreground "#ff00ff" :weight bold))) "foreground fuchsia/magenta")
 (defface fgra '((t (:foreground "#bfbfbf" :weight bold))) "foreground gray75")
@@ -24,9 +24,9 @@
 (defface fyel '((t (:foreground "#ffff00" :weight bold))) "foreground yellow")
 
                                         ; b background
-(defface bdef '((t (:background "#ffffff"))) "background default")
-(defface bnil '((t (:background "#ffffff"))) "background nil")
+(defface bnil '((t (:background nil))) "background nil")
 (defface baqu '((t (:background "#00ffff"))) "background aqua/cyan")
+(defface bbla '((t (:background "#000000"))) "background default")
 (defface bblu '((t (:background "#0000ff"))) "background blue")
 (defface bfuc '((t (:background "#ff00ff"))) "background fuchsia/magenta")
 (defface bgra '((t (:background "#bfbfbf"))) "background gray75")
@@ -45,9 +45,9 @@
 (defface byel '((t (:background "#ffff00"))) "background yellow")
 
                                         ; o overline
-(defface odef '((t (:overline "#000000"))) "overline default")
 (defface onil '((t (:overline nil)))       "overline nil")
 (defface oaqu '((t (:overline "#00ffff"))) "overline aqua/cyan")
+(defface obla '((t (:overline "#000000"))) "overline black")
 (defface oblu '((t (:overline "#0000ff"))) "overline blue")
 (defface ofuc '((t (:overline "#ff00ff"))) "overline fuchsia/magenta")
 (defface ogra '((t (:overline "#bfbfbf"))) "overline gray75")
@@ -66,9 +66,9 @@
 (defface oyel '((t (:overline "#ffff00"))) "overline yellow")
 
                                         ; s strike-through
-(defface sdef '((t (:strike-through "#000000"))) "strike-through default")
 (defface snil '((t (:strike-through nil)))       "strike-through nil")
 (defface saqu '((t (:strike-through "#00ffff"))) "strike-through aqua/cyan")
+(defface sbla '((t (:strike-through "#000000"))) "strike-through black")
 (defface sblu '((t (:strike-through "#0000ff"))) "strike-through blue")
 (defface sfuc '((t (:strike-through "#ff00ff"))) "strike-through fuchsia/magenta")
 (defface sgra '((t (:strike-through "#bfbfbf"))) "strike-through gray75")
@@ -87,9 +87,9 @@
 (defface syel '((t (:strike-through "#ffff00"))) "strike-through yellow")
 
                                         ; u underline
-(defface udef '((t (:underline "#000000"))) "underline default")
 (defface unil '((t (:underline nil)))       "underline nil")
 (defface uaqu '((t (:underline "#00ffff"))) "underline aqua/cyan")
+(defface ubla '((t (:underline "#000000"))) "underline black")
 (defface ublu '((t (:underline "#0000ff"))) "underline blue")
 (defface ufuc '((t (:underline "#ff00ff"))) "underline fuchsia/magenta")
 (defface ugra '((t (:underline "#bfbfbf"))) "underline gray75")
@@ -108,8 +108,9 @@
 (defface uyel '((t (:underline "#ffff00"))) "underline yellow")
 
                                         ; o box
-(defface xdef '((t (:box nil)))                                      "box default")
+(defface xnil '((t (:box nil)))                                      "box nil")
 (defface xaqu '((t (:box (:line-width (-2 . -2) :color "#00ffff")))) "box aqua/cyan")
+(defface xbla '((t (:box (:line-width (-2 . -2) :color "#ffffff")))) "box black")
 (defface xblu '((t (:box (:line-width (-2 . -2) :color "#0000ff")))) "box blue")
 (defface xfuc '((t (:box (:line-width (-2 . -2) :color "#ff00ff")))) "box fuchsia/magenta")
 (defface xgra '((t (:box (:line-width (-2 . -2) :color "#bfbfbf")))) "box gray75")
@@ -141,9 +142,9 @@
          (header1 "header1")(header2 "header2")(header3 "header3")
          (grayheader1 "grayheader1")(grayheader2 "grayheader2")(grayheader3 "grayheader3")
          (small "small")(half "half")
-         (fdef "fdef")(bdef "bdef")(odef "odef")(sdef "sdef")(udef "udef")(xdef "xdef")
          (fnil "fnil")(bnil "bnil")(onil "onil")(snil "snil")(unil "unil")(xnil "xnil")
          (faqu "faqu")(baqu "baqu")(oaqu "oaqu")(saqu "saqu")(uaqu "uaqu")(xaqu "xaqu")
+         (fbla "fbla")(bbla "bbla")(obla "obla")(sbla "sbla")(ubla "ubla")(xbla "xbla")
          (fblu "fblu")(bblu "bblu")(oblu "oblu")(sblu "sblu")(ublu "ublu")(xblu "xblu")
          (ffuc "ffuc")(bfuc "bfuc")(ofuc "ofuc")(sfuc "sfuc")(ufuc "ufuc")(xfuc "xfuc")
          (fgra "fgra")(bgra "bgra")(ogra "ogra")(sgra "sgra")(ugra "ugra")(xgra "xgra")
@@ -314,8 +315,8 @@
     (save-excursion
       (goto-char begm)
       (while (< (point) endm)
-        (if (looking-at "[ \n]")
-            (facemenu-set-face 'default (point) (1+ (point))))
+        (if (looking-at " [ \n]")
+            (facemenu-set-face 'default (point) (+ 2 (point))))
         (right-char)))))
 
 (global-set-key (kbd "M-o DEL") 'defaultify-blanks-region)
@@ -348,9 +349,12 @@
 (global-set-key (kbd "M-o r") (lambda(b e)(interactive "r")(set-face-region-or-word 'fred b e)))
 (global-set-key (kbd "M-o s") (lambda(b e)(interactive "r")(set-face-region-or-word 'fsky b e)))
 (global-set-key (kbd "M-o t") (lambda(b e)(interactive "r")(set-face-region-or-word 'ftea b e)))
+(global-set-key (kbd "M-o w") (lambda(b e)(interactive "r")(set-face-region-or-word 'fbla b e)))
 (global-set-key (kbd "M-o v") (lambda(b e)(interactive "r")(set-face-region-or-word 'fvio b e)))
 (global-set-key (kbd "M-o x") (lambda(b e)(interactive "r")(set-face-region-or-word 'fgra b e)))
 (global-set-key (kbd "M-o y") (lambda(b e)(interactive "r")(set-face-region-or-word 'fyel b e)))
+(global-set-key (kbd "M-o z") (lambda(b e)(interactive "r")(set-face-region-or-word 'fbla b e)))
+(global-set-key (kbd "M-o .") (lambda(b e)(interactive "r")(set-face-region-or-word 'fnil b e)))
 
 (global-set-key (kbd "M-o A") (lambda(b e)(interactive "r")(set-face-region-or-word 'baqu b e)))
 (global-set-key (kbd "M-o C") (lambda(b e)(interactive "r")(set-face-region-or-word 'bblu b e)))
@@ -366,9 +370,12 @@
 (global-set-key (kbd "M-o R") (lambda(b e)(interactive "r")(set-face-region-or-word 'bred b e)))
 (global-set-key (kbd "M-o S") (lambda(b e)(interactive "r")(set-face-region-or-word 'bsky b e)))
 (global-set-key (kbd "M-o T") (lambda(b e)(interactive "r")(set-face-region-or-word 'btea b e)))
+(global-set-key (kbd "M-o W") (lambda(b e)(interactive "r")(set-face-region-or-word 'bbla b e)))
 (global-set-key (kbd "M-o V") (lambda(b e)(interactive "r")(set-face-region-or-word 'bvio b e)))
 (global-set-key (kbd "M-o X") (lambda(b e)(interactive "r")(set-face-region-or-word 'bgra b e)))
 (global-set-key (kbd "M-o Y") (lambda(b e)(interactive "r")(set-face-region-or-word 'byel b e)))
+(global-set-key (kbd "M-o Z") (lambda(b e)(interactive "r")(set-face-region-or-word 'bbla b e)))
+(global-set-key (kbd "M-o >") (lambda(b e)(interactive "r")(set-face-region-or-word 'bnil b e)))
 
 (global-set-key (kbd "M-o C-a") (lambda(b e)(interactive "r")(set-face-region-or-word 'oaqu b e)))
 (global-set-key (kbd "M-o C-c") (lambda(b e)(interactive "r")(set-face-region-or-word 'oblu b e)))
@@ -387,6 +394,8 @@
 (global-set-key (kbd "M-o C-v") (lambda(b e)(interactive "r")(set-face-region-or-word 'ovio b e)))
 (global-set-key (kbd "M-o C-x") (lambda(b e)(interactive "r")(set-face-region-or-word 'ogra b e)))
 (global-set-key (kbd "M-o C-y") (lambda(b e)(interactive "r")(set-face-region-or-word 'oyel b e)))
+(global-set-key (kbd "M-o C-z") (lambda(b e)(interactive "r")(set-face-region-or-word 'obla b e)))
+(global-set-key (kbd "M-o C-.") (lambda(b e)(interactive "r")(set-face-region-or-word 'onil b e)))
 
 (global-set-key (kbd "M-o s-a") (lambda(b e)(interactive "r")(set-face-region-or-word 'saqu b e)))
 (global-set-key (kbd "M-o s-c") (lambda(b e)(interactive "r")(set-face-region-or-word 'sblu b e)))
@@ -405,6 +414,8 @@
 (global-set-key (kbd "M-o s-v") (lambda(b e)(interactive "r")(set-face-region-or-word 'svio b e)))
 (global-set-key (kbd "M-o s-x") (lambda(b e)(interactive "r")(set-face-region-or-word 'sgra b e)))
 (global-set-key (kbd "M-o s-y") (lambda(b e)(interactive "r")(set-face-region-or-word 'syel b e)))
+(global-set-key (kbd "M-o s-z") (lambda(b e)(interactive "r")(set-face-region-or-word 'sbla b e)))
+(global-set-key (kbd "M-o s-.") (lambda(b e)(interactive "r")(set-face-region-or-word 'snil b e)))
 
 (global-set-key (kbd "M-o M-a") (lambda(b e)(interactive "r")(set-face-region-or-word 'uaqu b e)))
 (global-set-key (kbd "M-o M-c") (lambda(b e)(interactive "r")(set-face-region-or-word 'ublu b e)))
@@ -423,6 +434,8 @@
 (global-set-key (kbd "M-o M-v") (lambda(b e)(interactive "r")(set-face-region-or-word 'uvio b e)))
 (global-set-key (kbd "M-o M-x") (lambda(b e)(interactive "r")(set-face-region-or-word 'ugra b e)))
 (global-set-key (kbd "M-o M-y") (lambda(b e)(interactive "r")(set-face-region-or-word 'uyel b e)))
+(global-set-key (kbd "M-o M-z") (lambda(b e)(interactive "r")(set-face-region-or-word 'ubla b e)))
+(global-set-key (kbd "M-o M-.") (lambda(b e)(interactive "r")(set-face-region-or-word 'unil b e)))
 
 (global-set-key (kbd "M-o C-M-a") (lambda(b e)(interactive "r")(set-face-region-or-word 'xaqu b e)))
 (global-set-key (kbd "M-o C-M-c") (lambda(b e)(interactive "r")(set-face-region-or-word 'xblu b e)))
@@ -441,6 +454,8 @@
 (global-set-key (kbd "M-o C-M-v") (lambda(b e)(interactive "r")(set-face-region-or-word 'xvio b e)))
 (global-set-key (kbd "M-o C-M-x") (lambda(b e)(interactive "r")(set-face-region-or-word 'xgra b e)))
 (global-set-key (kbd "M-o C-M-y") (lambda(b e)(interactive "r")(set-face-region-or-word 'xyel b e)))
+(global-set-key (kbd "M-o C-M-z") (lambda(b e)(interactive "r")(set-face-region-or-word 'xbla b e)))
+(global-set-key (kbd "M-o C-M-.") (lambda(b e)(interactive "r")(set-face-region-or-word 'xnil b e)))
 
 (global-set-key (kbd "M-o 1") (lambda(b e)(interactive "r")(set-face-region-or-row (intern (concat "hea" "der1")) b e)))
 (global-set-key (kbd "M-o 2") (lambda(b e)(interactive "r")(set-face-region-or-row 'header2 b e)))
@@ -485,10 +500,10 @@
     ("s" . (lambda(b e)(interactive "r")(set-face-region-or-word "sky" b e)))
     ("t" . (lambda(b e)(interactive "r")(set-face-region-or-word "tea" b e)))
     ("v" . (lambda(b e)(interactive "r")(set-face-region-or-word "vio" b e)))
-    ("w" . (lambda(b e)(interactive "r")(set-face-region-or-word "def" b e)))
     ("x" . (lambda(b e)(interactive "r")(set-face-region-or-word "gra" b e)))
     ("y" . (lambda(b e)(interactive "r")(set-face-region-or-word "yel" b e)))
-    ("z" . (lambda(b e)(interactive "r")(set-face-region-or-word "nil" b e)))
+    ("z" . (lambda(b e)(interactive "r")(set-face-region-or-word "bla" b e)))
+    ("." . (lambda(b e)(interactive "r")(set-face-region-or-word "nil" b e)))
 
     ("D" . disable-select-faces-modes)
     ("F" . select-fg-faces)
@@ -654,4 +669,4 @@
   (if hide-ul-faces-minor-mode (hide-ul-faces-minor-mode 'toggle))
   (if hide-bx-faces-minor-mode (hide-bx-faces-minor-mode 'toggle)))
 (global-set-key (kbd "s-a") 'show-all-faces)
-  
+(global-set-key (kbd "C-s-a") 'show-all-faces)
