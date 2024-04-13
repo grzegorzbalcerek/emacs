@@ -3,7 +3,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
                                         ; f foreground
-(defface fnil '((t (:foreground nil :weight normal))) "foreground nil")
+(defface fnil '((t (:foreground unspecified :weight normal))) "foreground nil")
 (defface faqu '((t (:foreground "#00ffff" :weight bold))) "foreground aqua/cyan")
 (defface fbla '((t (:foreground "#000000" :weight bold))) "foreground black")
 (defface fblu '((t (:foreground "#0000ff" :weight bold))) "foreground blue")
@@ -24,7 +24,7 @@
 (defface fyel '((t (:foreground "#ffff00" :weight bold))) "foreground yellow")
 
                                         ; b background
-(defface bnil '((t (:background nil))) "background nil")
+(defface bnil '((t (:background unspecified))) "background nil")
 (defface baqu '((t (:background "#00ffff"))) "background aqua/cyan")
 (defface bbla '((t (:background "#000000"))) "background black")
 (defface bblu '((t (:background "#6060ff"))) "background blue")
@@ -45,7 +45,7 @@
 (defface byel '((t (:background "#ffff60"))) "background yellow")
 
                                         ; o overline
-(defface onil '((t (:overline nil)))       "overline nil")
+(defface onil '((t (:overline unspecified)))       "overline nil")
 (defface oaqu '((t (:overline "#00ffff"))) "overline aqua/cyan")
 (defface obla '((t (:overline "#000000"))) "overline black")
 (defface oblu '((t (:overline "#0000ff"))) "overline blue")
@@ -66,7 +66,7 @@
 (defface oyel '((t (:overline "#ffff00"))) "overline yellow")
 
                                         ; s strike-through
-(defface snil '((t (:strike-through nil)))       "strike-through nil")
+(defface snil '((t (:strike-through unspecified)))       "strike-through nil")
 (defface saqu '((t (:strike-through "#00ffff"))) "strike-through aqua/cyan")
 (defface sbla '((t (:strike-through "#000000"))) "strike-through black")
 (defface sblu '((t (:strike-through "#0000ff"))) "strike-through blue")
@@ -87,7 +87,7 @@
 (defface syel '((t (:strike-through "#ffff00"))) "strike-through yellow")
 
                                         ; u underline
-(defface unil '((t (:underline nil)))       "underline nil")
+(defface unil '((t (:underline unspecified)))       "underline nil")
 (defface uaqu '((t (:underline "#00ffff"))) "underline aqua/cyan")
 (defface ubla '((t (:underline "#000000"))) "underline black")
 (defface ublu '((t (:underline "#0000ff"))) "underline blue")

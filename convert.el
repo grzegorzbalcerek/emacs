@@ -64,7 +64,6 @@
   (let ((v (buffer-substring (region-beginning)(region-end))))
     (kill-region(region-beginning)(region-end))
     (insert-char (string-to-number v 16))))
-
 (global-set-key (kbd "s-x") 'ucode-to-char)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

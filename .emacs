@@ -32,7 +32,7 @@
  '(package-selected-packages
    '(tree-sitter-langs typescript-mode tree-sitter company multiple-cursors lsp-mode rust-mode))
  '(speedbar-show-unknown-files t)
- '(tab-stop-list '(2 25 50 75 100 125 150 175 200 225 250 275 300 325 350 375 400))
+ '(tab-stop-list '(2 4 25 50 75 100 125 150 175 200 225 250 275 300 325 350 375 400))
  '(truncate-lines t)
  '(typescript-mode-hook '(display-line-numbers-mode lsp))
  '(word-wrap t))
