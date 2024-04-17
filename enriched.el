@@ -65,20 +65,21 @@
         (next-line))
       result)))
 
-(defun align-sep-line(widths separator-char)
+(defun align-sep-line(widths sep1 sep2)
   (while (not (looking-at "\n")) (delete-char 1))
   (dolist (width column-widths)
     (if (equal width -1)
-        (insert " " separator-char)
-      (insert (make-string width separator-char)))))
+        (insert sep1 sep2)
+      (insert (make-string width sep2)))))
   
 (defun align-line(column-widths)
   "Align the current line according to the provided column widths"
   (move-beginning-of-line 1)
   (cond
    ((looking-at "[ ]*\n"))
-   ((looking-at "[ —|]*\n") (align-sep-line column-widths ?—))
-   ((looking-at "[ ·|]*\n") (align-sep-line column-widths ?·))
+   ((looking-at "[ |]*\n") (align-sep-line column-widths ?| ? ))
+   ((looking-at "[ —|]*\n") (align-sep-line column-widths ?  ?—))
+   ((looking-at "[ ·|]*\n") (align-sep-line column-widths ?  ?·))
    ((looking-at "[ ·—|]*\n"))
    (t
     (dolist (width column-widths)
@@ -115,13 +116,15 @@
            (beg-line (line-number-at-pos beg))
            (end-line (line-number-at-pos end))
            (number-of-lines (1+ (- end-line beg-line)))
-           (column-widths (column-widths-region beg end))
-           (sep-width (if (equal separator-width 1) 4 separator-width))
-           (align-columns (add-column-separators column-widths sep-width)))
+           (columns
+            (if (> separator-width 0)
+                (add-column-separators (column-widths-region beg end) (if (equal separator-width 1) 4 separator-width))
+              (mapcar (lambda (n) (if (> n 0) (- separator-width) n)) (column-widths-region beg end)))))
+      (message "columns: %s" columns)
       (goto-char beg)
       (move-beginning-of-line 1)
       (dotimes (j number-of-lines)
-        (align-line align-columns)
+        (align-line columns)
         (next-line)))))
 
 (defun tab-cycle(prefix p)
