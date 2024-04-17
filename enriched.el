@@ -66,7 +66,6 @@
       result)))
 
 (defun align-sep-line(widths separator-char)
-  (message "asl %d" (point))
   (while (not (looking-at "\n")) (delete-char 1))
   (dolist (width column-widths)
     (if (equal width -1)
@@ -131,12 +130,12 @@
          (save-excursion
            (beginning-of-line)
            (if (looking-at outline-regexp) t nil))))
-    (if cycle
-        (if (functionp 'outline-cycle)
-            (outline-cycle prefix)
-          (org-cycle))
-      (if mark-active
-          (align-region p)
+    (if mark-active
+        (align-region p)
+      (if cycle
+          (if (functionp 'outline-cycle)
+              (outline-cycle prefix)
+            (org-cycle))
         (tab-to-tab-stop)))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
