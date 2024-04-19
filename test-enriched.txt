@@ -12,9 +12,9 @@ lecz           nie ma
 
 ——————————————————————————————————————— ————————————————————————————————
 Ala           ma        <xred><sblu>kota</sblu></xred>           | Abecadło    z pieca    spadło                                                                              
-malutkiego    <xred><sblu>kotka</sblu></xred>     ma             | Był         sobie      człowiek                                    
+malutkiego    <xred><sblu>kotka</sblu></xred>     ma   |   aa   ccv       | Był         sobie      człowiek                                    
 
-                                       |
+                     |                  |
 ale           co tam    <xred>pieska</xred>    chce |                                
 lecz          <sgre>nie ma</sgre>                   |                                
 ——————————————————————————————————————— ————————————————————————————————
@@ -28,4 +28,6 @@ lecz          <sgre>nie ma</sgre>                   |
 (zip-group-max '(7 2 3 -1 4) '(1 9))
 (zip-group-max '(7 2 3 -1 4) '(1 6 -1 9))
 (zip-group-max '(7 2 3 -1 4) '(1 6 8 8 -1 -1))
+
+
 

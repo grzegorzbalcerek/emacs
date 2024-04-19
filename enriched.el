@@ -163,7 +163,6 @@
 
 (defun insert-spaces-and-pipes(widths)
   (interactive)
-  (message "%s" widths)
   (dolist (width widths)
     (if (>= width 0)
         (insert (make-string width ? ))
@@ -190,6 +189,23 @@
 ;;                                         cells                                        ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(defun split-cell()
+  "Move the text from point to pipe to the column below"
+  (interactive)
+  (let ((num-pipes-left 0))
+    (save-excursion
+      (while (> (point) (pos-bol))
+        (backward-char)
+        (if (looking-at "|") (setq num-pipes-left (1+ num-pipes-left)))))
+    (let ((end-of-cell
+           (save-excursion
+             (while (not (looking-at "[|\n]")) (forward-char))
+             (point))))
+      (let ((content (delete-and-extract-region (point) end-of-cell)))
+        (next-line)
+        (move-beginning-of-line 1)
+        (dotimes (x num-pipes-left) (re-search-forward "|"))
+        (insert content)))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                                         other                                        ;;
@@ -223,6 +239,7 @@
   (local-set-key [tab] 'tab-cycle)
   (local-set-key (kbd "<M-S-up>") 'insert-line-below-with-pipes)
   (local-set-key (kbd "<M-S-down>") 'insert-line-above-with-pipes)
+  (local-set-key (kbd "<M-return>") 'split-cell)
   (local-set-key [return] 'prefixed-newline)
   (local-set-key [?\M-\r] (lambda()(interactive)(insert "\n")))
   (local-set-key (kbd "C-a") 'beginning-of-line)
