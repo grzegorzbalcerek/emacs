@@ -73,7 +73,7 @@
       (insert (make-string width sep2)))))
   
 (defun align-line(column-widths)
-  "Align the current line according to the provided column widths"
+  "Align the current line according to the provided column column widths"
   (move-beginning-of-line 1)
   (cond
    ((looking-at "[ ]*\n"))
@@ -142,6 +142,56 @@
         (tab-to-tab-stop)))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;                                         lines                                        ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defun pipe-column-widths()
+  "Calculate the width of colums of the current line based on the location of pipes"
+  (interactive)
+  (move-beginning-of-line 1)
+  (let ((result nil)
+        (n 0))
+    (while (< (point) (pos-eol))
+      (if (looking-at "|")
+          (progn
+            (if (> n 0) (setq result (cons n result)))
+            (setq result (cons -1 result))
+            (setq n 0))
+        (setq n (1+ n)))
+      (forward-char))
+    (reverse result)))
+
+(defun insert-spaces-and-pipes(widths)
+  (interactive)
+  (message "%s" widths)
+  (dolist (width widths)
+    (if (>= width 0)
+        (insert (make-string width ? ))
+      (insert "|"))))
+
+(defun insert-line-below-with-pipes()
+  (interactive)
+  (save-excursion
+    (let ((widths (pipe-column-widths)))
+      (move-end-of-line 1)
+      (insert "\n")
+      (insert-spaces-and-pipes widths))))
+
+(defun insert-line-above-with-pipes()
+  (interactive)
+  (save-excursion
+    (let ((widths (pipe-column-widths)))
+      (move-beginning-of-line 1)
+      (insert "\n")
+      (backward-char)
+      (insert-spaces-and-pipes widths))))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;                                         cells                                        ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                                         other                                        ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -159,6 +209,7 @@
 
 (defun enriched-mode-customizations()
   (interactive)
+  (message "enriched-mode-customizations")
   (modify-syntax-entry ?· ".")
   (modify-syntax-entry ?· ".")
   (modify-syntax-entry ?\‚ "(’")
@@ -170,6 +221,8 @@
   (setq-local indent-line-function 'tab-to-tab-stop)
   (outline-minor-mode)
   (local-set-key [tab] 'tab-cycle)
+  (local-set-key (kbd "<M-S-up>") 'insert-line-below-with-pipes)
+  (local-set-key (kbd "<M-S-down>") 'insert-line-above-with-pipes)
   (local-set-key [return] 'prefixed-newline)
   (local-set-key [?\M-\r] (lambda()(interactive)(insert "\n")))
   (local-set-key (kbd "C-a") 'beginning-of-line)
@@ -183,3 +236,4 @@
   )
 
 (add-hook 'org-mode-hook 'org-mode-customizations)
+

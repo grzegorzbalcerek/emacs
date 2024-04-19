@@ -7,12 +7,28 @@
   (next-line)
   (transpose-lines 1)
   (previous-line))
+(global-set-key (kbd "<M-down>") 'move-line-down)
 
 (defun move-line-up()
   (interactive)
   (next-line)
   (transpose-lines -1)
   (previous-line))
+(global-set-key (kbd "<M-up>") 'move-line-up)
+
+(defun insert-line-below()
+  (interactive)
+  (save-excursion
+    (move-end-of-line 1)
+    (insert "\n")))
+(global-set-key (kbd "<M-S-up>") 'insert-line-below)
+
+(defun insert-line-above()
+  (interactive)
+  (save-excursion
+    (move-beginning-of-line 1)
+    (insert "\n")))
+(global-set-key (kbd "<M-S-down>") 'insert-line-above)
 
 (defun duplicate-line()
   (interactive)
@@ -21,15 +37,12 @@
     (goto-char (line-beginning-position 2))
     (yank))
   (next-line 1))
+(global-set-key (kbd "<C-S-return>") 'duplicate-line)
 
 (defun copy-line()
   (interactive)
   (save-excursion
     (kill-ring-save (line-beginning-position) (line-beginning-position 2))))
-
-(global-set-key (kbd "<M-down>") 'move-line-down)
-(global-set-key (kbd "<M-up>") 'move-line-up)
-(global-set-key (kbd "<C-S-return>") 'duplicate-line)
 (global-set-key (kbd "<C-M-S-backspace>") 'copy-line)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -78,11 +91,13 @@
   "Call multi-s-separator with character —"
   (interactive "P\np")
   (multi-s-separator raw-prefix prefix ?—))
+(global-set-key [C-return] 'solid-separator)
 
 (defun dotted-separator(raw-prefix prefix)
   "Call multi-s-separator with character ·"
   (interactive "P\np")
   (multi-s-separator raw-prefix prefix ?·))
+(global-set-key [M-return] 'dotted-separator)
 
 (defun clear-separator()
   "remove the character at point and the same charaters to the left and right"
@@ -95,10 +110,8 @@
         (delete-char 1)
         (insert " "))))
   (right-char))
-
-(global-set-key [C-return] 'solid-separator)
-(global-set-key [M-return] 'dotted-separator)
 (global-set-key [C-M-return] 'clear-separator)
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                                  Join, split lines                                   ;;

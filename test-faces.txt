@@ -56,11 +56,44 @@ Text-Width: 90
 <fyel>fyel</fyel> <byel>byel</byel> <oyel>oyel</oyel> <syel>syel</syel> <uyel>uyel</uyel> <xyel>xyel</xyel>
 
 
-Ala ma kota!
+——————————————————————————————————————————————————————————————————————————————————————————
+Ala            ma         <ffuc>kota</ffuc>           
+malutkiego     <ffuc>kotka</ffuc>      ma             
+··························································································                          
+ale            co tam     pieska     <fgre>chce</fgre>
+lecz           <fgre>nie ma</fgre>                    
+——————————————————————————————————————————————————————————————————————————————————————————
+  
+———————————————————————————————————————————————————————————— ——————————————————————————————————————————————
+Ala            ma             <ffuc>kota</ffuc>                          | Abecadło       z pieca        spadło                                                                      
+malutkiego     <ffuc>kotka</ffuc>          <fblu>ma</fblu>                            | Był            sobie          człowiek                                    
+                                                            |                                              
+ale            co tam         <ffuc>pieska</ffuc>         <fblu>chce</fblu>           |                                              
+lecz           nie ma                                       |                                              
+———————————————————————————————————————————————————————————— ——————————————————————————————————————————————
 
 
 \([<</]\)f \1s
 \([<</]\)f \1x
 <<.?bold>
 
+
+<bred><<x[a-z][a-z][a-z]></bred><byel>\([^<<]+\)</byel><bred><</x\1></bred> -> <byel>\1</byel>
+
+
+<bred><<f\([a-z][a-z][a-z]\)><byel>\([^<<]+\)</byel><</f\1></bred> -> <blim><<s\1></blim><byel>\2</byel><blim><</s\1></blim>
+
+
+<baqu><<f\([a-z][a-z][a-z]\)></baqu><byel>\([^<<]+\)</byel><baqu><</f\1></baqu> -> <baqu><<f\1></baqu><bred><<x\1></bred><byel>\2</byel><bred><</x\1></bred><baqu><</f\1></baqu>
+
+<baqu><<f\([a-z][a-z][a-z]\)></baqu><byel>\([^<<]+\)</byel><baqu><</f\1></baqu> -> <baqu><<f\1></baqu><bred><<s\1></bred><byel>\2</byel><bred><</s\1></bred><baqu><</f\1></baqu>
+
+
+<baqu><<f\([a-z][a-z][a-z]\)></baqu><byel>\([^<<]+\)</byel><baqu><</f\1></baqu> -> <baqu><<f\1></baqu><bred><<x\1></bred><blim><<s\1></blim><byel>\2</byel><blim><</s\1></blim><bred><</x\1></bred><baqu><</f\1></baqu>
+
+
+<bred><<x\([a-z][a-z][a-z]\)><byel>\([^<<]+\)</byel><</x\1></bred> -> <baqu><<f\1></baqu><bred><<x\1></bred><byel>\2</byel><bred><</x\1></bred><baqu><</f\1></baqu>
+
+
+<</<bgre>\([a-z][a-z][a-z][a-z]\)</bgre>><bfuc> </bfuc><<<bgre>\1</bgre>> -> <bfuc> </bfuc>
 
