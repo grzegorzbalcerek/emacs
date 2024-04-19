@@ -201,11 +201,12 @@
            (save-excursion
              (while (not (looking-at "[|\n]")) (forward-char))
              (point))))
-      (let ((content (delete-and-extract-region (point) end-of-cell)))
+      (let ((content (string-trim (delete-and-extract-region (point) end-of-cell))))
         (next-line)
         (move-beginning-of-line 1)
         (dotimes (x num-pipes-left) (re-search-forward "|"))
-        (insert content)))))
+        (insert content "  ")
+        (while (looking-at " ") (delete-char 1))))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                                         other                                        ;;
