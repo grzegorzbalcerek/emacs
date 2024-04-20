@@ -1,3 +1,4 @@
+;;; -*- lexical-biding: t -*-
 
 (setq buffer-names-to-skip
       '(

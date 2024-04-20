@@ -1,3 +1,5 @@
+;;; -*- lexical-biding: t -*-
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                                         tabs                                         ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -247,11 +249,4 @@
   )
 
 (add-hook 'enriched-mode-hook 'enriched-mode-customizations)
-
-(defun org-mode-customizations()
-  (interactive)
-  (local-set-key [tab] 'org-cycle)
-  )
-
-(add-hook 'org-mode-hook 'org-mode-customizations)
 

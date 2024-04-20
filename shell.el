@@ -1,3 +1,4 @@
+;;; -*- lexical-biding: t -*-
 
 (defun send-line-to-shell () (interactive)
   (let ((beg (save-excursion (move-beginning-of-line nil)(point)))

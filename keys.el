@@ -1,3 +1,4 @@
+;;; -*- lexical-biding: t -*-
 
 (global-set-key (kbd "C-M-|") 'toggle-truncate-lines)
 (global-set-key (kbd "M-o m") 'enriched-toggle-markup)

@@ -1,3 +1,4 @@
+;;; -*- lexical-biding: t -*-
 
 (defun set-tabs-times-n(n)
   "set the variable tab-stop-list at 2, 4 and then at n, n*2, n*3…"
