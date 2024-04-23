@@ -78,7 +78,12 @@ lecz           nie ma                                       |
 <<.?bold>
 
 
-<bred><<x[a-z][a-z][a-z]></bred><byel>\([^<<]+\)</byel><bred><</x\1></bred> -> <byel>\1</byel>
+<bred><</?[sx][a-z][a-z][a-z]></bred> -> ""
+
+
+<bred><<\(s[a-z][a-z][a-z]\)></bred><byel>\([^<<]+\)</byel><bred><</\1></bred> -> <byel>\2</byel>
+
+<bred><<\(x[a-z][a-z][a-z]\)></bred><byel>\([^<<]+\)</byel><bred><</\1></bred> -> <byel>\2</byel>
 
 
 <bred><<f\([a-z][a-z][a-z]\)><byel>\([^<<]+\)</byel><</f\1></bred> -> <blim><<s\1></blim><byel>\2</byel><blim><</s\1></blim>

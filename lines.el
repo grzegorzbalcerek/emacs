@@ -93,13 +93,13 @@
   "Call multi-s-separator with character —"
   (interactive "P\np")
   (multi-s-separator raw-prefix prefix ?—))
-(global-set-key [C-return] 'solid-separator)
+(global-set-key (kbd "C-c = -") 'solid-separator)
 
 (defun dotted-separator(raw-prefix prefix)
   "Call multi-s-separator with character ·"
   (interactive "P\np")
   (multi-s-separator raw-prefix prefix ?·))
-(global-set-key [s-return] 'dotted-separator)
+(global-set-key (kbd "C-c = .") 'dotted-separator)
 
 (defun clear-separator()
   "remove the character at point and the same charaters to the left and right"
@@ -112,7 +112,7 @@
         (delete-char 1)
         (insert " "))))
   (right-char))
-(global-set-key [C-M-return] 'clear-separator)
+(global-set-key (kbd "C-c = SPC") 'clear-separator)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

@@ -79,9 +79,9 @@
   (move-beginning-of-line 1)
   (cond
    ((looking-at "[ ]*\n"))
-   ((looking-at "[ |]*\n") (align-sep-line column-widths ?| ? ))
-   ((looking-at "[ —|]*\n") (align-sep-line column-widths ?  ?—))
-   ((looking-at "[ ·|]*\n") (align-sep-line column-widths ?  ?·))
+   ((looking-at "[ |]*\n") (align-sep-line column-widths ?| ?\s))
+   ((looking-at "[ —|]*\n") (align-sep-line column-widths ?\s ?—))
+   ((looking-at "[ ·|]*\n") (align-sep-line column-widths ?\s ?·))
    ((looking-at "[ ·—|]*\n"))
    (t
     (dolist (width column-widths)
@@ -93,7 +93,7 @@
               (insert "| "))
           (while (and (not (looking-at "  ")) (not (looking-at "[|\n]")))
             (forward-char 1))
-          (insert (make-string (max 0 (- width (- (point) init-pos))) ? ))))))))
+          (insert (make-string (max 0 (- width (- (point) init-pos))) ?\s))))))))
 
 (defun add-column-separators(widths sep-width)
   "Add sep-width spaces to each item in ws except before -1 add 1 and and to -1 and before end do not add"
@@ -109,7 +109,6 @@
 (defun align-region(separator-width)
   "Aligh region along columns and | characters"
   (interactive "p")
-  (message "(align-region %d)" separator-width)
   (if (not mark-active)
       (error "align-region called but mark is not active"))
   (save-excursion
@@ -122,7 +121,6 @@
             (if (> separator-width 0)
                 (add-column-separators (column-widths-region beg end) (if (equal separator-width 1) 4 separator-width))
               (mapcar (lambda (n) (if (> n 0) (- separator-width) n)) (column-widths-region beg end)))))
-      (message "columns: %s" columns)
       (goto-char beg)
       (move-beginning-of-line 1)
       (dotimes (j number-of-lines)
@@ -142,50 +140,6 @@
               (outline-cycle prefix)
             (org-cycle))
         (tab-to-tab-stop)))))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;                                         lines                                        ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(defun pipe-column-widths()
-  "Calculate the width of colums of the current line based on the location of pipes"
-  (interactive)
-  (move-beginning-of-line 1)
-  (let ((result nil)
-        (n 0))
-    (while (< (point) (pos-eol))
-      (if (looking-at "|")
-          (progn
-            (if (> n 0) (setq result (cons n result)))
-            (setq result (cons -1 result))
-            (setq n 0))
-        (setq n (1+ n)))
-      (forward-char))
-    (reverse result)))
-
-(defun insert-spaces-and-pipes(widths)
-  (interactive)
-  (dolist (width widths)
-    (if (>= width 0)
-        (insert (make-string width ? ))
-      (insert "|"))))
-
-(defun insert-line-below-with-pipes()
-  (interactive)
-  (save-excursion
-    (let ((widths (pipe-column-widths)))
-      (move-end-of-line 1)
-      (insert "\n")
-      (insert-spaces-and-pipes widths))))
-
-(defun insert-line-above-with-pipes()
-  (interactive)
-  (save-excursion
-    (let ((widths (pipe-column-widths)))
-      (move-beginning-of-line 1)
-      (insert "\n")
-      (backward-char)
-      (insert-spaces-and-pipes widths))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                                         cells                                        ;;
@@ -211,6 +165,64 @@
         (while (looking-at " ") (delete-char 1))))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;                                         lines                                        ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defun pipe-column-widths()
+  "Calculate the width of colums of the current line based on the location of pipes"
+  (interactive)
+  (move-beginning-of-line 1)
+  (let ((result nil)
+        (n 0))
+    (while (< (point) (pos-eol))
+      (if (looking-at "|")
+          (progn
+            (if (> n 0) (setq result (cons n result)))
+            (setq result (cons -1 result))
+            (setq n 0))
+        (setq n (1+ n)))
+      (forward-char))
+    (reverse result)))
+
+(defun insert-spaces-and-pipes(widths)
+  (interactive)
+  (dolist (width widths)
+    (if (>= width 0)
+        (insert (make-string width ?\s))
+      (insert "|"))))
+
+(defun insert-line-below-with-pipes()
+  (interactive)
+  (save-excursion
+    (let ((widths (pipe-column-widths)))
+      (move-end-of-line 1)
+      (insert "\n")
+      (insert-spaces-and-pipes widths))))
+
+(defun insert-line-above-with-pipes()
+  (interactive)
+  (save-excursion
+    (let ((widths (pipe-column-widths)))
+      (move-beginning-of-line 1)
+      (insert "\n")
+      (backward-char)
+      (insert-spaces-and-pipes widths))))
+
+(defun join-lines-with-pipes()
+  "Join this line with the next one paying attention to pipes"
+  (interactive)
+  (goto-char (pos-eol))
+  (while (not (bolp))
+    (if (looking-back "|")
+        (progn
+          (save-excursion (split-cell))
+          (backward-delete-char 1))
+      (backward-char 1)))
+  (save-excursion (split-cell))
+  (delete-region (pos-bol) (pos-eol))
+  (delete-char 1))
+  
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                                         other                                        ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -225,6 +237,18 @@
    ((equal prefix '(4)) (newline-and-solid-line))
    ((equal prefix 0) (newline-and-dotted-line))
    (t (insert-newline))))
+
+(defun clean-whitespace-region(beg end)
+  "Apply string-clean-whitespace to region line by line"
+  (interactive "r")
+  (let ((end-marker (copy-marker end)))
+    (while (< (point) end-marker)
+      (insert (string-clean-whitespace (delete-and-extract-region (pos-bol) (pos-eol))))
+      (next-line 1))))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;                          enriched-mode-customizations                                ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defun enriched-mode-customizations()
   (interactive)
@@ -243,6 +267,7 @@
   (local-set-key (kbd "<M-S-up>") 'insert-line-below-with-pipes)
   (local-set-key (kbd "<M-S-down>") 'insert-line-above-with-pipes)
   (local-set-key (kbd "<M-return>") 'split-cell)
+  (local-set-key (kbd "<C-M-return>") 'join-lines-with-pipes)
   (local-set-key [return] 'prefixed-newline)
   (local-set-key [?\M-\r] (lambda()(interactive)(insert "\n")))
   (local-set-key (kbd "C-a") 'beginning-of-line)
