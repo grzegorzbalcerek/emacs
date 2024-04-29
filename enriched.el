@@ -64,7 +64,7 @@
       (move-beginning-of-line 1)
       (dotimes (j number-of-lines)
         (setq result (zip-group-max result (column-widths-line)))
-        (message "x: %d %s" j result)
+        (message "line %d: %s" j result)
         (next-line))
       result)))
 
