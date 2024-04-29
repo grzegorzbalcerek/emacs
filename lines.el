@@ -93,7 +93,7 @@
   "Call multi-s-separator with character —"
   (interactive "P\np")
   (multi-s-separator raw-prefix prefix ?—))
-(global-set-key (kbd "C-s-<return>") 'solid-separator)
+(global-set-key (kbd "C-<return>") 'solid-separator)
 
 (defun dotted-separator(raw-prefix prefix)
   "Call multi-s-separator with character ·"
@@ -112,8 +112,7 @@
         (delete-char 1)
         (insert " "))))
   (right-char))
-(global-set-key (kbd "C-c = SPC") 'clear-separator)
-
+(global-set-key (kbd "C-s-<return>") 'clear-separator)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                                  Join, split lines                                   ;;

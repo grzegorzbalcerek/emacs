@@ -21,39 +21,39 @@ Text-Width: 90
 <half>half</half>
 
 
-<faqu>faqu</faqu> <baqu>baqu</baqu> <oaqu>oaqu</oaqu> <saqu>saqu</saqu> <uaqu>uaqu</uaqu> <xaqu>xaqu</xaqu>
+<faqu>faqu</faqu> <baqu>baqu</baqu> <oaqu>oaqu</oaqu> <saqu>saqu</saqu> <uaqu>uaqu</uaqu> <raqu>xaqu</raqu>
 
-<fblu>fblu</fblu> <bblu>bblu</bblu> <oblu>oblu</oblu> <sblu>sblu</sblu> <ublu>ublu</ublu> <xblu>xblu</xblu>
+<fblu>fblu</fblu> <bblu>bblu</bblu> <oblu>oblu</oblu> <sblu>sblu</sblu> <ublu>ublu</ublu> <rblu>xblu</rblu>
 
-<ffuc>ffuc</ffuc> <bfuc>bfuc</bfuc> <ofuc>ofuc</ofuc> <sfuc>sfuc</sfuc> <ufuc>ufuc</ufuc> <xfuc>xfuc</xfuc>
+<ffuc>ffuc</ffuc> <bfuc>bfuc</bfuc> <ofuc>ofuc</ofuc> <sfuc>sfuc</sfuc> <ufuc>ufuc</ufuc> <rfuc>xfuc</rfuc>
 
-<fgra>fgra</fgra> <bgra>bgra</bgra> <ogra>ogra</ogra> <sgra>sgra</sgra> <ugra>ugra</ugra> <xgra>xgra</xgra>
+<fgra>fgra</fgra> <bgra>bgra</bgra> <ogra>ogra</ogra> <sgra>sgra</sgra> <ugra>ugra</ugra> <rgra>xgra</rgra>
 
-<fgre>fgre</fgre> <bgre>bgre</bgre> <ogre>ogre</ogre> <sgre>sgre</sgre> <ugre>ugre</ugre> <xgre>xgre</xgre>
+<fgre>fgre</fgre> <bgre>bgre</bgre> <ogre>ogre</ogre> <sgre>sgre</sgre> <ugre>ugre</ugre> <rgre>xgre</rgre>
 
-<flim>flim</flim> <blim>blim</blim> <olim>olim</olim> <slim>slim</slim> <ulim>ulim</ulim> <xlim>xlim</xlim>
+<flim>flim</flim> <blim>blim</blim> <olim>olim</olim> <slim>slim</slim> <ulim>ulim</ulim> <rlim>xlim</rlim>
 
-<fmar>fmar</fmar> <bmar>bmar</bmar> <omar>omar</omar> <smar>smar</smar> <umar>umar</umar> <xmar>xmar</xmar>
+<fmar>fmar</fmar> <bmar>bmar</bmar> <omar>omar</omar> <smar>smar</smar> <umar>umar</umar> <rmar>xmar</rmar>
 
-<fnav>fnav</fnav> <bnav>bnav</bnav> <onav>onav</onav> <snav>snav</snav> <unav>unav</unav> <xnav>xnav</xnav>
+<fnav>fnav</fnav> <bnav>bnav</bnav> <onav>onav</onav> <snav>snav</snav> <unav>unav</unav> <rnav>xnav</rnav>
 
-<foli>foli</foli> <boli>boli</boli> <ooli>ooli</ooli> <soli>soli</soli> <uoli>uoli</uoli> <xoli>xoli</xoli>
+<foli>foli</foli> <boli>boli</boli> <ooli>ooli</ooli> <soli>soli</soli> <uoli>uoli</uoli> <roli>xoli</roli>
 
-<fora>fora</fora> <bora>bora</bora> <oora>oora</oora> <sora>sora</sora> <uora>uora</uora> <xora>xora</xora>
+<fora>fora</fora> <bora>bora</bora> <oora>oora</oora> <sora>sora</sora> <uora>uora</uora> <rora>xora</rora>
 
-<fpin>fpin</fpin> <bpin>bpin</bpin> <opin>opin</opin> <spin>spin</spin> <upin>upin</upin> <xpin>xpin</xpin>
+<fpin>fpin</fpin> <bpin>bpin</bpin> <opin>opin</opin> <spin>spin</spin> <upin>upin</upin> <rpin>xpin</rpin>
 
-<fpur>fpur</fpur> <bpur>bpur</bpur> <opur>opur</opur> <spur>spur</spur> <upur>upur</upur> <xpur>xpur</xpur>
+<fpur>fpur</fpur> <bpur>bpur</bpur> <opur>opur</opur> <spur>spur</spur> <upur>upur</upur> <rpur>xpur</rpur>
 
-<fred>fred</fred> <bred>bred</bred> <ored>ored</ored> <sred>sred</sred> <ured>ured</ured> <xred>xred</xred>
+<fred>fred</fred> <bred>bred</bred> <ored>ored</ored> <sred>sred</sred> <ured>ured</ured> <rred>xred</rred>
 
-<fsky>fsky</fsky> <bsky>bsky</bsky> <osky>osky</osky> <ssky>ssky</ssky> <usky>usky</usky> <xsky>xsky</xsky>
+<fsky>fsky</fsky> <bsky>bsky</bsky> <osky>osky</osky> <ssky>ssky</ssky> <usky>usky</usky> <rsky>xsky</rsky>
 
-<ftea>ftea</ftea> <btea>btea</btea> <otea>otea</otea> <stea>stea</stea> <utea>utea</utea> <xtea>xtea</xtea>
+<ftea>ftea</ftea> <btea>btea</btea> <otea>otea</otea> <stea>stea</stea> <utea>utea</utea> <rtea>xtea</rtea>
 
-<fvio>fvio</fvio> <bvio>bvio</bvio> <ovio>ovio</ovio> <svio>svio</svio> <uvio>uvio</uvio> <xvio>xvio</xvio>
+<fvio>fvio</fvio> <bvio>bvio</bvio> <ovio>ovio</ovio> <svio>svio</svio> <uvio>uvio</uvio> <rvio>xvio</rvio>
 
-<fyel>fyel</fyel> <byel>byel</byel> <oyel>oyel</oyel> <syel>syel</syel> <uyel>uyel</uyel> <xyel>xyel</xyel>
+<fyel>fyel</fyel> <byel>byel</byel> <oyel>oyel</oyel> <syel>syel</syel> <uyel>uyel</uyel> <ryel>xyel</ryel>
 
 
 ——————————————————————————————————————————————————————————————————————————————————————————
@@ -96,10 +96,10 @@ lecz           nie ma                                       |
 <baqu><<f\([a-z][a-z][a-z]\)></baqu><byel>\([^<<]+\)</byel><baqu><</f\1></baqu> -> <baqu><<f\1></baqu><bred><<s\1></bred><byel>\2</byel><bred><</s\1></bred><baqu><</f\1></baqu>
 
 
-<baqu><<f\([a-z][a-z][a-z]\)></baqu><byel>\([^<<]+\)</byel><baqu><</f\1></baqu> -> <baqu><<f\1></baqu><bred><<x\1></bred><blim><<s\1></blim><byel>\2</byel><blim><</s\1></blim><bred><</x\1></bred><baqu><</f\1></baqu>
+<baqu><<f\([a-z][a-z][a-z]\)></baqu><byel>\([^<<]+\)</byel><baqu><</f\1></baqu> -> <baqu><<f\1></baqu><bred><<r\1></bred><blim><<s\1></blim><byel>\2</byel><blim><</s\1></blim><bred><</r\1></bred><baqu><</f\1></baqu>
 
 
-<bred><<x\([a-z][a-z][a-z]\)><byel>\([^<<]+\)</byel><</x\1></bred> -> <baqu><<f\1></baqu><bred><<x\1></bred><byel>\2</byel><bred><</x\1></bred><baqu><</f\1></baqu>
+<bred><<r\([a-z][a-z][a-z]\)><byel>\([^<<]+\)</byel><</r\1></bred> -> <baqu><<f\1></baqu><bred><<r\1></bred><byel>\2</byel><bred><</r\1></bred><baqu><</f\1></baqu>
 
 
 <</<bgre>\([a-z][a-z][a-z][a-z]\)</bgre>><bfuc> </bfuc><<<bgre>\1</bgre>> -> <bfuc> </bfuc>
