@@ -63,8 +63,9 @@
       (goto-char beg)
       (move-beginning-of-line 1)
       (dotimes (j number-of-lines)
-        (setq result (zip-group-max result (column-widths-line)))
-        (message "line %d: %s" j result)
+        (let ((line-widths (column-widths-line)))
+          (setq result (zip-group-max result line-widths))
+          (message "line %d %s: %s" (+ beg-line j) line-widths result))
         (next-line))
       result)))
 

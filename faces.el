@@ -553,7 +553,7 @@
   (disable-only-faces-modes)
   (if hide-bx-faces-minor-mode (hide-faces xfaces) (show-faces xfaces)))
 
-(global-set-key (kbd "s-x") 'hide-bx-faces-minor-mode)
+(global-set-key (kbd "s-r") 'hide-bx-faces-minor-mode)
 
 (defun only-fg-faces()
   "Hide all faces except fg"
@@ -637,7 +637,7 @@
   (if hide-bx-faces-minor-mode (hide-bx-faces-minor-mode 'toggle))
   (only-bx-faces-minor-mode)
   (select-bx-faces))
-(global-set-key (kbd "C-s-x") 'only-bx-faces)
+(global-set-key (kbd "C-s-r") 'only-bx-faces)
 
 (defun show-all-faces()
   "Show all faces"
