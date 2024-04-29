@@ -28,7 +28,7 @@
             (setq last-col-beg -1))
            ((and (looking-at "[^ —·\n]")(equal last-col-beg -1))
             (setq last-col-beg (current-column)))
-           ((and (looking-back "[ —·][ —·]") (looking-at "[^ —·\n]"))
+           ((and (looking-back "\\([ —·]\\)\\1") (looking-at "[^ —·\n]"))
             (setq result (cons (- (current-column) (count-spaces-back) last-col-beg) result))
         (setq last-col-beg (current-column))))
           (forward-char 1))
@@ -64,6 +64,7 @@
       (move-beginning-of-line 1)
       (dotimes (j number-of-lines)
         (setq result (zip-group-max result (column-widths-line)))
+        (message "x: %d %s" j result)
         (next-line))
       result)))
 

@@ -88,6 +88,8 @@ lecz           nie ma                                       |
 
 <bred><<f\([a-z][a-z][a-z]\)><byel>\([^<<]+\)</byel><</f\1></bred> -> <blim><<s\1></blim><byel>\2</byel><blim><</s\1></blim>
 
+<bred><<f\([a-z][a-z][a-z]\)><byel>\([^<<]+\)</byel><</f\1></bred> -> <blim><<x\1></blim><byel>\2</byel><blim><</x\1></blim>
+
 
 <baqu><<f\([a-z][a-z][a-z]\)></baqu><byel>\([^<<]+\)</byel><baqu><</f\1></baqu> -> <baqu><<f\1></baqu><bred><<x\1></bred><byel>\2</byel><bred><</x\1></bred><baqu><</f\1></baqu>
 

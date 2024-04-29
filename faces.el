@@ -246,14 +246,28 @@
   (select-ol-faces-minor-mode -1)
   (select-st-faces-minor-mode -1)
   (select-ul-faces-minor-mode -1)
-  (select-bx-faces-minor-mode -1))
+  (select-bx-faces-minor-mode -1)
+  (set-cursor-face))
 
-(defun select-fg-faces() (interactive) (disable-select-faces-modes) (select-fg-faces-minor-mode))
-(defun select-bg-faces() (interactive) (disable-select-faces-modes) (select-bg-faces-minor-mode))
-(defun select-ol-faces() (interactive) (disable-select-faces-modes) (select-ol-faces-minor-mode))
-(defun select-st-faces() (interactive) (disable-select-faces-modes) (select-st-faces-minor-mode))
-(defun select-ul-faces() (interactive) (disable-select-faces-modes) (select-ul-faces-minor-mode))
-(defun select-bx-faces() (interactive) (disable-select-faces-modes) (select-bx-faces-minor-mode))
+(defun set-cursor-face()
+  (interactive)
+  (if faces-minor-mode
+      (cond
+       (select-fg-faces-minor-mode (set-face-background 'cursor "#ff00ff"))      ; f - Fuchsia
+       (select-bg-faces-minor-mode (set-face-background 'cursor "#0000ff"))      ; b - Blue
+       (select-ol-faces-minor-mode (set-face-background 'cursor "#ff8000"))      ; o - Orange
+       (select-st-faces-minor-mode (set-face-background 'cursor "#0080ff"))      ; s - Sky blue
+       (select-ul-faces-minor-mode (set-face-background 'cursor "#00ffff"))      ; u - aqUa
+       (select-bx-faces-minor-mode (set-face-background 'cursor "#8000ff"))      ; x - violet
+       (t (set-face-background 'cursor "red")))
+    (set-face-background 'cursor "black")))
+
+(defun select-fg-faces() (interactive) (disable-select-faces-modes) (select-fg-faces-minor-mode) (set-cursor-face))
+(defun select-bg-faces() (interactive) (disable-select-faces-modes) (select-bg-faces-minor-mode) (set-cursor-face))
+(defun select-ol-faces() (interactive) (disable-select-faces-modes) (select-ol-faces-minor-mode) (set-cursor-face))
+(defun select-st-faces() (interactive) (disable-select-faces-modes) (select-st-faces-minor-mode) (set-cursor-face))
+(defun select-ul-faces() (interactive) (disable-select-faces-modes) (select-ul-faces-minor-mode) (set-cursor-face))
+(defun select-bx-faces() (interactive) (disable-select-faces-modes) (select-bx-faces-minor-mode) (set-cursor-face))
 
 (defun select-face(face-or-color)
   "Based on the selected exclusive mode and the provided face or its color, return a face"
@@ -492,12 +506,11 @@
     ("d" . (lambda(b e)(interactive "r")(set-face-region-or-word 'default b e)))
     ("u" . (lambda(b e)(interactive "r")(set-face-region-or-word 'underline b e)))
     )
-  (if faces-minor-mode
-      (set-face-background 'cursor "red")
-    (set-face-background 'cursor "black"))
+  (set-cursor-face)
   )
 
 (global-set-key [f12] 'faces-minor-mode)
+(global-set-key (kbd "C-<return>") 'faces-minor-mode)
 
 (define-minor-mode hide-fg-faces-minor-mode
   "Toggle minor mode for hiding foreground faces."
