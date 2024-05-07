@@ -75,7 +75,7 @@
 (load-file "~/repos/emacs/lines.el")
 (load-file "~/repos/emacs/scroll.el")
 (load-file "~/repos/emacs/tabs.el")
-;(load-file "~/repos/emacs/org.el")
+(load-file "~/repos/emacs/org.el")
 
 (if (file-exists-p "~/.emacs2")
     (load-file "~/.emacs2"))
