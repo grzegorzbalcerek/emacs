@@ -7,12 +7,6 @@
 (global-set-key (kbd "C-S-s-j") 'mc/mark-all-like-this)
 (global-set-key (kbd "S-s-j") 'mc/unmark-previous-like-this)
 
-(global-set-key (kbd "<C-M-s-up>") (lambda()(interactive)(dired ".")))
-(global-set-key (kbd "<C-M-s-down>") 'buffer-menu)
-(global-set-key (kbd "<s-backspace>") (lambda()(interactive)(kill-buffer nil)))
-(global-set-key [M-f4] (lambda()(interactive)(kill-buffer nil)))
-
-
 ;(global-set-key (kbd "<M-left>") (lambda ()(interactive) (left-char (get-register ?h))))
 ;(global-set-key (kbd "<M-right>") (lambda ()(interactive) (right-char (get-register ?h))))
 

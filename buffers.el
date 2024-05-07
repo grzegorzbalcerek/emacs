@@ -29,9 +29,14 @@
 (defun intelligent-previous-buffer()
   (interactive)
   (intelligent-change-buffer 'previous-buffer))
-(global-set-key (kbd "<C-M-s-left>") 'intelligent-previous-buffer)
+(global-set-key (kbd "<C-s-left>") 'intelligent-previous-buffer)
 
 (defun intelligent-next-buffer()
   (interactive)
   (intelligent-change-buffer 'next-buffer))
-(global-set-key (kbd "<C-M-s-right>") 'intelligent-next-buffer)
+(global-set-key (kbd "<C-s-right>") 'intelligent-next-buffer)
+
+(global-set-key (kbd "<C-s-up>") (lambda()(interactive)(dired ".")))
+(global-set-key (kbd "<C-s-down>") 'buffer-menu)
+(global-set-key (kbd "<s-backspace>") (lambda()(interactive)(kill-buffer nil)))
+(global-set-key [M-f4] (lambda()(interactive)(kill-buffer nil)))
