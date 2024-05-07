@@ -31,8 +31,10 @@
      ("melpa-stable" . "https://stable.melpa.org/packages/")))
  '(package-selected-packages
    '(tree-sitter-langs typescript-mode tree-sitter company multiple-cursors lsp-mode rust-mode))
+ '(safe-local-variable-values '((lexical-biding . t)))
  '(speedbar-show-unknown-files t)
- '(tab-stop-list '(2 4 25 50 75 100 125 150 175 200 225 250 275 300 325 350 375 400))
+ '(tab-stop-list
+   '(2 4 25 50 75 100 125 150 175 200 225 250 275 300 325 350 375 400))
  '(truncate-lines t)
  '(typescript-mode-hook '(display-line-numbers-mode lsp))
  '(word-wrap t))
@@ -55,7 +57,7 @@
 (set-scroll-bar-mode 'right)
 (global-tab-line-mode)
 
-(set-register ?. '(file . "~/.emacs"))
+(set-register ?. '(file . "~/repos/emacs/.emacs"))
 (set-register ?2 '(file . "~/.emacs2"))
 (set-register ?b '(file . "~/bin"))
 (set-register ?e '(file . "~/doc/emacs/"))
@@ -71,6 +73,7 @@
 (load-file "~/repos/emacs/keys.el")
 (load-file "~/repos/emacs/killyank.el")
 (load-file "~/repos/emacs/lines.el")
+(load-file "~/repos/emacs/scroll.el")
 (load-file "~/repos/emacs/tabs.el")
 ;(load-file "~/repos/emacs/org.el")
 

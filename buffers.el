@@ -29,9 +29,9 @@
 (defun intelligent-previous-buffer()
   (interactive)
   (intelligent-change-buffer 'previous-buffer))
-(global-set-key (kbd "<s-left>") 'intelligent-previous-buffer)
+(global-set-key (kbd "<C-M-s-left>") 'intelligent-previous-buffer)
 
 (defun intelligent-next-buffer()
   (interactive)
   (intelligent-change-buffer 'next-buffer))
-(global-set-key (kbd "<s-right>") 'intelligent-next-buffer)
+(global-set-key (kbd "<C-M-s-right>") 'intelligent-next-buffer)
