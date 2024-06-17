@@ -154,9 +154,10 @@
                                         ; insert the saved text into line b with padding
       (goto-char b)
       (move-end-of-line nil)
-      (if (> col-width 0)
-          (let ((pad-spaces (- col-width (mod (- (point) (pos-bol)) col-width))))
-            (insert-char ?  pad-spaces)))
+                                        ;      (if (> col-width 0)
+                                        ;         (let ((pad-spaces (- col-width (mod (- (point) (pos-bol)) col-width))))
+                                        ;          (insert-char ?  pad-spaces)))
+      (insert " | ")
       (insert str)
                                         ; set mark to the line after e
       (goto-char e)

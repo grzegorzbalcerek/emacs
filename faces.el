@@ -30,7 +30,7 @@
 (defface baqu '((t (:background "#00ffff"))) "background aqua/cyan")
 (defface bbla '((t (:background "#000000"))) "background black")
 (defface bblu '((t (:background "#6060ff"))) "background blue")
-(defface bfuc '((t (:background "#ff40ff"))) "background fuchsia/magenta")
+(defface bfuc '((t (:background "#ff00ff"))) "background fuchsia/magenta")
 (defface bgra '((t (:background "#bfbfbf"))) "background gray75")
 (defface bgre '((t (:background "#00c000"))) "background green")
 (defface blim '((t (:background "#00ff00"))) "background lime")
