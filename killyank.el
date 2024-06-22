@@ -87,7 +87,9 @@
   (interactive)
   (local-set-key [f2] 'register-new-region-and-address)
   (local-set-key [C-f2] 'register-append-region-and-address)
-  (local-set-key [M-f2] 'register-append-address))
+  (local-set-key [s-f2] 'register-append-address)
+  (local-set-key [M-f2] 'register-append-address)
+  )
 
 (add-hook 'enriched-mode-hook 'rbs-enriched-mode-customizations)
 

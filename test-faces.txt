@@ -21,54 +21,72 @@ Text-Width: 90
 <half>half</half>
 
 
-<faqu>faqu</faqu> <baqu>baqu</baqu> <oaqu>oaqu</oaqu> <saqu>saqu</saqu> <uaqu>uaqu</uaqu> <raqu>xaqu</raqu>
+a <fa>fa</fa> <ba>ba</ba> <ua>ua</ua> <xa>xa</xa>
 
-<fblu>fblu</fblu> <bblu>bblu</bblu> <oblu>oblu</oblu> <sblu>sblu</sblu> <ublu>ublu</ublu> <rblu>xblu</rblu>
+b background
 
-<ffuc>ffuc</ffuc> <bfuc>bfuc</bfuc> <ofuc>ofuc</ofuc> <sfuc>sfuc</sfuc> <ufuc>ufuc</ufuc> <rfuc>xfuc</rfuc>
+c <fc>fc</fc> <bc>bc</bc> <uc>uc</uc> <xc>xc</xc>
 
-<fgra>fgra</fgra> <bgra>bgra</bgra> <ogra>ogra</ogra> <sgra>sgra</sgra> <ugra>ugra</ugra> <rgra>xgra</rgra>
+d <fd>fd</fd> <bd>bd</bd> <ud>ud</ud> <xd>xd</xd>
 
-<fgre>fgre</fgre> <bgre>bgre</bgre> <ogre>ogre</ogre> <sgre>sgre</sgre> <ugre>ugre</ugre> <rgre>xgre</rgre>
+e <fe>fe</fe> <be>be</be> <ue>ue</ue> <xe>xe</xe>
 
-<flim>flim</flim> <blim>blim</blim> <olim>olim</olim> <slim>slim</slim> <ulim>ulim</ulim> <rlim>xlim</rlim>
+f foreground
 
-<fmar>fmar</fmar> <bmar>bmar</bmar> <omar>omar</omar> <smar>smar</smar> <umar>umar</umar> <rmar>xmar</rmar>
+g <fg>fg</fg> <bg>bg</bg> <ug>ug</ug> <xg>xg</xg>
 
-<fnav>fnav</fnav> <bnav>bnav</bnav> <onav>onav</onav> <snav>snav</snav> <unav>unav</unav> <rnav>xnav</rnav>
+h <fh>fh</fh> <bh>bh</bh> <uh>uh</uh> <xh>xh</xh>
 
-<foli>foli</foli> <boli>boli</boli> <ooli>ooli</ooli> <soli>soli</soli> <uoli>uoli</uoli> <roli>xoli</roli>
+i <fi>fi</fi> <bi>bi</bi> <ui>ui</ui> <xi>xi</xi>
 
-<fora>fora</fora> <bora>bora</bora> <oora>oora</oora> <sora>sora</sora> <uora>uora</uora> <rora>xora</rora>
+j <fj>fj</fj> <bj>bj</bj> <uj>uj</uj> <xj>xj</xj>
 
-<fpin>fpin</fpin> <bpin>bpin</bpin> <opin>opin</opin> <spin>spin</spin> <upin>upin</upin> <rpin>xpin</rpin>
+k <fk>fk</fk> <bk>bk</bk> <uk>uk</uk> <xk>xk</xk> 
 
-<fpur>fpur</fpur> <bpur>bpur</bpur> <opur>opur</opur> <spur>spur</spur> <upur>upur</upur> <rpur>xpur</rpur>
+l <fl>fl</fl> <bl>bl</bl> <ul>ul</ul> <xl>xl</xl> 
 
-<fred>fred</fred> <bred>bred</bred> <ored>ored</ored> <sred>sred</sred> <ured>ured</ured> <rred>xred</rred>
+m <fm>fm</fm> <bm>bm</bm> <um>um</um> <xm>xm</xm> 
 
-<fsky>fsky</fsky> <bsky>bsky</bsky> <osky>osky</osky> <ssky>ssky</ssky> <usky>usky</usky> <rsky>xsky</rsky>
+n <fn>fn</fn> <bn>bn</bn> <un>un</un> <xn>xn</xn>
 
-<ftea>ftea</ftea> <btea>btea</btea> <otea>otea</otea> <stea>stea</stea> <utea>utea</utea> <rtea>xtea</rtea>
+o <fo>fo</fo> <bo>bo</bo> <uo>uo</uo> <oo>xo</oo>
 
-<fvio>fvio</fvio> <bvio>bvio</bvio> <ovio>ovio</ovio> <svio>svio</svio> <uvio>uvio</uvio> <rvio>xvio</rvio>
+p <fp>fp</fp> <bp>bp</bp> <up>up</up> <xp>xp</xp>
 
-<fyel>fyel</fyel> <byel>byel</byel> <oyel>oyel</oyel> <syel>syel</syel> <uyel>uyel</uyel> <ryel>xyel</ryel>
+q quit
+
+r <fr>fr</fr> <br>br</br> <ur>ur</ur> <xr>xr</xr>
+
+s <fs>fs</fs> <bs>bs</bs> <us>us</us> <xs>xs</xs>
+
+t <ft>ft</ft> <bt>bt</bt> <ut>ut</ut> <xt>xt</xt>
+
+u underline
+
+w <fw>fw</fw> <bw>bw</bw> <uw>uw</uw> <xw>xw</xw>
+
+v <fv>fv</fv> <bv>bv</bv> <uv>uv</uv> <xv>xv</xv>
+
+x box
+
+y <fy>fy</fy> <by>by</by> <uy>uy</uy> <xy>xy</xy>
+
+z <fz>fz</fz> <bz>bz</bz> <uz>uz</uz> <xz>xz</xz>
 
 
 ——————————————————————————————————————————————————————————————————————————————————————————
-Ala            ma         <ffuc>kota</ffuc>           
-malutkiego     <ffuc>kotka</ffuc>      ma             
+Ala            ma         <ffuc><ff><bo>kota</bo></ff></ffuc>           
+malutkiego     <ffuc><ff><bo>kotka</bo></ff></ffuc>      ma             
 ··························································································                          
-ale            co tam     pieska     <fgre>chce</fgre>
-lecz           <fgre>nie ma</fgre>                    
+ale            co tam     <bl>pieska</bl>     <fgre><fg>chce</fg></fgre>
+lecz           <fgre><fg>nie ma</fg></fgre>                    
 ——————————————————————————————————————————————————————————————————————————————————————————
   
 ———————————————————————————————————————————————————————————— ——————————————————————————————————————————————
-Ala            ma             <ffuc>kota</ffuc>                          | Abecadło       z pieca        spadło                                                                      
-malutkiego     <ffuc>kotka</ffuc>          <fblu>ma</fblu>                            | Był            sobie          człowiek                                    
+Ala            ma             <ffuc><ff><xa><fr><bo>kota</bo></fr></xa></ff></ffuc>                          | Abecadło       z pieca        spadło                                                                      
+malutkiego     <ffuc><ff><xa><fr><bo>kotka</bo></fr></xa></ff></ffuc>          <fblu><fc>ma</fc></fblu>                            | Był            sobie          człowiek                                    
                                                             |                                              
-ale            co tam         <ffuc>pieska</ffuc>         <fblu>chce</fblu>           |                                              
+ale            co tam         <ffuc><ff><fr><bl>pieska</bl></fr></ff></ffuc>         <fblu><fc>chce</fc></fblu>           |                                              
 lecz           nie ma                                       |                                              
 ———————————————————————————————————————————————————————————— ——————————————————————————————————————————————
 
@@ -78,29 +96,33 @@ lecz           nie ma                                       |
 <<.?bold>
 
 
-<bred><</?[sx][a-z][a-z][a-z]></bred> -> ""
+<bred><bred><</?[sx][a-z][a-z][a-z]></bred></bred> -> ""
 
 
-<bred><<\(s[a-z][a-z][a-z]\)></bred><byel>\([^<<]+\)</byel><bred><</\1></bred> -> <byel>\2</byel>
+<bred><bred><<\(s[a-z][a-z][a-z]\)></bred></bred><byel><byel>\([^<<]+\)</byel></byel><bred><bred><</\1></bred></bred> -> <byel><byel>\2</byel></byel>
 
-<bred><<\(x[a-z][a-z][a-z]\)></bred><byel>\([^<<]+\)</byel><bred><</\1></bred> -> <byel>\2</byel>
-
-
-<bred><<f\([a-z][a-z][a-z]\)><byel>\([^<<]+\)</byel><</f\1></bred> -> <blim><<s\1></blim><byel>\2</byel><blim><</s\1></blim>
-
-<bred><<f\([a-z][a-z][a-z]\)><byel>\([^<<]+\)</byel><</f\1></bred> -> <blim><<x\1></blim><byel>\2</byel><blim><</x\1></blim>
+<bred><bred><<\(x[a-z][a-z][a-z]\)></bred></bred><byel><byel>\([^<<]+\)</byel></byel><bred><bred><</\1></bred></bred> -> <byel><byel>\2</byel></byel>
 
 
-<baqu><<f\([a-z][a-z][a-z]\)></baqu><byel>\([^<<]+\)</byel><baqu><</f\1></baqu> -> <baqu><<f\1></baqu><bred><<x\1></bred><byel>\2</byel><bred><</x\1></bred><baqu><</f\1></baqu>
+<bred><bred><<f\([a-z][a-z][a-z]\)><byel>\([^<<]+\)</byel><</f\1></bred></bred> -> <blim><blim><<s\1></blim></blim><byel><byel>\2</byel></byel><blim><blim><</s\1></blim></blim>
 
-<baqu><<f\([a-z][a-z][a-z]\)></baqu><byel>\([^<<]+\)</byel><baqu><</f\1></baqu> -> <baqu><<f\1></baqu><bred><<s\1></bred><byel>\2</byel><bred><</s\1></bred><baqu><</f\1></baqu>
+<bred><bred><<f\([a-z][a-z][a-z]\)><byel>\([^<<]+\)</byel><</f\1></bred></bred> -> <blim><blim><<x\1></blim></blim><byel><byel>\2</byel></byel><blim><blim><</x\1></blim></blim>
 
-
-<baqu><<f\([a-z][a-z][a-z]\)></baqu><byel>\([^<<]+\)</byel><baqu><</f\1></baqu> -> <baqu><<f\1></baqu><bred><<r\1></bred><blim><<s\1></blim><byel>\2</byel><blim><</s\1></blim><bred><</r\1></bred><baqu><</f\1></baqu>
-
-
-<bred><<r\([a-z][a-z][a-z]\)><byel>\([^<<]+\)</byel><</r\1></bred> -> <baqu><<f\1></baqu><bred><<r\1></bred><byel>\2</byel><bred><</r\1></bred><baqu><</f\1></baqu>
+<bred><bred><<r\([a-z][a-z][a-z]\)><byel>\([^<<]+\)</byel><</r\1></bred></bred> -> <blim><blim><<x\1></blim></blim><byel><byel>\2</byel></byel><blim><blim><</x\1></blim></blim>
 
 
-<</<bgre>\([a-z][a-z][a-z][a-z]\)</bgre>><bfuc> </bfuc><<<bgre>\1</bgre>> -> <bfuc> </bfuc>
+<baqu><baqu><<f\([a-z][a-z][a-z]\)></baqu></baqu><byel><byel>\([^<<]+\)</byel></byel><baqu><baqu><</f\1></baqu></baqu> -> <baqu><baqu><<f\1></baqu></baqu><bred><bred><<x\1></bred></bred><byel><byel>\2</byel></byel><bred><bred><</x\1></bred></bred><baqu><baqu><</f\1></baqu></baqu>
+
+<baqu><baqu><<f\([a-z][a-z][a-z]\)></baqu></baqu><byel><byel>\([^<<]+\)</byel></byel><baqu><baqu><</f\1></baqu></baqu> -> <baqu><baqu><<f\1></baqu></baqu><bred><bred><<s\1></bred></bred><byel><byel>\2</byel></byel><bred><bred><</s\1></bred></bred><baqu><baqu><</f\1></baqu></baqu>
+
+
+<baqu><baqu><<f\([a-z][a-z][a-z]\)></baqu></baqu><byel><byel>\([^<<]+\)</byel></byel><baqu><baqu><</f\1></baqu></baqu> -> <baqu><baqu><<f\1></baqu></baqu><bred><bred><<r\1></bred></bred><blim><blim><<s\1></blim></blim><byel><byel>\2</byel></byel><blim><blim><</s\1></blim></blim><bred><bred><</r\1></bred></bred><baqu><baqu><</f\1></baqu></baqu>
+
+
+<bred><bred><<r\([a-z][a-z][a-z]\)><byel>\([^<<]+\)</byel><</r\1></bred></bred> -> <baqu><baqu><<f\1></baqu></baqu><bred><bred><<r\1></bred></bred><byel><byel>\2</byel></byel><bred><bred><</r\1></bred></bred><baqu><baqu><</f\1></baqu></baqu>
+
+<bred><bred><<\(<<?\)r\([a-z][a-z][a-z]\)><<\1r\2></bred></bred> -> <bred><bred><<\1\2></bred></bred>
+
+
+<</<bgre><bgre>\([a-z][a-z][a-z][a-z]\)</bgre></bgre>><bfuc><bfuc> </bfuc></bfuc><<<bgre><bgre>\1</bgre></bgre>> -> <bfuc><bfuc> </bfuc></bfuc>
 
