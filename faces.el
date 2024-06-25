@@ -4,118 +4,42 @@
 ;;                                   face definitions                                   ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-                                        ; a aqua
-(defface ba '((t (:background "#00ffff"))) "background aqua")
-(defface fa '((t (:foreground "#00ffff" :weight bold))) "foreground aqua")
-(defface ua '((t (:underline "#00ffff"))) "underline aqua")
-(defface xa '((t (:box (:line-width (-2 . -2) :color "#00ffff")))) "box aqua")
-                                        ;b background
-                                        ;c blue
-(defface bc '((t (:background "#6060ff"))) "background blue")      
-(defface fc '((t (:foreground "#0000ff" :weight bold))) "foreground blue")
-(defface uc '((t (:underline "#0000ff"))) "underline blue")
-(defface xc '((t (:box (:line-width (-2 . -2) :color "#0000ff")))) "box blue")
-                                        ;d 
-(defface bd '((t (:background "gold"))) "background gold")
-(defface fd '((t (:foreground "gold" :weight bold))) "foreground gold")
-(defface ud '((t (:underline "gold"))) "underline gold")
-(defface xd '((t (:box (:line-width (-2 . -2) :color "gold")))) "box gold")
-                                        ;e orange
-(defface be '((t (:background "#ff8000"))) "background orange")
-(defface fe '((t (:foreground "#ff8000" :weight bold))) "foreground orange")
-(defface ue '((t (:underline "#ff8000"))) "underline orange")
-(defface xe '((t (:box (:line-width (-2 . -2) :color "#ff8000")))) "box orange")
-                                        ;f foreground
-                                        ;g green
-(defface bg '((t (:background "#00c000"))) "background green")
-(defface fg '((t (:foreground "#008000" :weight bold))) "foreground green")
-(defface ug '((t (:underline "#008000"))) "underline green")
-(defface xg '((t (:box (:line-width (-2 . -2) :color "#008000")))) "box green")
-                                        ;h olive
-(defface bh '((t (:background "#bfbf00"))) "background olive")
-(defface fh '((t (:foreground "#808000" :weight bold))) "foreground olive")
-(defface uh '((t (:underline "#bfbf00"))) "underline olive")
-(defface xh '((t (:box (:line-width (-2 . -2) :color "#bfbf00")))) "box olive")
-                                        ;i italic
-(defface bi '((t (:background "#bfbf00"))) "background olive")
-(defface fi '((t (:foreground "#808000" :weight bold))) "foreground olive")
-(defface ui '((t (:underline "#bfbf00"))) "underline olive")
-(defface xi '((t (:box (:line-width (-2 . -2) :color "#bfbf00")))) "box olive")
-                                        ;j light slate blue
-(defface bj'((t (:background "#ff00ff"))) "background fuchsia")
-(defface fj'((t (:foreground "#ff00ff" :weight bold))) "foreground fuchsia")
-(defface uj'((t (:underline "#ff00ff"))) "underline fuchsia")
-(defface xj'((t (:box (:line-width (-2 . -2) :color "#ff00ff")))) "box fuchsia")
-                                        ;k lime
-(defface bk '((t (:background "#00ff00"))) "background lime")
-(defface fk '((t (:foreground "#00ff00" :weight bold))) "foreground lime")
-(defface uk '((t (:underline "#00ff00"))) "underline lime")
-(defface xk '((t (:box (:line-width (-2 . -2) :color "#00ff00")))) "box lime")
-                                        ;l bold italic
-(defface bl '((t (:background "#00ff00"))) "background lime")
-(defface fl '((t (:foreground "#00ff00" :weight bold))) "foreground lime")
-(defface ul'((t (:underline "#00ff00"))) "underline lime")
-(defface xl '((t (:box (:line-width (-2 . -2) :color "#00ff00")))) "box lime")
-                                        ;m markup
-(defface bm '((t (:background "light slate blue"))) "background light slate blue")
-(defface fm '((t (:foreground "light slate blue" :weight bold))) "foreground light slate blue")
-(defface um '((t (:underline "light slate blue"))) "underline light slate blue")
-(defface xm '((t (:box (:line-width (-2 . -2) :color "light slate blue")))) "box light slate blue")
-                                        ;n cornflower blue
-(defface bn '((t (:background "cornflower blue"))) "background cornflower blue")
-(defface fn '((t (:foreground "cornflower blue" :weight bold))) "foreground cornflower blue")
-(defface un '((t (:underline "cornflower blue"))) "underline cornflower blue")
-(defface xn '((t (:box (:line-width (-2 . -2) :color "cornflower blue")))) "box cornflower blue")
-                                        ;o other
-(defface bo '((t (:background "cornflower blue"))) "background cornflower blue")
-(defface fo '((t (:foreground "cornflower blue" :weight bold))) "foreground cornflower blue")
-(defface uo '((t (:underline "cornflower blue"))) "underline cornflower blue")
-(defface xo '((t (:box (:line-width (-2 . -2) :color "cornflower blue")))) "box cornflower blue")
-                                        ;p pink
-(defface bp '((t (:background "#ff80ff"))) "background pink")
-(defface fp '((t (:foreground "#ff80ff" :weight bold))) "foreground pink")
-(defface up '((t (:underline "#ff80ff"))) "underline pink")
-(defface xp '((t (:box (:line-width (-2 . -2) :color "#ff80ff")))) "box pink")
-                                        ;q quit
-                                        ;r red
-(defface br '((t (:background "#ff6868"))) "background red")
-(defface fr '((t (:foreground "#ff0000" :weight bold))) "foreground red")
-(defface ur '((t (:underline "#ff0000"))) "underline red")
-(defface xr '((t (:box (:line-width (-2 . -2) :color "#ff0000")))) "box red")
-                                        ;s sky blue
-(defface bs '((t (:background "#00a0ff"))) "background sky blue")
-(defface fs '((t (:foreground "#0080ff" :weight bold))) "foreground sky blue")
-(defface us '((t (:underline "#0080ff"))) "underline sky blue")
-(defface xs '((t (:box (:line-width (-2 . -2) :color "#0080ff")))) "box sky blue")
-                                        ;t teal
-(defface bt '((t (:background "#00bfbf"))) "background teal")
-(defface ft '((t (:foreground "#008080" :weight bold))) "foreground teal")
-(defface ut '((t (:underline "#00bfbf"))) "underline teal")
-(defface xt '((t (:box (:line-width (-2 . -2) :color "#00bfbf")))) "box teal")
-                                        ;u underline
-                                        ;w brown
-(defface bw '((t (:background "#c07070"))) "background brown")
-(defface fw '((t (:foreground "#800000" :weight bold))) "foreground brown")
-(defface uw '((t (:underline "#800000"))) "underline brown")
-(defface xw '((t (:box (:line-width (-2 . -2) :color "#800000")))) "box brown")
-                                        ;v violet
-(defface bv '((t (:background "#b000ff"))) "background violet")
-(defface fv '((t (:foreground "#8000ff" :weight bold))) "foreground violet")
-(defface uv '((t (:underline "#8000ff"))) "underline violet")
-(defface xv '((t (:box (:line-width (-2 . -2) :color "#8000ff")))) "box violet")
-                                        ;x box
-                                        ;y yellow
-(defface by '((t (:background "#ffff60"))) "background yellow")
-(defface fy '((t (:foreground "#ffff00" :weight bold))) "foreground yellow")
-(defface uy '((t (:underline "#ffff00"))) "underline yellow")
-(defface xy '((t (:box (:line-width (-2 . -2) :color "#ffff00")))) "box yellow")
-                                        ;z gray
-(defface bz '((t (:background "#bfbfbf"))) "background gray")
-(defface fz '((t (:foreground "#bfbfbf" :weight bold))) "foreground gray")
-(defface uz '((t (:underline "#bfbfbf"))) "underline gray")
-(defface xz '((t (:box (:line-width (-2 . -2) :color "#bfbfbf")))) "box gray")
-                                        ; .
-(defface bnil '((t (:background unspecified))) "background nil") ;.
+(defmacro def-four-faces (letter fg-color bg-color name)
+  `(progn
+     (defface ,(intern (concat "b" letter)) '((t (:background ,bg-color))) (concat "background " ,name))
+     (defface ,(intern (concat "f" letter)) '((t (:foreground ,fg-color :weight bold))) (concat "foreground " ,name))
+     (defface ,(intern (concat "u" letter)) '((t (:underline ,fg-color))) (concat "underline " ,name))
+     (defface ,(intern (concat "x" letter)) '((t (:box (:line-width (-2 . -2) :color ,fg-color)))) (concat "box " ,name))
+     ))
+
+(def-four-faces "a" "#00ffff" "#00ffff" "aqua")
+              ;; b background
+(def-four-faces "c" "#0000ff" "#6060ff" "blue")
+(def-four-faces "d" "#6495ed" "#6495ed" "cornflower blue")
+(def-four-faces "e" "#ff8000" "#ff8000" "orange")
+              ;; f foreground
+(def-four-faces "g" "#008000" "#00c000" "green")
+(def-four-faces "h" "#ffd700" "#ffd700" "gold")
+(def-four-faces "i" "#808000" "#bfbf00" "olive")
+(def-four-faces "j" "#ff00ff" "#ff00ff" "fuchsia")
+(def-four-faces "k" "#000000" "#ffffff" "----")
+(def-four-faces "l" "#00ff00" "#00ff00" "lime")
+(def-four-faces "m" "#bfbfbf" "#bfbfbf" "gray")
+(def-four-faces "n" "#6495ed" "#6495ed" "----")
+(def-four-faces "o" "#ff8000" "#ff8000" "orange")
+(def-four-faces "p" "#ff80ff" "#ff80ff" "pink")
+              ;; q quit
+(def-four-faces "r" "#ff0000" "#ff6868" "red")
+(def-four-faces "s" "#0080ff" "#00a0ff" "sky blue")
+(def-four-faces "t" "#008080" "#00bfbf" "teal")
+              ;; u underline
+(def-four-faces "w" "#800000" "#c07070" "brown")
+(def-four-faces "v" "#8000ff" "#b000ff" "violet")
+              ;; x box
+(def-four-faces "y" "#ffff00" "#ffff60" "yellow")
+(def-four-faces "z" "#8470ff" "#8470ff" "light slate blue")
+
+(defface bnil '((t (:background unspecified))) "background nil")
 (defface fnil '((t (:foreground unspecified :weight normal))) "foreground nil")
 (defface unil '((t (:underline unspecified))) "underline nil")
 (defface xnil '((t (:box nil))) "box nil")
@@ -466,6 +390,7 @@
       (set-face-background 'cursor "#ff00ff")
     (set-face-background 'cursor "black")))
 (global-set-key (kbd "M-o M-f M-f") 'set-f-faces-minor-mode)
+(global-set-key (kbd "M-o M-m") 'set-f-faces-minor-mode)
 
 
 (define-minor-mode set-u-faces-minor-mode
