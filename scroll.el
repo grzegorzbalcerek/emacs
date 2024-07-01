@@ -17,12 +17,12 @@
 
 (defun xscroll-up(n)
   (interactive "P")
-  (if n (setq xscroll-horizontally-step n))
-  (scroll-up xscroll-horizontally-step))
+  (if n (setq xscroll-vertically-step n))
+  (scroll-up xscroll-vertically-step))
 (global-set-key (kbd "<C-M-s-down>") 'xscroll-up)
 
 (defun xscroll-down(n)
   (interactive "P")
-  (if n (setq xscroll-horizontally-step n))
-  (scroll-down xscroll-horizontally-step))
+  (if n (setq xscroll-vertically-step n))
+  (scroll-down xscroll-vertically-step))
 (global-set-key (kbd "<C-M-s-up>") 'xscroll-down)

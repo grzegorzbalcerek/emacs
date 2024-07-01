@@ -12,12 +12,11 @@
      (defface ,(intern (concat "x" letter)) '((t (:box (:line-width (-2 . -2) :color ,fg-color)))) (concat "box " ,name))
      ))
 
+;; b background ;; f foreground ;; q quit ;; u underline ;; x box
 (def-four-faces "a" "#00ffff" "#00ffff" "aqua")
-              ;; b background
 (def-four-faces "c" "#0000ff" "#6060ff" "blue")
 (def-four-faces "d" "#6495ed" "#6495ed" "cornflower blue")
-(def-four-faces "e" "#ff8000" "#ff8000" "orange")
-              ;; f foreground
+(def-four-faces "e" "#000000" "#ffffff" "----")
 (def-four-faces "g" "#008000" "#00c000" "green")
 (def-four-faces "h" "#ffd700" "#ffd700" "gold")
 (def-four-faces "i" "#808000" "#bfbf00" "olive")
@@ -25,17 +24,14 @@
 (def-four-faces "k" "#000000" "#ffffff" "----")
 (def-four-faces "l" "#00ff00" "#00ff00" "lime")
 (def-four-faces "m" "#bfbfbf" "#bfbfbf" "gray")
-(def-four-faces "n" "#6495ed" "#6495ed" "----")
+(def-four-faces "n" "#000000" "#ffffff" "----")
 (def-four-faces "o" "#ff8000" "#ff8000" "orange")
 (def-four-faces "p" "#ff80ff" "#ff80ff" "pink")
-              ;; q quit
 (def-four-faces "r" "#ff0000" "#ff6868" "red")
 (def-four-faces "s" "#0080ff" "#00a0ff" "sky blue")
 (def-four-faces "t" "#008080" "#00bfbf" "teal")
-              ;; u underline
 (def-four-faces "w" "#800000" "#c07070" "brown")
 (def-four-faces "v" "#8000ff" "#b000ff" "violet")
-              ;; x box
 (def-four-faces "y" "#ffff00" "#ffff60" "yellow")
 (def-four-faces "z" "#8470ff" "#8470ff" "light slate blue")
 
@@ -52,6 +48,39 @@
 (defface grayheader3 '((t (:weight bold :height 1.05 :foreground "#bfbfbf"))) "weight bold height 1.05 foreground gray75")
 (defface half '((t (:height 0.5))) "height 0.5")
 (defface small '((t (:height 0.75))) "height 0.75")
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;                                      list faces                                      ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defun list-face(name suffix)
+  (insert name suffix)
+  (facemenu-set-face (intern name) (- (point) (length name) (length suffix)) (point)))
+
+(defun list-two-letter-face(prefix letter)
+  (list-face (concat prefix letter) (concat " " prefix letter " " prefix letter)))
+
+(defun list-four-faces(letter)
+  (interactive)
+  (insert letter " ")
+  (list-two-letter-face "b" letter) (insert "  ")
+  (list-two-letter-face "f" letter) (insert "  ")
+  (list-two-letter-face "u" letter) (insert "  ")
+  (list-two-letter-face "x" letter) (insert "  ")
+  (insert (substring (face-documentation (intern (concat "x" letter))) 4))
+  (insert "\n"))
+
+(defun list-faces()
+  (interactive)
+  (switch-to-buffer "*FacesFour*")
+  (delete-region (point-min) (point-max))
+  (list-face "header1" "  ") (list-face "grayheader1" "  ") (insert "\n")
+  (list-face "header2" "  ") (list-face "grayheader3" "  ") (insert "\n")
+  (list-face "header3" "  ") (list-face "grayheader2" "  ") (insert "\n")
+  (list-face "small" "") (insert "\n")
+  (list-face "half" "") (insert "\n")
+  (dolist (letter (list "a" "c" "d" "e" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "r" "s" "t" "w" "v" "y" "z"))
+             (list-four-faces letter)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                                   face translations                                  ;;
@@ -342,6 +371,7 @@
     ("s" . (lambda(b e)(interactive "r")(set-face-region-or-word 'bs b e)))
     ("t" . (lambda(b e)(interactive "r")(set-face-region-or-word 'bt b e)))
     ("u" . (lambda()(interactive)(set-b-faces-minor-mode -1)(set-u-faces-minor-mode nil)))
+    ("w" . (lambda(b e)(interactive "r")(set-face-region-or-word 'bw b e)))
     ("v" . (lambda(b e)(interactive "r")(set-face-region-or-word 'bv b e)))
     ("x" . (lambda()(interactive)(set-b-faces-minor-mode -1)(set-x-faces-minor-mode nil)))
     ("y" . (lambda(b e)(interactive "r")(set-face-region-or-word 'by b e)))
@@ -380,6 +410,7 @@
     ("s" . (lambda(b e)(interactive "r")(set-face-region-or-word 'fs b e)))
     ("t" . (lambda(b e)(interactive "r")(set-face-region-or-word 'ft b e)))
     ("u" . (lambda()(interactive)(set-f-faces-minor-mode -1)(set-u-faces-minor-mode nil)))
+    ("w" . (lambda(b e)(interactive "r")(set-face-region-or-word 'fw b e)))
     ("v" . (lambda(b e)(interactive "r")(set-face-region-or-word 'fv b e)))
     ("x" . (lambda()(interactive)(set-f-faces-minor-mode -1)(set-x-faces-minor-mode nil)))
     ("y" . (lambda(b e)(interactive "r")(set-face-region-or-word 'fy b e)))
@@ -391,6 +422,7 @@
     (set-face-background 'cursor "black")))
 (global-set-key (kbd "M-o M-f M-f") 'set-f-faces-minor-mode)
 (global-set-key (kbd "M-o M-m") 'set-f-faces-minor-mode)
+(global-set-key (kbd "<f12>") 'set-f-faces-minor-mode)
 
 
 (define-minor-mode set-u-faces-minor-mode
@@ -419,6 +451,7 @@
     ("s" . (lambda(b e)(interactive "r")(set-face-region-or-word 'us b e)))
     ("t" . (lambda(b e)(interactive "r")(set-face-region-or-word 'ut b e)))
     ("u" . (lambda()(interactive)))
+    ("w" . (lambda(b e)(interactive "r")(set-face-region-or-word 'uw b e)))
     ("v" . (lambda(b e)(interactive "r")(set-face-region-or-word 'uv b e)))
     ("x" . (lambda()(interactive)(set-u-faces-minor-mode -1)(set-x-faces-minor-mode nil)))
     ("y" . (lambda(b e)(interactive "r")(set-face-region-or-word 'uy b e)))
@@ -457,6 +490,7 @@
     ("s" . (lambda(b e)(interactive "r")(set-face-region-or-word 'xs b e)))
     ("t" . (lambda(b e)(interactive "r")(set-face-region-or-word 'xt b e)))
     ("u" . (lambda()(interactive)(set-x-faces-minor-mode -1)(set-u-faces-minor-mode nil)))
+    ("w" . (lambda(b e)(interactive "r")(set-face-region-or-word 'xw b e)))
     ("v" . (lambda(b e)(interactive "r")(set-face-region-or-word 'xv b e)))
     ("x" . (lambda()(interactive)))
     ("y" . (lambda(b e)(interactive "r")(set-face-region-or-word 'xy b e)))
