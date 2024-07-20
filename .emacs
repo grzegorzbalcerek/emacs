@@ -6,6 +6,7 @@
  '(buffers-menu-max-size 30)
  '(calendar-date-style 'european)
  '(calendar-week-start-day 1)
+ '(current-language-environment "French")
  '(fill-column 90)
  '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)

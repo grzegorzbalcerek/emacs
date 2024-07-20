@@ -44,6 +44,9 @@
 (add-hook 'set-language-environment-hook 'rbs-customize-language-environment)
 (rbs-customize-language-environment)
 
+(define-minor-mode verse-position-minor-mode
+  "Toggle minor mode for including only the verse number into the position address." nil " VerseOnly" nil)
+
 (defun position-address(pos)
   "Return the line number of the position pos within a verse.
    A verse starts with its number"
@@ -54,8 +57,9 @@
         (previous-line)(move-end-of-line nil)
         (if (looking-back "[a-zA-Zα-ωΑ-Ω].*")
             (setq n (1+ n))))
-      (format "%s%c" (buffer-substring (match-beginning 2) (match-end 2)) (+ 96 n)))))
-
+      (if verse-position-minor-mode
+          (format "%s" (buffer-substring (match-beginning 2) (match-end 2)))
+        (format "%s%c" (buffer-substring (match-beginning 2) (match-end 2)) (+ 96 n))))))
 
 (defun region-and-address(b e)
   (interactive "r")
@@ -89,6 +93,7 @@
   (local-set-key [C-f2] 'register-append-region-and-address)
   (local-set-key [s-f2] 'register-append-address)
   (local-set-key [M-f2] 'register-append-address)
+  (local-set-key [C-s-f2] 'verse-position-minor-mode)
   )
 
 (add-hook 'enriched-mode-hook 'rbs-enriched-mode-customizations)

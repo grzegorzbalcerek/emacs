@@ -332,7 +332,7 @@
       ;(message "Setting face %s to region" face)
       (facemenu-set-face face (line-beginning-position) (line-end-position))))))
 
-(global-set-key (kbd "M-o 1") (lambda(b e)(interactive "r")(set-face-region-or-row (intern (concat "hea" "der1")) b e)))
+(global-set-key (kbd "M-o 1") (lambda(b e)(interactive "r")(set-face-region-or-row 'header1 b e)))
 (global-set-key (kbd "M-o 2") (lambda(b e)(interactive "r")(set-face-region-or-row 'header2 b e)))
 (global-set-key (kbd "M-o 3") (lambda(b e)(interactive "r")(set-face-region-or-row 'header3 b e)))
 (global-set-key (kbd "M-o !") (lambda(b e)(interactive "r")(set-face-region-or-row 'grayheader1 b e)))
