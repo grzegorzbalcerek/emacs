@@ -15,8 +15,7 @@
 ;; b background ;; f foreground ;; q quit ;; u underline ;; x box
 (def-four-faces "a" "#00ffff" "#00ffff" "aqua")
 (def-four-faces "c" "#0000ff" "#6060ff" "blue")
-(def-four-faces "d" "#6495ed" "#6495ed" "cornflower blue")
-(def-four-faces "e" "#000000" "#ffffff" "----")
+(def-four-faces "e" "#6495ed" "#6495ed" "cornflower blue")
 (def-four-faces "g" "#008000" "#00c000" "green")
 (def-four-faces "h" "#ffd700" "#ffd700" "gold")
 (def-four-faces "i" "#808000" "#bfbf00" "olive")
@@ -93,7 +92,6 @@
          (small "small")(half "half")
          (ba "ba")(fa "fa")(ua "ua")(xa "xa")
          (bc "bc")(fc "fc")(uc "uc")(xc "xc")
-         (bd "bd")(fd "fd")(ud "ud")(xd "xd")
          (be "be")(fe "fe")(ue "ue")(xe "xe")
          (bg "bg")(fg "fg")(ug "ug")(xg "xg")
          (bh "bh")(fh "fh")(uh "uh")(xh "xh")
@@ -200,7 +198,7 @@
 (global-set-key (kbd "M-o M-b a") (lambda(b e)(interactive "r")(set-face-region-or-word 'ba b e)))
                                         ; b background
 (global-set-key (kbd "M-o M-b c") (lambda(b e)(interactive "r")(set-face-region-or-word 'bc b e)))
-(global-set-key (kbd "M-o M-b d") (lambda(b e)(interactive "r")(set-face-region-or-word 'bd b e)))
+                                        ; d default
 (global-set-key (kbd "M-o M-b e") (lambda(b e)(interactive "r")(set-face-region-or-word 'be b e)))
                                         ; f foreground
 (global-set-key (kbd "M-o M-b g") (lambda(b e)(interactive "r")(set-face-region-or-word 'bg b e)))
@@ -229,7 +227,7 @@
 (global-set-key (kbd "M-o M-f a") (lambda(b e)(interactive "r")(set-face-region-or-word 'fa b e)))
                                         ; b background
 (global-set-key (kbd "M-o M-f c") (lambda(b e)(interactive "r")(set-face-region-or-word 'fc b e)))
-(global-set-key (kbd "M-o M-f d") (lambda(b e)(interactive "r")(set-face-region-or-word 'fd b e)))
+                                        ; d default
 (global-set-key (kbd "M-o M-f e") (lambda(b e)(interactive "r")(set-face-region-or-word 'fe b e)))
                                         ; f foreground
 (global-set-key (kbd "M-o M-f g") (lambda(b e)(interactive "r")(set-face-region-or-word 'fg b e)))
@@ -258,7 +256,7 @@
 (global-set-key (kbd "M-o M-u a") (lambda(b e)(interactive "r")(set-face-region-or-word 'ua b e)))
                                         ; b background
 (global-set-key (kbd "M-o M-u c") (lambda(b e)(interactive "r")(set-face-region-or-word 'uc b e)))
-(global-set-key (kbd "M-o M-u d") (lambda(b e)(interactive "r")(set-face-region-or-word 'ud b e)))
+                                        ; d default
 (global-set-key (kbd "M-o M-u e") (lambda(b e)(interactive "r")(set-face-region-or-word 'ue b e)))
                                         ; f foreground
 (global-set-key (kbd "M-o M-u g") (lambda(b e)(interactive "r")(set-face-region-or-word 'ug b e)))
@@ -287,7 +285,7 @@
 (global-set-key (kbd "M-o M-x a") (lambda(b e)(interactive "r")(set-face-region-or-word 'xa b e)))
                                         ; b background
 (global-set-key (kbd "M-o M-x c") (lambda(b e)(interactive "r")(set-face-region-or-word 'xc b e)))
-(global-set-key (kbd "M-o M-x d") (lambda(b e)(interactive "r")(set-face-region-or-word 'xd b e)))
+                                        ; d default
 (global-set-key (kbd "M-o M-x e") (lambda(b e)(interactive "r")(set-face-region-or-word 'xe b e)))
                                         ; f foreground
 (global-set-key (kbd "M-o M-x g") (lambda(b e)(interactive "r")(set-face-region-or-word 'xg b e)))
@@ -313,23 +311,15 @@
 (global-set-key (kbd "M-o M-x .") (lambda(b e)(interactive "r")(set-face-region-or-word 'xnil b e)))
 
 
-(global-set-key (kbd "M-o b") (lambda(b e)(interactive "r")(set-face-region-or-word 'bold b e)))
-(global-set-key (kbd "M-o d") (lambda(b e)(interactive "r")(set-face-region-or-word 'default b e)))
-(global-set-key (kbd "M-o i") (lambda(b e)(interactive "r")(set-face-region-or-word 'italic b e)))
-(global-set-key (kbd "M-o l") (lambda(b e)(interactive "r")(set-face-region-or-word 'bold-italic b e)))
-(global-set-key (kbd "M-o u") (lambda(b e)(interactive "r")(set-face-region-or-word 'xnderline b e)))
-
 (defun set-face-region-or-row(face beg end)
   (interactive)
   (cond
    (mark-active
     (progn
-      ;(message "Setting face %s to region" face)
       (facemenu-set-face face beg end)))
    ((and (looking-at "[ \n]") (looking-back " ")))
    (t
     (progn
-      ;(message "Setting face %s to region" face)
       (facemenu-set-face face (line-beginning-position) (line-end-position))))))
 
 (global-set-key (kbd "M-o 1") (lambda(b e)(interactive "r")(set-face-region-or-row 'header1 b e)))
@@ -353,7 +343,7 @@
     ("a" . (lambda(b e)(interactive "r")(set-face-region-or-word 'ba b e)))
     ("b" . (lambda()(interactive)))
     ("c" . (lambda(b e)(interactive "r")(set-face-region-or-word 'bc b e)))
-    ("d" . (lambda(b e)(interactive "r")(set-face-region-or-word 'bd b e)))
+    ("d" . (lambda()(interactive)(facemenu-set-default)))
     ("e" . (lambda(b e)(interactive "r")(set-face-region-or-word 'be b e)))
     ("f" . (lambda()(interactive)(set-b-faces-minor-mode -1)(set-f-faces-minor-mode nil)))
     ("g" . (lambda(b e)(interactive "r")(set-face-region-or-word 'bg b e)))
@@ -376,12 +366,13 @@
     ("x" . (lambda()(interactive)(set-b-faces-minor-mode -1)(set-x-faces-minor-mode nil)))
     ("y" . (lambda(b e)(interactive "r")(set-face-region-or-word 'by b e)))
     ("z" . (lambda(b e)(interactive "r")(set-face-region-or-word 'bz b e)))
+    ("," . (lambda(b e)(interactive "r")(set-face-region-or-word 'bold b e)))
     ("." . (lambda(b e)(interactive "r")(set-face-region-or-word 'bnil b e)))
+    ("/" . (lambda(b e)(interactive "r")(set-face-region-or-word 'italic b e)))
     )
-  (if set-f-faces-minor-mode
+  (if set-b-faces-minor-mode
       (set-face-background 'cursor "blue")
     (set-face-background 'cursor "black")))
-(global-set-key (kbd "M-o M-b M-b") 'set-b-faces-minor-mode)
 
 
 (define-minor-mode set-f-faces-minor-mode
@@ -392,7 +383,7 @@
     ("a" . (lambda(b e)(interactive "r")(set-face-region-or-word 'fa b e)))
     ("b" . (lambda()(interactive)(set-f-faces-minor-mode -1)(set-b-faces-minor-mode nil)))
     ("c" . (lambda(b e)(interactive "r")(set-face-region-or-word 'fc b e)))
-    ("d" . (lambda(b e)(interactive "r")(set-face-region-or-word 'fd b e)))
+    ("d" . (lambda()(interactive)(facemenu-set-default)))
     ("e" . (lambda(b e)(interactive "r")(set-face-region-or-word 'fe b e)))
     ("f" . (lambda()(interactive)))
     ("g" . (lambda(b e)(interactive "r")(set-face-region-or-word 'fg b e)))
@@ -415,12 +406,13 @@
     ("x" . (lambda()(interactive)(set-f-faces-minor-mode -1)(set-x-faces-minor-mode nil)))
     ("y" . (lambda(b e)(interactive "r")(set-face-region-or-word 'fy b e)))
     ("z" . (lambda(b e)(interactive "r")(set-face-region-or-word 'fz b e)))
+    ("," . (lambda(b e)(interactive "r")(set-face-region-or-word 'bold b e)))
     ("." . (lambda(b e)(interactive "r")(set-face-region-or-word 'fnil b e)))
+    ("/" . (lambda(b e)(interactive "r")(set-face-region-or-word 'italic b e)))
     )
   (if set-f-faces-minor-mode
       (set-face-background 'cursor "#ff00ff")
     (set-face-background 'cursor "black")))
-(global-set-key (kbd "M-o M-f M-f") 'set-f-faces-minor-mode)
 (global-set-key (kbd "M-o M-m") 'set-f-faces-minor-mode)
 (global-set-key (kbd "<f12>") 'set-f-faces-minor-mode)
 
@@ -433,7 +425,7 @@
     ("a" . (lambda(b e)(interactive "r")(set-face-region-or-word 'ua b e)))
     ("b" . (lambda()(interactive)(set-u-faces-minor-mode -1)(set-b-faces-minor-mode nil)))
     ("c" . (lambda(b e)(interactive "r")(set-face-region-or-word 'uc b e)))
-    ("d" . (lambda(b e)(interactive "r")(set-face-region-or-word 'ud b e)))
+    ("d" . (lambda()(interactive)(facemenu-set-default)))
     ("e" . (lambda(b e)(interactive "r")(set-face-region-or-word 'ue b e)))
     ("f" . (lambda()(interactive)(set-u-faces-minor-mode -1)(set-f-faces-minor-mode nil)))
     ("g" . (lambda(b e)(interactive "r")(set-face-region-or-word 'ug b e)))
@@ -456,12 +448,13 @@
     ("x" . (lambda()(interactive)(set-u-faces-minor-mode -1)(set-x-faces-minor-mode nil)))
     ("y" . (lambda(b e)(interactive "r")(set-face-region-or-word 'uy b e)))
     ("z" . (lambda(b e)(interactive "r")(set-face-region-or-word 'uz b e)))
+    ("," . (lambda(b e)(interactive "r")(set-face-region-or-word 'bold b e)))
     ("." . (lambda(b e)(interactive "r")(set-face-region-or-word 'unil b e)))
+    ("/" . (lambda(b e)(interactive "r")(set-face-region-or-word 'italic b e)))
     )
   (if set-u-faces-minor-mode
       (set-face-background 'cursor "lime")
     (set-face-background 'cursor "black")))
-(global-set-key (kbd "M-o M-u M-u") 'set-u-faces-minor-mode)
 
 
 (define-minor-mode set-x-faces-minor-mode
@@ -472,7 +465,7 @@
     ("a" . (lambda(b e)(interactive "r")(set-face-region-or-word 'xa b e)))
     ("b" . (lambda()(interactive)(set-x-faces-minor-mode -1)(set-b-faces-minor-mode nil)))
     ("c" . (lambda(b e)(interactive "r")(set-face-region-or-word 'xc b e)))
-    ("d" . (lambda(b e)(interactive "r")(set-face-region-or-word 'xd b e)))
+    ("d" . (lambda()(interactive)(facemenu-set-default)))
     ("e" . (lambda(b e)(interactive "r")(set-face-region-or-word 'xe b e)))
     ("f" . (lambda()(interactive)(set-x-faces-minor-mode -1)(set-f-faces-minor-mode nil)))
     ("g" . (lambda(b e)(interactive "r")(set-face-region-or-word 'xg b e)))
@@ -495,12 +488,13 @@
     ("x" . (lambda()(interactive)))
     ("y" . (lambda(b e)(interactive "r")(set-face-region-or-word 'xy b e)))
     ("z" . (lambda(b e)(interactive "r")(set-face-region-or-word 'xz b e)))
+    ("," . (lambda(b e)(interactive "r")(set-face-region-or-word 'bold b e)))
     ("." . (lambda(b e)(interactive "r")(set-face-region-or-word 'xnil b e)))
+    ("/" . (lambda(b e)(interactive "r")(set-face-region-or-word 'italic b e)))
     )
   (if set-x-faces-minor-mode
       (set-face-background 'cursor "red")
     (set-face-background 'cursor "black")))
-(global-set-key (kbd "M-o M-x M-x") 'set-x-faces-minor-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                                 faces visibility                                     ;;
