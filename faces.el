@@ -20,10 +20,11 @@
 (def-four-faces "h" "#ffd700" "#ffd700" "gold")
 (def-four-faces "i" "#808000" "#bfbf00" "olive")
 (def-four-faces "j" "#ff00ff" "#ff00ff" "fuchsia")
-(def-four-faces "k" "#000000" "#ffffff" "----")
+(def-four-faces "k" "#7fffd4" "#7fffd4" "aquamarine")
 (def-four-faces "l" "#00ff00" "#00ff00" "lime")
 (def-four-faces "m" "#bfbfbf" "#bfbfbf" "gray")
-(def-four-faces "n" "#000000" "#ffffff" "----")
+;(def-four-faces "n" "#f4a460" "#f4a460" "sandybrown")
+(def-four-faces "n" "#deb887" "#deb887" "burlywood")
 (def-four-faces "o" "#ff8000" "#ff8000" "orange")
 (def-four-faces "p" "#ff80ff" "#ff80ff" "pink")
 (def-four-faces "r" "#ff0000" "#ff6868" "red")
@@ -78,7 +79,7 @@
   (list-face "header3" "  ") (list-face "grayheader2" "  ") (insert "\n")
   (list-face "small" "") (insert "\n")
   (list-face "half" "") (insert "\n")
-  (dolist (letter (list "a" "c" "d" "e" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "r" "s" "t" "w" "v" "y" "z"))
+  (dolist (letter (list "a" "c" "e" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "r" "s" "t" "w" "v" "y" "z"))
              (list-four-faces letter)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
