@@ -33,7 +33,7 @@
 (def-four-faces "w" "#800000" "#c07070" "brown")
 (def-four-faces "v" "#8000ff" "#b000ff" "violet")
 (def-four-faces "y" "#ffff00" "#ffff60" "yellow")
-(def-four-faces "z" "#8470ff" "#8470ff" "light slate blue")
+(def-four-faces "z" "#000000" "#000000" "black")
 
 (defface bnil '((t (:background unspecified))) "background nil")
 (defface fnil '((t (:foreground unspecified :weight normal))) "foreground nil")

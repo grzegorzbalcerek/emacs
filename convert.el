@@ -40,13 +40,10 @@
                 (progn
                   (let ((b (match-beginning 0))
                         (e (match-end 0)))
-                    (message "go to %s" e)
                     (goto-char e)
                     (dolist (c (split-string (cdar p) "" t))
                       (self-insert-command 1 (string-to-char c)))
-                    (message "delete region %s %s" b e)
                     (delete-region b e)
-                                        ;(message "%s → %s" (caar p) (cdar p))
                     (left-char)
                     (setq p nil)))
               (setq p (cdr p)))))
@@ -79,27 +76,25 @@
 ;;                                                                                      ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(setq numbers-superscripts
+      '(
+        ("¹" . "1") ("1" . "¹")
+        ("²" . "2") ("2" . "²")
+        ("³" . "3") ("3" . "³")
+        ("⁴" . "4") ("4" . "⁴")
+        ("⁵" . "5") ("5" . "⁵")
+        ("⁶" . "6") ("6" . "⁶")
+        ("⁷" . "7") ("7" . "⁷")
+        ("⁸" . "8") ("8" . "⁸")
+        ("⁹" . "9") ("9" . "⁹")
+        ("⁰" . "0") ("0" . "⁰")
+        ))
 
-;(defun polish-region(beg end)
-;  (interactive "r")
-;  (setq end (rereplace-with-bounds beg end " \"" " „"))
-;  (setq end (rereplace-with-bounds beg end "\" " "” "))
-;  (setq end (rereplace-with-bounds beg end "“" "„"))
-;  (setq end (rereplace-with-bounds beg end "«" "„"))
-;  (setq end (rereplace-with-bounds beg end "»" "”"))
-;  (setq end (rereplace-with-bounds beg end "'" "’"))
-;  )
-;
-;(defun english-region(beg end)
-;  (interactive "r")
-;  (setq end (rereplace-with-bounds beg end " \"" " “"))
-;  (setq end (rereplace-with-bounds beg end "\" " "” "))
-;  (setq end (rereplace-with-bounds beg end "„" "“"))
-;  (setq end (rereplace-with-bounds beg end "«" "“"))
-;  (setq end (rereplace-with-bounds beg end "»" "”"))
-;  (setq end (rereplace-with-bounds beg end "'" "’"))
-;  (setq end (rereplace-with-bounds beg end "\\([0-9]\\),\\([0-9]\\)" "\\1:\\2"))
-;  )
+(defun toggle-numbers-superscripts(beg end)
+  (interactive "r")
+  (convert-text-region numbers-superscripts beg end))
+
+(global-set-key (kbd "C-c p") 'toggle-numbers-superscripts)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                                  camel case                                          ;;
