@@ -66,17 +66,24 @@
 (set-register ?r '(file . "~/doc/rbs/"))
 (set-register ?E '(file . "~/repos/emacs/"))
 
+
 (load-file "~/repos/emacs/buffers.el")
+(load-file "~/repos/emacs/button.el")
 (load-file "~/repos/emacs/convert.el")
 (load-file "~/repos/emacs/enriched.el")
 (load-file "~/repos/emacs/faces.el")
 (load-file "~/repos/emacs/footnotes.el")
+(load-file "~/repos/emacs/joinsplitlines.el")
 (load-file "~/repos/emacs/keys.el")
 (load-file "~/repos/emacs/killyank.el")
 (load-file "~/repos/emacs/lines.el")
-(load-file "~/repos/emacs/scroll.el")
-(load-file "~/repos/emacs/tabs.el")
 (load-file "~/repos/emacs/org.el")
+(load-file "~/repos/emacs/scroll.el")
+(load-file "~/repos/emacs/separators.el")
+(load-file "~/repos/emacs/shell.el")
+(load-file "~/repos/emacs/tabs.el")
+(load-file "~/repos/emacs/unicode.el")
+
 
 (if (file-exists-p "~/.emacs2")
     (load-file "~/.emacs2"))
