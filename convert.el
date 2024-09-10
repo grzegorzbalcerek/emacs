@@ -3,27 +3,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                                        utils                                         ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun activate-urls()
-  "make buttons for urls"
-  (interactive)
-  (save-excursion
-    (goto-char (point-min))
-    (while (re-search-forward "http[s]?://[^ \n]+" nil t)
-      (let ((b (match-beginning 0))
-            (e (match-end 0)))
-        (make-button b e 'action (lambda (x) (browse-url (buffer-substring b e))))))))
-
-(defun replace-re(regex str beg end)
-  "replaces regular expressions with a string within a region"
-  (save-excursion
-    (goto-char beg)
-    (while (re-search-forward regex end t)
-      (replace-match str))))
-
-(defun replace-next-re(regex str)
-  "replaces next regular expression found with a string"
-  (if (re-search-forward regex (point-max) t)
-      (replace-match str)))
 
 (defun convert-text-region(table beg end)
   "convert a region of text to a different text using the table of replacements"
@@ -49,28 +28,6 @@
               (setq p (cdr p)))))
         (right-char)))
     (goto-char begm)))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;                                  unicode to a char                                   ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(defun ucode-to-char()
-  (interactive)
-  (set-mark-command nil)
-  (search-backward-regexp "[^0-9a-fA-F]")
-  (forward-char 1)
-  (let ((v (buffer-substring (region-beginning)(region-end))))
-    (kill-region(region-beginning)(region-end))
-    (insert-char (string-to-number v 16))))
-(global-set-key (kbd "s-X") 'ucode-to-char)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;                            new lines before line numbers                             ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(defun newlines-before-line-numbers(beg end)
-  (interactive "r")
-  (replace-re " +\\([0-9]+\\)" "\n\\1" beg end))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                                                                                      ;;
