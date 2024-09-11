@@ -1,5 +1,8 @@
 ;;; -*- lexical-biding: t -*-
 
+(provide 'footnotes)
+(require 'converttext)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                                      footnotes                                       ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -42,17 +45,40 @@
   "Number footnotes in the document starting with 1"
   (replace-with-consecutive-sup-numbers "^" " ")
   (replace-with-consecutive-sup-numbers "[^¹²³⁴⁵⁶⁷⁸⁹⁰]" "\\($\\|[^¹²³⁴⁵⁶⁷⁸⁹⁰ ]\\)"))
+(global-set-key (kbd "C-c ! r") 'renumber-footnotes)
 
 (defun next-footnote()
   (interactive)
   "Find next footnote"
   (search-forward-regexp "[^¹²³⁴⁵⁶⁷⁸⁹⁰]+"))
+(global-set-key (kbd "C-c ! n") 'next-footnote)
 
 (defun previous-footnote()
   (interactive)
   "Find previous footnote"
   (search-backward-regexp "[^¹²³⁴⁵⁶⁷⁸⁹⁰]+"))
-
-(global-set-key (kbd "C-c ! r") 'renumber-footnotes)
-(global-set-key (kbd "C-c ! n") 'next-footnote)
 (global-set-key (kbd "C-c ! p") 'previous-footnote)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;                             toggle-numbers-superscripts                              ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(setq numbers-superscripts
+      '(
+        ("¹" . "1") ("1" . "¹")
+        ("²" . "2") ("2" . "²")
+        ("³" . "3") ("3" . "³")
+        ("⁴" . "4") ("4" . "⁴")
+        ("⁵" . "5") ("5" . "⁵")
+        ("⁶" . "6") ("6" . "⁶")
+        ("⁷" . "7") ("7" . "⁷")
+        ("⁸" . "8") ("8" . "⁸")
+        ("⁹" . "9") ("9" . "⁹")
+        ("⁰" . "0") ("0" . "⁰")
+        ))
+
+(defun toggle-numbers-superscripts(beg end)
+  (interactive "r")
+  (convert-text-region numbers-superscripts beg end))
+(global-set-key (kbd "C-c ! t") 'toggle-numbers-superscripts)
+

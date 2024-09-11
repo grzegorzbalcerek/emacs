@@ -1,5 +1,7 @@
 ;;; -*- lexical-biding: t -*-
 
+(provide 'tabs)
+
 (defun replace-re(regex str beg end)
   "replaces regular expressions with a string within a region"
   (save-excursion

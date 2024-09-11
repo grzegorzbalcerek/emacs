@@ -1,5 +1,7 @@
 ;;; -*- lexical-biding: t -*-
 
+(provide 'facesplus)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                                   face definitions                                   ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -16,20 +18,18 @@
 ;; b background ;; f foreground ;; q quit ;; u underline ;; x box
 (def-four-faces "a" "#00ffff" "#00ffff" "aqua")
 (def-four-faces "c" "#0000ff" "#6060ff" "blue")
-(def-four-faces "e" "#6495ed" "#6495ed" "cornflower blue")
+(def-four-faces "e" "#7fffd4" "#7fffd4" "aquamarine")
 (def-four-faces "g" "#008000" "#00c000" "green")
 (def-four-faces "h" "#ffd700" "#ffd700" "gold")
 (def-four-faces "i" "#808000" "#bfbf00" "olive")
 (def-four-faces "j" "#ff00ff" "#ff00ff" "fuchsia")
-(def-four-faces "k" "#7fffd4" "#7fffd4" "aquamarine")
+(def-four-faces "k" "#0080ff" "#00a0ff" "sky blue")
 (def-four-faces "l" "#00ff00" "#00ff00" "lime")
 (def-four-faces "m" "#bfbfbf" "#bfbfbf" "gray")
-;(def-four-faces "n" "#f4a460" "#f4a460" "sandybrown")
 (def-four-faces "n" "#deb887" "#deb887" "burlywood")
 (def-four-faces "o" "#ff8000" "#ff8000" "orange")
 (def-four-faces "p" "#ff80ff" "#ff80ff" "pink")
 (def-four-faces "r" "#ff0000" "#ff6868" "red")
-;(def-four-faces "s" "#0080ff" "#00a0ff" "sky blue")
 (def-four-faces "t" "#008080" "#00bfbf" "teal")
 (def-four-faces "w" "#800000" "#c07070" "brown")
 (def-four-faces "v" "#8000ff" "#b000ff" "violet")
@@ -390,7 +390,7 @@
     ("p" . (lambda(b e)(interactive "r")(set-face-region-or-word 'bp b e)))
     ("q" . (lambda()(interactive)(set-b-faces-minor-mode -1)))
     ("r" . (lambda(b e)(interactive "r")(set-face-region-or-word 'br b e)))
-    ("s" . (lambda()(interactive)(set-s-faces-minor-mode -1)))
+    ("s" . (lambda()(interactive)(set-b-faces-minor-mode -1)(set-s-faces-minor-mode nil)))
     ("t" . (lambda(b e)(interactive "r")(set-face-region-or-word 'bt b e)))
     ("u" . (lambda()(interactive)(set-b-faces-minor-mode -1)(set-u-faces-minor-mode nil)))
     ("w" . (lambda(b e)(interactive "r")(set-face-region-or-word 'bw b e)))
@@ -430,7 +430,7 @@
     ("p" . (lambda(b e)(interactive "r")(set-face-region-or-word 'fp b e)))
     ("q" . (lambda()(interactive)(set-f-faces-minor-mode -1)))
     ("r" . (lambda(b e)(interactive "r")(set-face-region-or-word 'fr b e)))
-    ("s" . (lambda()(interactive)(set-s-faces-minor-mode -1)))
+    ("s" . (lambda()(interactive)(set-f-faces-minor-mode -1)(set-s-faces-minor-mode nil)))
     ("t" . (lambda(b e)(interactive "r")(set-face-region-or-word 'ft b e)))
     ("u" . (lambda()(interactive)(set-f-faces-minor-mode -1)(set-u-faces-minor-mode nil)))
     ("w" . (lambda(b e)(interactive "r")(set-face-region-or-word 'fw b e)))
@@ -474,7 +474,7 @@
     ("r" . (lambda(b e)(interactive "r")(set-face-region-or-word 'sr b e)))
     ("s" . (lambda()(interactive)))
     ("t" . (lambda(b e)(interactive "r")(set-face-region-or-word 'st b e)))
-    ("u" . (lambda()(interactive)(set-f-faces-minor-mode -1)(set-u-faces-minor-mode nil)))
+    ("u" . (lambda()(interactive)(set-s-faces-minor-mode -1)(set-u-faces-minor-mode nil)))
     ("w" . (lambda(b e)(interactive "r")(set-face-region-or-word 'sw b e)))
     ("v" . (lambda(b e)(interactive "r")(set-face-region-or-word 'sv b e)))
     ("x" . (lambda()(interactive)(set-s-faces-minor-mode -1)(set-x-faces-minor-mode nil)))
@@ -485,8 +485,8 @@
     ("/" . (lambda(b e)(interactive "r")(set-face-region-or-word 'italic b e)))
     )
   (if set-s-faces-minor-mode
-      (set-face-background 'cursor "lime")
-    (set-face-background 'cursor "gray")))
+      (set-face-background 'cursor "gray")
+    (set-face-background 'cursor "black")))
 
 
 (define-minor-mode set-u-faces-minor-mode
@@ -512,7 +512,7 @@
     ("p" . (lambda(b e)(interactive "r")(set-face-region-or-word 'up b e)))
     ("q" . (lambda()(interactive)(set-u-faces-minor-mode -1)))
     ("r" . (lambda(b e)(interactive "r")(set-face-region-or-word 'ur b e)))
-    ("s" . (lambda()(interactive)(set-s-faces-minor-mode -1)))
+    ("s" . (lambda()(interactive)(set-u-faces-minor-mode -1)(set-s-faces-minor-mode nil)))
     ("t" . (lambda(b e)(interactive "r")(set-face-region-or-word 'ut b e)))
     ("u" . (lambda()(interactive)))
     ("w" . (lambda(b e)(interactive "r")(set-face-region-or-word 'uw b e)))
@@ -552,7 +552,7 @@
     ("p" . (lambda(b e)(interactive "r")(set-face-region-or-word 'xp b e)))
     ("q" . (lambda()(interactive)(set-x-faces-minor-mode -1)))
     ("r" . (lambda(b e)(interactive "r")(set-face-region-or-word 'xr b e)))
-    ("s" . (lambda()(interactive)(set-s-faces-minor-mode -1)))
+    ("s" . (lambda()(interactive)(set-x-faces-minor-mode -1)(set-s-faces-minor-mode nil)))
     ("t" . (lambda(b e)(interactive "r")(set-face-region-or-word 'xt b e)))
     ("u" . (lambda()(interactive)(set-x-faces-minor-mode -1)(set-u-faces-minor-mode nil)))
     ("w" . (lambda(b e)(interactive "r")(set-face-region-or-word 'xw b e)))

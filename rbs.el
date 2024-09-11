@@ -1,24 +1,6 @@
 ;;; -*- lexical-biding: t -*-
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;                             yank with replacing a region                             ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(defun yank-replace-region(beg end)
-  "Replace region with the previous ring value"
-  (interactive "r")
-  (delete-region beg end)
-  (let ((curr-buff (current-buffer))
-        (temp-buff (generate-new-buffer "*rbs-deleteme*")))
-    (set-buffer temp-buff)
-    (yank 2)
-    (let ((str (buffer-substring (point-min) (point-max))))
-      (kill-buffer temp-buff)
-      (set-buffer curr-buff)
-      (insert str))))
-
-(global-set-key (kbd "C-M-y") 'yank-replace-region)
-(global-set-key [tool-bar isearch-forward] 'yank-replace-region)
+(provide 'rbs)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                copy to the kill ring fragments of rewritten RBS text                 ;;
@@ -108,62 +90,5 @@
   (interactive "r")
   (let ((text (buffer-substring beg end)))
     (kill-new (string-clean-whitespace text))))
-
 (global-set-key (kbd "s-w") 'kill-ring-save-clean-whitespace)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;                            comparisons with libre office                             ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(defun prepare-ediff-emacs(beg end)
-  "Save the text from region into a new buffer called *emacs* and fill paragraph"
-  (interactive "r")
-  (let ((msg
-         (if (get-buffer "*emacs*")
-             (progn
-               (kill-buffer "*emacs*")
-               "Previous buffer was killed")
-           "")))
-    (kill-ring-save-clean-whitespace beg end)
-    (get-buffer-create "*emacs*")
-    (set-buffer "*emacs*")
-    (yank)
-    (fill-paragraph)
-    (message "Buffer *emacs* ready. %s" msg))
-  (if (get-buffer "*other*")
-      (ediff-buffers "*emacs*" "*other*")))
-
-(global-set-key (kbd "C-c e") 'prepare-ediff-emacs)
-
-(defun prepare-ediff-other()
-  "Save the text from the clipboard into a new buffer called *other* and fill paragraph"
-  (interactive)
-  (let ((msg
-         (if (get-buffer "*other*")
-             (progn
-               (kill-buffer "*other*")
-               "Previous buffer was killed")
-           "")))
-    (get-buffer-create "*other*")
-    (set-buffer "*other*")
-    (yank)
-    (fill-paragraph)
-    (message "Buffer *other* ready. %s" msg))
-  (if (get-buffer "*emacs*")
-      (ediff-buffers "*emacs*" "*other*")))
-
-(global-set-key (kbd "C-c o") 'prepare-ediff-other)
-
-(defun start-ediff-emacs-other()
-  (interactive)
-  (ediff-buffers "*emacs*" "*other*"))
-
-(global-set-key (kbd "C-c s") 'start-ediff-emacs-other)
-
-(defun quit-ediff-buffers()
-  (interactive)
-  (kill-buffer "*emacs*")
-  (kill-buffer "*other*")
-  (delete-other-windows))
-
-(global-set-key (kbd "C-c q") 'quit-ediff-buffers)
