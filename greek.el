@@ -1,7 +1,7 @@
 ;;; -*- lexical-biding: t -*-
 
-(provide 'convertgreek)
-(require 'converttext)
+(provide 'greek)
+(require 'convert)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                            Bible Works fonts conversions                             ;;
@@ -53,9 +53,10 @@
         ("(" . ",") (")" . ".") ("Å" . ".") ("È" . ";") ("Î" . "[") ("Ð" . "]") ("V" . "’") ("\\\\" . "·") ("*" . ";")
         ))
 
-(defun greek-from-bwgrk-region(beg end)
+(defun bwgrk-to-greek-region(beg end)
   (interactive "r")
   (convert-text-region bwgrk-to-greek beg end))
+(global-set-key (kbd "C-c B G") 'bwgrk-to-greek-region)
 
 (setq greek-to-bwgrk
       '(
@@ -114,9 +115,7 @@
 (defun greek-to-bwgrk-region(beg end)
   (interactive "r")
   (convert-text-region greek-to-bwgrk beg end))
-
-(global-set-key (kbd "C-c G b") 'greek-to-bwgrk-region)
-(global-set-key (kbd "C-c G B") 'greek-from-bwgrk-region)
+(global-set-key (kbd "C-c G B") 'greek-to-bwgrk-region)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                                Greek transliteration                                 ;;
@@ -206,5 +205,4 @@
 (defun greek-transliterate-region(beg end)
   (interactive "r")
   (convert-text-region greek-transliteration beg end))
-
-(global-set-key (kbd "C-c G t") 'greek-transliterate-region)
+(global-set-key (kbd "C-c G T") 'greek-transliterate-region)

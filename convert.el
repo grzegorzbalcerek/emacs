@@ -1,6 +1,6 @@
 ;;; -*- lexical-biding: t -*-
 
-(provide 'converttext)
+(provide 'convert)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                                 convert-text-region                                  ;;

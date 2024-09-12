@@ -1,7 +1,7 @@
 ;;; -*- lexical-biding: t -*-
 
 (provide 'footnotes)
-(require 'converttext)
+(require 'convert)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                                      footnotes                                       ;;
