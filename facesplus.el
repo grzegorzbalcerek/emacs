@@ -17,7 +17,7 @@
 
 (def-four-faces "a" "#00ffff" "#00ffff aqua")
 (def-four-faces "b" "#0000ff" "#0000ff blue")
-(def-four-faces "c" "#008b8b" "#008b8b dark cyan")
+(def-four-faces "c" "#bfff00" "#bfff00 light lime")
 (def-four-faces "d" "#00bfff" "#00bfff deep sky blue")
 (def-four-faces "e" "#00ff7f" "#00ff7f spring green")
 (def-four-faces "f" "#ff00ff" "#ff00ff fuchsia")
@@ -25,7 +25,7 @@
 (def-four-faces "h" "#ffd700" "#ffd700 gold")
 (def-four-faces "i" "#808000" "#808000 olive")
 (def-four-faces "j" "#0000cd" "#0000cd medium blue")
-(def-four-faces "k" "#bfff00" "#bfff00 light lime")
+(def-four-faces "k" "#f0e68c" "#f0e68c dark khaki")
 (def-four-faces "l" "#00ff00" "#00ff00 lime")
 (def-four-faces "m" "#fa8072" "#fa8072 salmon")
 (def-four-faces "n" "#800000" "#800000 brown")
@@ -35,7 +35,7 @@
 (def-four-faces "r" "#ff0000" "#ff0000 red")
 (def-four-faces "s" "#0080ff" "#0080ff sky blue")
 (def-four-faces "t" "#008080" "#008080 teal")
-(def-four-faces "u" "#000000" "#000000 =available")
+(def-four-faces "u" "#fff8dc" "#fff8dc corn silk")
 (def-four-faces "v" "#8000ff" "#8000ff violet")
 (def-four-faces "w" "#ffffff" "#ffffff white")
 (def-four-faces "x" "#bfbfbf" "#bfbfbf gray")
@@ -88,7 +88,7 @@
   (list-face "header3" "  ") (list-face "grayheader2" "  ") (insert "\n")
   (list-face "small" "") (insert "\n")
   (list-face "half" "") (insert "\n")
-  (dolist (letter (list "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "q" "r" "s" "t" "v" "w" "x" "y" "z"))
+  (dolist (letter (list "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "q" "r" "s" "t" "u" "v" "w" "x" "y" "z"))
              (list-four-faces letter)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
