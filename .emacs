@@ -75,6 +75,7 @@
 (require 'footnotes)
 (require 'greek)
 (require 'orgplus)
+(require 'htmlxmlplus)
 (require 'rbs)
 (require 'separators)
 (require 'tabs)
