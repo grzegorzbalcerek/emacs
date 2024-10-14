@@ -73,15 +73,15 @@
 (defun intelligent-previous-buffer()
   (interactive)
   (intelligent-change-buffer 'previous-buffer))
-(global-set-key (kbd "<C-s-left>") 'intelligent-previous-buffer)
+(global-set-key (kbd "<C-M-s-left>") 'intelligent-previous-buffer)
 
 (defun intelligent-next-buffer()
   (interactive)
   (intelligent-change-buffer 'next-buffer))
-(global-set-key (kbd "<C-s-right>") 'intelligent-next-buffer)
+(global-set-key (kbd "<C-M-s-right>") 'intelligent-next-buffer)
 
-(global-set-key (kbd "<C-s-up>") (lambda()(interactive)(dired ".")))
-(global-set-key (kbd "<C-s-down>") 'buffer-menu)
+(global-set-key (kbd "<C-M-s-up>") (lambda()(interactive)(dired ".")))
+(global-set-key (kbd "<C-M-s-down>") 'buffer-menu)
 (global-set-key (kbd "<s-backspace>") (lambda()(interactive)(kill-buffer nil)))
 (global-set-key [M-f4] (lambda()(interactive)(kill-buffer nil)))
 
@@ -95,13 +95,13 @@
   (interactive "P")
   (if n (setq xscroll-horizontally-step n))
   (scroll-right xscroll-horizontally-step))
-(global-set-key (kbd "<C-M-s-left>") 'xscroll-right)
+(global-set-key (kbd "<C-s-left>") 'xscroll-right)
 
 (defun xscroll-left(n)
   (interactive "P")
   (if n (setq xscroll-horizontally-step n))
   (scroll-left xscroll-horizontally-step))
-(global-set-key (kbd "<C-M-s-right>") 'xscroll-left)
+(global-set-key (kbd "<C-s-right>") 'xscroll-left)
 
 (defvar xscroll-vertically-step 1)
 
@@ -109,13 +109,13 @@
   (interactive "P")
   (if n (setq xscroll-vertically-step n))
   (scroll-up xscroll-vertically-step))
-(global-set-key (kbd "<C-M-s-down>") 'xscroll-up)
+(global-set-key (kbd "<C-s-down>") 'xscroll-up)
 
 (defun xscroll-down(n)
   (interactive "P")
   (if n (setq xscroll-vertically-step n))
   (scroll-down xscroll-vertically-step))
-(global-set-key (kbd "<C-M-s-up>") 'xscroll-down)
+(global-set-key (kbd "<C-s-up>") 'xscroll-down)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                               Moving and copying lines                               ;;
