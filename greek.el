@@ -205,4 +205,4 @@
 (defun greek-transliterate-region(beg end)
   (interactive "r")
   (convert-text-region greek-transliteration beg end))
-(global-set-key (kbd "C-c G T") 'greek-transliterate-region)
+(global-set-key (kbd "C-c c t") 'greek-transliterate-region)
