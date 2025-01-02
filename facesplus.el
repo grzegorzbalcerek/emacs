@@ -34,9 +34,9 @@
 (def-face-bg "t" "#8080ff")
 (def-face-bg "u" "#80ffff")
 (def-face-bg "v" "#80ff80")
-(def-face-bg "w" "#ffff80")
+(def-face-bg "w" "#ffa0a0")
 (def-face-bg "x" "#ffa0ff")
-(def-face-bg "y" "#ffa0a0")
+(def-face-bg "y" "#ffff80")
 (def-face-bg "z" "#c0c0c0")
 
 (defface header1 '((t (:weight bold :height 1.15))) "weight bold height 1.15")
