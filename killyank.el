@@ -1,6 +1,6 @@
 ;;; -*- lexical-biding: t -*-
 
-(provide 'yankreplace)
+(provide 'killyank)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                             yank with replacing a region                             ;;

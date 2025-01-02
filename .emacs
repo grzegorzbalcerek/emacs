@@ -73,12 +73,10 @@
 (require 'facesplus)
 (require 'footnotes)
 (require 'greek)
-(require 'mlplus)
 (require 'orgplus)
-(require 'separators)
 (require 'tabs)
 (require 'unicode)
-(require 'yankreplace)
+(require 'killyank)
 
 (if (file-exists-p "~/.emacs2")
     (load-file "~/.emacs2"))
