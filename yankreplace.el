@@ -21,3 +21,14 @@
 (global-set-key (kbd "C-M-y") 'yank-replace-region)
 (global-set-key [tool-bar isearch-forward] 'yank-replace-region)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;                           kill ring save without newlines                            ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defun kill-ring-save-clean-whitespace(beg end)
+  "Return the line number of the position pos within a verse.
+   A verse starts with its number"
+  (interactive "r")
+  (let ((text (buffer-substring beg end)))
+    (kill-new (string-clean-whitespace text))))
+(global-set-key (kbd "s-w") 'kill-ring-save-clean-whitespace)
