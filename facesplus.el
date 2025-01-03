@@ -12,32 +12,32 @@
 (defmacro def-face-bg (letter color)
   `(defface ,(intern (concat "f" letter)) '((t (:background ,color))) (concat "background " ,color)))
 
-(def-face-fg "a" "#8000ff")
-(def-face-fg "b" "#0000ff")
-(def-face-fg "c" "#00ffff")
-(def-face-fg "d" "#00bfff")
-(def-face-fg "e" "#000080")
-(def-face-fg "f" "#008080")
-(def-face-fg "g" "#008000")
-(def-face-fg "h" "#00ff00")
-(def-face-fg "i" "#808000")
-(def-face-fg "j" "#00c000")
-(def-face-fg "k" "#ffff00")
-(def-face-fg "l" "#ffbc00")
-(def-face-fg "m" "#800000")
-(def-face-fg "n" "#ff8080")
-(def-face-fg "o" "#ff8000")
-(def-face-fg "p" "#ff80ff")
-(def-face-fg "q" "#ff00ff")
-(def-face-fg "r" "#ff0000")
-(def-face-fg "s" "#808080")
-(def-face-bg "t" "#8080ff")
-(def-face-bg "u" "#80ffff")
-(def-face-bg "v" "#80ff80")
-(def-face-bg "w" "#ffa0a0")
-(def-face-bg "x" "#ffa0ff")
-(def-face-bg "y" "#ffff80")
-(def-face-bg "z" "#c0c0c0")
+(def-face-fg "a" "#8000ff") ; F violet
+(def-face-fg "b" "#0000ff") ; F blue
+(def-face-fg "c" "#00eeee") ; F cyan (aqua)
+(def-face-fg "d" "#00bfff") ; F deep blue sky
+(def-face-fg "e" "#000080") ; F navy
+(def-face-fg "f" "#009999") ; F teal
+(def-face-fg "g" "#008000") ; F green
+(def-face-fg "h" "#00ee00") ; F lime
+(def-face-fg "i" "#808000") ; F olive
+(def-face-fg "j" "#eeee00") ; F yellow
+(def-face-fg "k" "#ffbc00") ; F gold
+(def-face-fg "l" "#800000") ; F marron
+(def-face-fg "m" "#ff00ff") ; F fuchsia/magenta
+(def-face-fg "n" "#ff8080") ; F salmon
+(def-face-fg "o" "#ff8000") ; F dark orange
+(def-face-fg "p" "#ff80ff") ; F pink
+(def-face-fg "q" "#808080") ; F gray
+(def-face-fg "r" "#ff0000") ; F red
+(def-face-bg "s" "#c0c0c0") ; B silver
+(def-face-bg "t" "#8080ff") ; B white blue
+(def-face-bg "u" "#80ffff") ; B white cyan (aqua)
+(def-face-bg "v" "#80ff80") ; B white green
+(def-face-bg "w" "#ffbc80") ; B white gold
+(def-face-bg "x" "#ffff80") ; B white yellow
+(def-face-bg "y" "#ffa0ff") ; B white pink
+(def-face-bg "z" "#ffa0a0") ; B white red
 
 (defface header1 '((t (:weight bold :height 1.15))) "weight bold height 1.15")
 (defface header2 '((t (:weight bold :height 1.10))) "weight bold height 1.10")

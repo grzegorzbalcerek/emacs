@@ -74,6 +74,7 @@
 (require 'footnotes)
 (require 'greek)
 (require 'orgplus)
+(require 'rbsapp)
 (require 'tabs)
 (require 'unicode)
 (require 'killyank)

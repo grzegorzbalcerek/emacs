@@ -34,7 +34,7 @@
 (global-set-key (kbd "C-c r s") 'rbsapp-split-xml-elements)
 
 
-(defun insert-split-tags(tag)
+(defun rbsapp-split-tags(tag)
   (interactive)
   (message "insert-split-tags")
   (previous-line)
